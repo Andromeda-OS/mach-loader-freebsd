@@ -6,9 +6,9 @@ KMOD=imgact_mach
 .endif
 
 .if defined(DEBUG) || make(debug)
-CFLAGS += -O0 -g
+CFLAGS += -O0 -DDEBUG
 .else
-CFLAGS += -O3 -DNDEBUG
+CFLAGS += -O3
 .endif
 
 CFLAGS += -DDYLD=\"$(DYLD_PATH)\"
