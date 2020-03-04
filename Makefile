@@ -38,7 +38,7 @@ run_kmod: loader
 
 clean:
 	${MAKE} -C loader_tool clean
-	${MAKE} -C kmod clean DYLD_PATH=$(DYLD_PATH)
+	${MAKE} -C kmod clean
 
 ARCHIVE_NAME != echo mach-loader-freebsd-`git log -1 --format='%h'`.tar
 archive:
