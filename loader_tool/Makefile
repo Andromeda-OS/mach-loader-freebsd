@@ -1,5 +1,5 @@
 PROG = loader
-SRCS = loader.c boot.s dyld_stub_binder.S set_proc_comm.s
+SRCS = loader.c fatal.c boot.s dyld_stub_binder.S set_proc_comm.s
 MK_MAN = no
 
 CFLAGS  = -I../include -DUSE_BSD_LIBS -std=c99
