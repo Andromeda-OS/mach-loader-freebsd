@@ -740,7 +740,7 @@ void load_mach_image(struct mach_image *image) {
 				if ((command->cmd & LC_REQ_DYLD) == LC_REQ_DYLD)
 					loader_fatal("Load command #%d is unknown (type = 0x%X)", i, command->cmd);
 				else
-					LOGF("Load command %d is unknown (type = 0x%X)", i, command->cmd);
+					LOGF("Ignoring unknown load command %d (type = 0x%X)\n", i, command->cmd);
 
 				break;
 		}
@@ -800,7 +800,7 @@ int main(int argc, char **argv, char **envp) {
 	main_image.path = loaded_by_kernel ? argv[0] : argv[1];
 
 	load_mach_image(&main_image);
-	loader_assert(main_image.header->filetype == MH_EXECUTE, "Cannot execute %s because it is dynamic library", main_image.path);
+	loader_assert(main_image.header->filetype == MH_EXECUTE, "Cannot execute %s because it is a dynamic library", main_image.path);
 
 	char **envp_end = envp;
 	while (*envp_end) envp_end++;
