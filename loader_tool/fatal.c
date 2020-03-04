@@ -10,5 +10,6 @@ void loader_fatal(const char *msg, ...) __attribute__((noreturn)) {
 	vasprintf(&message, msg, ap);
 	va_end(ap);
 
+	fprintf(stderr, "fatal loader error: %s\n", message);
 	abort();
 }
