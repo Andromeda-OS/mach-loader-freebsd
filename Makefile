@@ -27,7 +27,7 @@ run_all: loader
 	done
 
 kmod: .PHONY
-	make -C kmod DYLD_PATH=$(DYLD_PATH) DEBUG=$(DEBUG)
+	${MAKE} -C kmod DYLD_PATH=$(DYLD_PATH) DEBUG=$(DEBUG)
 	cp kmod/imgact_mach.ko imgact_mach.ko
 
 run_kmod: loader
@@ -37,8 +37,8 @@ run_kmod: loader
 	-kldunload ./imgact_mach.ko
 
 clean:
-	make -C loader_tool clean
-	make -C kmod clean DYLD_PATH=$(DYLD_PATH)
+	${MAKE} -C loader_tool clean
+	${MAKE} -C kmod clean DYLD_PATH=$(DYLD_PATH)
 
 ARCHIVE_NAME != echo mach-loader-freebsd-`git log -1 --format='%h'`.tar
 archive:
