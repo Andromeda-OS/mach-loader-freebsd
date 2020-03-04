@@ -43,7 +43,8 @@ run_all: loader
 	done
 
 kmod:
-	make -f loader.kmod.mk DYLD_PATH=$(DYLD_PATH)
+	make -C kmod DYLD_PATH=$(DYLD_PATH)
+	cp kmod/imgact_macho.ko imgact_macho.ko
 
 run_kmod: kmod
 	-kldunload ./imgact_mach.ko
