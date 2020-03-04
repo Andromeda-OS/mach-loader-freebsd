@@ -6,5 +6,6 @@ PWD != pwd
 CFLAGS += -DDYLD=\"$(DYLD_PATH)\"
 .else
 CFLAGS += -DDYLD=\"$(PWD)/loader\"
+.endif
 
 .include <bsd.kmod.mk>
