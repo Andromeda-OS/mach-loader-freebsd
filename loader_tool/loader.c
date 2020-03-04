@@ -737,7 +737,11 @@ void load_mach_image(struct mach_image *image) {
 				break;
 
 			default:
-				loader_fatal("Load command #%d is unknown (type=0x%X)", i, command->cmd);
+				if ((command->cmd & LC_REQ_DYLD) == LC_REQ_DYLD)
+					loader_fatal("Load command #%d is unknown (type = 0x%X)", i, command->cmd);
+				else
+					LOGF("Load command %d is unknown (type = 0x%X)", i, command->cmd);
+
 				break;
 		}
 
