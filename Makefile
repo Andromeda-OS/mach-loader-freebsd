@@ -1,4 +1,8 @@
-.if defined(DEBUG) || make(debug)
+.if make(debug)
+DEBUG=1
+.endif
+
+.if defined(DEBUG)
 DYLD_PATH = $(PWD)/loader
 .else
 DYLD_PATH = /System/Library/ELFLoader/loader
