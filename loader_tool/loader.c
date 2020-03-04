@@ -6,6 +6,7 @@
 #include <assert.h>
 #include <limits.h>
 #include <libgen.h>
+#include <errno.h>
 
 #include <unistd.h>
 #include <fcntl.h>
@@ -624,6 +625,11 @@ void load_mach_image(struct mach_image *image) {
 	image->fat_off = 0;
 
 	image->fd = open(image->path, O_RDONLY);
+	if (image->fd == -1) {
+		fprintf(stderr, "error: %s could not be loaded: %s\n", image->path, strerror(errno));
+		exit(-1);
+	}
+
 	assert(image->fd >= 0);
 
 	struct stat sb;
