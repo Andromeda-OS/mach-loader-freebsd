@@ -31,7 +31,9 @@
  */
 
 #include <sys/types.h>
+#ifndef _KERNEL
 #include <stdint.h>
+#endif
 
 #ifdef	__cplusplus
 extern "C" {

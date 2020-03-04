@@ -62,7 +62,9 @@
 
 #ifndef __ASSEMBLER__
 
+#ifndef _KERNEL
 #include <stdint.h>
+#endif
 //#include <mach/machine/vm_types.h>
 #include <mach/boolean.h>
 

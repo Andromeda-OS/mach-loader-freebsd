@@ -73,7 +73,9 @@
 #ifndef	_MACH_MACH_TYPES_H_
 #define _MACH_MACH_TYPES_H_
 
+#ifndef _KERNEL
 #include <stdint.h>
+#endif
 
 #include <sys/cdefs.h>
 

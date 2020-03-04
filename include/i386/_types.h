@@ -33,19 +33,6 @@
  * flotaing point and other arithmetic types, as needed, later.
  */
 
-#ifdef __GNUC__
-typedef __signed char		__int8_t;
-#else	/* !__GNUC__ */
-typedef char			__int8_t;
-#endif	/* !__GNUC__ */
-typedef unsigned char		__uint8_t;
-typedef	short			__int16_t;
-typedef	unsigned short		__uint16_t;
-typedef int			__int32_t;
-typedef unsigned int		__uint32_t;
-typedef long long		__int64_t;
-typedef unsigned long long	__uint64_t;
-
 typedef long			__darwin_intptr_t;
 typedef unsigned int		__darwin_natural_t;
 
@@ -68,15 +55,6 @@ typedef unsigned int		__darwin_natural_t;
  */
 
 typedef int			__darwin_ct_rune_t;	/* ct_rune_t */
-
-/*
- * mbstate_t is an opaque object to keep conversion state, during multibyte
- * stream conversions.  The content must not be referenced by user programs.
- */
-typedef union {
-	char		__mbstate8[128];
-	long long	_mbstateL;			/* for alignment */
-} __mbstate_t;
 
 typedef __mbstate_t		__darwin_mbstate_t;	/* mbstate_t */
 

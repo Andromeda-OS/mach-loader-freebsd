@@ -71,7 +71,9 @@
 #ifndef	_MACH_MESSAGE_H_
 #define _MACH_MESSAGE_H_
 
+#ifndef _KERNEL
 #include <stdint.h>
+#endif
 #include <mach/port.h>
 #include <mach/boolean.h>
 #include <mach/kern_return.h>

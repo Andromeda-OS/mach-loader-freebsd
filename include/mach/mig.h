@@ -36,7 +36,9 @@
 #ifndef	_MACH_MIG_H_
 #define _MACH_MIG_H_
 
+#ifndef _KERNEL
 #include <stdint.h>
+#endif
 #include <mach/port.h>
 #include <mach/message.h>
 #include <mach/vm_types.h>

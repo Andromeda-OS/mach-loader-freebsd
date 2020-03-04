@@ -32,7 +32,9 @@
 #ifndef _MACH_NDR_H_
 #define _MACH_NDR_H_
 
+#ifndef _KERNEL
 #include <stdint.h>
+#endif
 #include <sys/cdefs.h>
 #include <libkern/OSByteOrder.h>
 

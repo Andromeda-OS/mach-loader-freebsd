@@ -87,7 +87,9 @@
 #define _MACH_PORT_H_
 
 #include <sys/cdefs.h>
+#ifndef _KERNEL
 #include <stdint.h>
+#endif
 #include <mach/boolean.h>
 #include <mach/machine/vm_types.h>
 
@@ -300,22 +302,5 @@ typedef struct mach_port_qos {
 	boolean_t		pad1:30;
 	natural_t		len;
 } mach_port_qos_t;
-
-#if	!__DARWIN_UNIX03 && !defined(_NO_PORT_T_FROM_MACH)
-/*
- *  Mach 3.0 renamed everything to have mach_ in front of it.
- *  These types and macros are provided for backward compatibility
- *	but are deprecated.
- */
-typedef mach_port_t		port_t;
-typedef mach_port_name_t	port_name_t;
-typedef mach_port_name_t	*port_name_array_t;
-
-#define PORT_NULL		((port_t) 0)
-#define PORT_DEAD		((port_t) ~0)
-#define PORT_VALID(name) \
-		((port_t)(name) != PORT_NULL && (port_t)(name) != PORT_DEAD)
-
-#endif	/* !__DARWIN_UNIX03 && !_NO_PORT_T_FROM_MACH */
 
 #endif	/* _MACH_PORT_H_ */
