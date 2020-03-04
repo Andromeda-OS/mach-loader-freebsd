@@ -833,6 +833,9 @@ int main(int argc, char **argv, char **envp) {
 
 	if (loaded_by_kernel) {
 		set_proc_comm(basename(argv[0])); // fix the "command" reported by utilities such as top
+	} else if (argc == 1) {
+		fprintf(stderr, "This program is not meant to run directly.\n");
+		return -1;
 	}
 
 	struct mach_image main_image;
