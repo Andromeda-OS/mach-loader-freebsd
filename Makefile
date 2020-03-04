@@ -17,7 +17,8 @@ debug: all
 all: loader
 
 loader: loader.c osx_compat.h boot.o dyld_stub_binder.o set_proc_comm.o
-	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $< boot.o dyld_stub_binder.o set_proc_comm.o
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $< boot.o dyld_stub_binder.o set_proc_comm.o \
+		-Xlinker -R -Xlinker $$$$ORIGIN
 
 set_proc_comm.o: set_proc_comm.s
 boot.o: boot.s
@@ -61,4 +62,4 @@ ARCHIVE_NAME != echo mach-loader-freebsd-`git log -1 --format='%h'`.tar
 archive:
 	git archive --prefix=mach-loader-freebsd/ --format tar HEAD > $(ARCHIVE_NAME)
 	tar uf $(ARCHIVE_NAME) test/*
-	gzip -9 $(ARCHIVE_NAME)
+	gzip -f -9 $(ARCHIVE_NAME)
