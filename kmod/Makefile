@@ -6,6 +6,12 @@ PWD != pwd
 .error DYLD_PATH must be defined
 .endif
 
+.if defined(DEBUG) || make(debug)
+CFLAGS += -O0 -g
+.else
+CFLAGS += -O3 -DNDEBUG
+.endif
+
 CFLAGS += -DDYLD=\"$(DYLD_PATH)\"
 
 .include <bsd.kmod.mk>

@@ -6,10 +6,8 @@ CFLAGS = -std=c99
 LDFLAGS = -lm -lpthread
 
 .if defined(DEBUG) || make(debug)
-CFLAGS += -O0 -g
 DYLD_PATH = $(PWD)/loader
 .else
-CFLAGS += -O3 -DNDEBUG
 DYLD_PATH = /System/Library/ELFLoader/loader
 .endif
 
@@ -43,7 +41,7 @@ run_all: loader
 	done
 
 kmod: .PHONY
-	make -C kmod DYLD_PATH=$(DYLD_PATH)
+	make -C kmod DYLD_PATH=$(DYLD_PATH) DEBUG=$(DEBUG)
 	cp kmod/imgact_mach.ko imgact_mach.ko
 
 run_kmod: kmod
