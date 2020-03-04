@@ -2,7 +2,7 @@
  * Copyright (c) 2000-2006 Apple Computer, Inc. All rights reserved.
  *
  * @APPLE_OSREFERENCE_LICENSE_HEADER_START@
- * 
+ *
  * This file contains Original Code and/or Modifications of Original Code
  * as defined in and that are subject to the Apple Public Source License
  * Version 2.0 (the 'License'). You may not use this file except in
@@ -11,10 +11,10 @@
  * unlawful or unlicensed copies of an Apple operating system, or to
  * circumvent, violate, or enable the circumvention or violation of, any
  * terms of an Apple operating system software license agreement.
- * 
+ *
  * Please obtain a copy of the License at
  * http://www.opensource.apple.com/apsl/ and read it before using this file.
- * 
+ *
  * The Original Code and all software distributed under the License are
  * distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
  * EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
@@ -22,34 +22,34 @@
  * FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.
  * Please see the License for the specific language governing rights and
  * limitations under the License.
- * 
+ *
  * @APPLE_OSREFERENCE_LICENSE_HEADER_END@
  */
 /*
  * @OSF_COPYRIGHT@
  */
-/* 
+/*
  * Mach Operating System
  * Copyright (c) 1991,1990,1989,1988,1987 Carnegie Mellon University
  * All Rights Reserved.
- * 
+ *
  * Permission to use, copy, modify and distribute this software and its
  * documentation is hereby granted, provided that both the copyright
  * notice and this permission notice appear in all copies of the
  * software, derivative works or modified versions, and any portions
  * thereof, and that both notices appear in supporting documentation.
- * 
+ *
  * CARNEGIE MELLON ALLOWS FREE USE OF THIS SOFTWARE IN ITS "AS IS"
  * CONDITION.  CARNEGIE MELLON DISCLAIMS ANY LIABILITY OF ANY KIND FOR
  * ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS SOFTWARE.
- * 
+ *
  * Carnegie Mellon requests users of this software to return to
- * 
+ *
  *  Software Distribution Coordinator  or  Software.Distribution@CS.CMU.EDU
  *  School of Computer Science
  *  Carnegie Mellon University
  *  Pittsburgh PA 15213-3890
- * 
+ *
  * any improvements or extensions that they make and grant Carnegie Mellon
  * the rights to redistribute these changes.
  */
@@ -71,7 +71,7 @@
  *	also exist).
  *
  *	Unique collections of these endpoints are maintained for each
- *	Mach task.  Each Mach port in the task's collection is given a 
+ *	Mach task.  Each Mach port in the task's collection is given a
  *	[task-local] name to identify it - and the the various "rights"
  *	held by the task for that specific endpoint.
  *
@@ -102,24 +102,24 @@
  *	See mach_port_t for a type that implies a "named right."
  *
  */
- 
+
 typedef natural_t mach_port_name_t;
 typedef mach_port_name_t *mach_port_name_array_t;
 
 
-/* 
+/*
  *	mach_port_t - a named port right
  *
  *	In user-space, "rights" are represented by the name of the
  *	right in the Mach port namespace.  Even so, this type is
  *	presented as a unique one to more clearly denote the presence
- *	of a right coming along with the name. 
+ *	of a right coming along with the name.
  *
  *	Often, various rights for a port held in a single name space
  *	will coalesce and are, therefore, be identified by a single name
  *	[this is the case for send and receive rights].  But not
  *	always [send-once rights currently get a unique name for
- *	each right].      
+ *	each right].
  *
  */
 
@@ -202,7 +202,7 @@ typedef mach_port_type_t *mach_port_type_array_t;
 
 #define MACH_PORT_TYPE(right)						\
 		((mach_port_type_t)(((mach_port_type_t) 1)  		\
-		<< ((right) + ((mach_port_right_t) 16))))	
+		<< ((right) + ((mach_port_right_t) 16))))
 #define MACH_PORT_TYPE_NONE	    ((mach_port_type_t) 0L)
 #define MACH_PORT_TYPE_SEND	    MACH_PORT_TYPE(MACH_PORT_RIGHT_SEND)
 #define MACH_PORT_TYPE_RECEIVE	    MACH_PORT_TYPE(MACH_PORT_RIGHT_RECEIVE)

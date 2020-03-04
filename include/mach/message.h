@@ -2,7 +2,7 @@
  * Copyright (c) 2000-2005 Apple Computer, Inc. All rights reserved.
  *
  * @APPLE_OSREFERENCE_LICENSE_HEADER_START@
- * 
+ *
  * This file contains Original Code and/or Modifications of Original Code
  * as defined in and that are subject to the Apple Public Source License
  * Version 2.0 (the 'License'). You may not use this file except in
@@ -11,10 +11,10 @@
  * unlawful or unlicensed copies of an Apple operating system, or to
  * circumvent, violate, or enable the circumvention or violation of, any
  * terms of an Apple operating system software license agreement.
- * 
+ *
  * Please obtain a copy of the License at
  * http://www.opensource.apple.com/apsl/ and read it before using this file.
- * 
+ *
  * The Original Code and all software distributed under the License are
  * distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
  * EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
@@ -22,34 +22,34 @@
  * FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.
  * Please see the License for the specific language governing rights and
  * limitations under the License.
- * 
+ *
  * @APPLE_OSREFERENCE_LICENSE_HEADER_END@
  */
 /*
  * @OSF_COPYRIGHT@
  */
-/* 
+/*
  * Mach Operating System
  * Copyright (c) 1991,1990,1989,1988,1987 Carnegie Mellon University
  * All Rights Reserved.
- * 
+ *
  * Permission to use, copy, modify and distribute this software and its
  * documentation is hereby granted, provided that both the copyright
  * notice and this permission notice appear in all copies of the
  * software, derivative works or modified versions, and any portions
  * thereof, and that both notices appear in supporting documentation.
- * 
+ *
  * CARNEGIE MELLON ALLOWS FREE USE OF THIS SOFTWARE IN ITS "AS IS"
  * CONDITION.  CARNEGIE MELLON DISCLAIMS ANY LIABILITY OF ANY KIND FOR
  * ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS SOFTWARE.
- * 
+ *
  * Carnegie Mellon requests users of this software to return to
- * 
+ *
  *  Software Distribution Coordinator  or  Software.Distribution@CS.CMU.EDU
  *  School of Computer Science
  *  Carnegie Mellon University
  *  Pittsburgh PA 15213-3890
- * 
+ *
  * any improvements or extensions that they make and grant Carnegie Mellon
  * the rights to redistribute these changes.
  */
@@ -147,9 +147,9 @@ typedef natural_t mach_msg_timeout_t;
 /*
  *  Every message starts with a message header.
  *  Following the message header, if the message is complex, are a count
- *  of type descriptors and the type descriptors themselves 
- *  (mach_msg_descriptor_t). The size of the message must be specified in 
- *  bytes, and includes the message header, descriptor count, descriptors, 
+ *  of type descriptors and the type descriptors themselves
+ *  (mach_msg_descriptor_t). The size of the message must be specified in
+ *  bytes, and includes the message header, descriptor count, descriptors,
  *  and inline data.
  *
  *  The msgh_remote_port field specifies the destination of the message.
@@ -198,14 +198,14 @@ typedef unsigned int mach_msg_copy_options_t;
 #endif  /* MACH_KERNEL */
 
 /*
- * In a complex mach message, the mach_msg_header_t is followed by 
- * a descriptor count, then an array of that number of descriptors 
+ * In a complex mach message, the mach_msg_header_t is followed by
+ * a descriptor count, then an array of that number of descriptors
  * (mach_msg_*_descriptor_t). The type field of mach_msg_type_descriptor_t
  * (which any descriptor can be cast to) indicates the flavor of the
  * descriptor.
  *
  * Note that in LP64, the various types of descriptors are no longer all
- * the same size as mach_msg_descriptor_t, so the array cannot be indexed 
+ * the same size as mach_msg_descriptor_t, so the array cannot be indexed
  * as expected.
  */
 
@@ -327,7 +327,7 @@ typedef struct
 #define MACH_MSG_BODY_NULL (mach_msg_body_t *) 0
 #define MACH_MSG_DESCRIPTOR_NULL (mach_msg_descriptor_t *) 0
 
-typedef	struct 
+typedef	struct
 {
   mach_msg_bits_t	msgh_bits;
   mach_msg_size_t	msgh_size;
@@ -351,7 +351,7 @@ typedef	unsigned int mach_msg_trailer_type_t;
 
 typedef	unsigned int mach_msg_trailer_size_t;
 
-typedef struct 
+typedef struct
 {
   mach_msg_trailer_type_t	msgh_trailer_type;
   mach_msg_trailer_size_t	msgh_trailer_size;
@@ -369,7 +369,7 @@ typedef struct
   unsigned int			val[2];
 } security_token_t;
 
-typedef struct 
+typedef struct
 {
   mach_msg_trailer_type_t	msgh_trailer_type;
   mach_msg_trailer_size_t	msgh_trailer_size;
@@ -391,7 +391,7 @@ typedef struct
   unsigned int			val[8];
 } audit_token_t;
 
-typedef struct 
+typedef struct
 {
   mach_msg_trailer_type_t	msgh_trailer_type;
   mach_msg_trailer_size_t	msgh_trailer_size;
@@ -400,7 +400,7 @@ typedef struct
   audit_token_t			msgh_audit;
 } mach_msg_audit_trailer_t;
 
-typedef struct 
+typedef struct
 {
   mach_msg_trailer_type_t	msgh_trailer_type;
   mach_msg_trailer_size_t	msgh_trailer_size;
@@ -415,9 +415,9 @@ typedef struct
   mach_port_name_t sender;
 } msg_labels_t;
 
-/* 
+/*
    Trailer type to pass MAC policy label info as a mach message trailer.
-   
+
 */
 
 typedef struct
@@ -572,20 +572,20 @@ typedef integer_t mach_msg_option_t;
 #define MACH_SEND_INTERRUPT	0x00000040	/* libmach implements */
 #define MACH_SEND_NOTIFY	0x00000080	/* arm send-possible notify */
 #define MACH_SEND_ALWAYS	0x00010000	/* internal use only */
-#define MACH_SEND_TRAILER	0x00020000	
+#define MACH_SEND_TRAILER	0x00020000
 
 #define MACH_RCV_TIMEOUT	0x00000100
 #define MACH_RCV_NOTIFY		0x00000200	/* reserved - legacy */
 #define MACH_RCV_INTERRUPT	0x00000400	/* libmach implements */
 #define MACH_RCV_OVERWRITE	0x00001000
 
-/* 
+/*
  * NOTE: a 0x00------ RCV mask implies to ask for
- * a MACH_MSG_TRAILER_FORMAT_0 with 0 Elements, 
+ * a MACH_MSG_TRAILER_FORMAT_0 with 0 Elements,
  * which is equivalent to a mach_msg_trailer_t.
  *
  * XXXMAC: unlike the rest of the MACH_RCV_* flags, MACH_RCV_TRAILER_LABELS
- * needs its own private bit since we only calculate its fields when absolutely 
+ * needs its own private bit since we only calculate its fields when absolutely
  * required.
  */
 #define MACH_RCV_TRAILER_NULL   0
@@ -596,18 +596,18 @@ typedef integer_t mach_msg_option_t;
 #define MACH_RCV_TRAILER_AV     7
 #define MACH_RCV_TRAILER_LABELS 8
 
-#define MACH_RCV_TRAILER_TYPE(x)     (((x) & 0xf) << 28) 
-#define MACH_RCV_TRAILER_ELEMENTS(x) (((x) & 0xf) << 24)  
+#define MACH_RCV_TRAILER_TYPE(x)     (((x) & 0xf) << 28)
+#define MACH_RCV_TRAILER_ELEMENTS(x) (((x) & 0xf) << 24)
 #define MACH_RCV_TRAILER_MASK 	     ((0xff << 24))
 
 #define GET_RCV_ELEMENTS(y) (((y) >> 24) & 0xf)
 
-/* 
- * XXXMAC: note that in the case of MACH_RCV_TRAILER_LABELS, 
+/*
+ * XXXMAC: note that in the case of MACH_RCV_TRAILER_LABELS,
  * we just fall through to mach_msg_max_trailer_t.
  * This is correct behavior since mach_msg_max_trailer_t is defined as
  * mac_msg_mac_trailer_t which is used for the LABELS trailer.
- * It also makes things work properly if MACH_RCV_TRAILER_LABELS is ORed 
+ * It also makes things work properly if MACH_RCV_TRAILER_LABELS is ORed
  * with one of the other options.
  */
 
@@ -776,4 +776,3 @@ extern mach_msg_return_t	mach_msg(
 __END_DECLS
 
 #endif	/* _MACH_MESSAGE_H_ */
-

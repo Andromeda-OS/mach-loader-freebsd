@@ -105,7 +105,7 @@ typedef struct fasttrap_machtp {
 #define	FASTTRAP_SEG_GS			5
 #define	FASTTRAP_SEG_SS			6
 
-#define	FASTTRAP_RETURN_AFRAMES		6	
+#define	FASTTRAP_RETURN_AFRAMES		6
 #define	FASTTRAP_ENTRY_AFRAMES		5
 #define	FASTTRAP_OFFSET_AFRAMES		5
 

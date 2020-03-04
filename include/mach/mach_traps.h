@@ -66,7 +66,9 @@
 #ifndef	_MACH_MACH_TRAPS_H_
 #define _MACH_MACH_TRAPS_H_
 
+#ifndef _KERNEL
 #include <stdint.h>
+#endif
 
 #include <mach/std_types.h>
 #include <mach/mach_types.h>
