@@ -100,40 +100,40 @@
 #include <sys/param.h>
 #include <sys/eventhandler.h>
 #include <sys/kernel.h>
-#include <sys/mach/vm_types.h>
+#include <mach/vm_types.h>
 
-#include <sys/mach/task_info.h>
-#include <sys/mach/task_special_ports.h>
-#include <sys/mach/mach_types.h>
-#include <sys/mach/rpc.h>
-#include <sys/mach/ipc/ipc_space.h>
-#include <sys/mach/ipc/ipc_entry.h>
-#include <sys/mach/mach_param.h>
+#include <mach/task_info.h>
+#include <mach/task_special_ports.h>
+#include <mach/mach_types.h>
+#include <mach/rpc.h>
+#include <mach/ipc/ipc_space.h>
+#include <mach/ipc/ipc_entry.h>
+#include <mach/mach_param.h>
 
-#include <sys/mach/task.h>
-#include <sys/mach/ipc/ipc_kmsg.h>
-#include <sys/mach/thread.h>
+#include <mach/task.h>
+#include <mach/ipc/ipc_kmsg.h>
+#include <mach/thread.h>
 
-#include <sys/mach/sched_prim.h>	/* for thread_wakeup */
-#include <sys/mach/ipc_tt.h>
+#include <mach/sched_prim.h>	/* for thread_wakeup */
+#include <mach/ipc_tt.h>
 #if 0
-#include <sys/mach/ledger.h>
+#include <mach/ledger.h>
 #endif
-#include <sys/mach/host_special_ports.h>
-#include <sys/mach/host.h>
+#include <mach/host_special_ports.h>
+#include <mach/host.h>
 #include <vm/vm_kern.h>		/* for kernel_map, ipc_kernel_map */
 #include <vm/uma.h>
 #if	MACH_KDB
 #include <ddb/db_sym.h>
 #endif	/* MACH_KDB */
 
-#include <sys/mach/queue.h>
+#include <mach/queue.h>
 /*
  * Exported interfaces
  */
-#include <sys/mach/task_server.h>
-#include <sys/mach/mach_host_server.h>
-#include <sys/mach/mach_port_server.h>
+#include <mach/task_server.h>
+#include <mach/mach_host_server.h>
+#include <mach/mach_port_server.h>
 
 struct processor_set default_pset;
 unsigned	int sched_ticks;

@@ -100,22 +100,22 @@
 
 #include "opt_compat_mach.h"
 
-#include <sys/mach/port.h>
-#include <sys/mach/kern_return.h>
-#include <sys/mach/notify.h>
+#include <mach/port.h>
+#include <mach/kern_return.h>
+#include <mach/notify.h>
 
-#include <sys/mach/mach_param.h>
-#include <sys/mach/mach_port_server.h>
+#include <mach/mach_param.h>
+#include <mach/mach_port_server.h>
 
-#include <sys/mach/ipc/ipc_entry.h>
-#include <sys/mach/ipc/ipc_space.h>
-#include <sys/mach/ipc/ipc_object.h>
-#include <sys/mach/ipc/ipc_notify.h>
-#include <sys/mach/ipc/ipc_port.h>
-#include <sys/mach/ipc/ipc_pset.h>
-#include <sys/mach/ipc/ipc_right.h>
-#include <sys/mach/thread.h>
-#include <sys/mach/task.h>
+#include <mach/ipc/ipc_entry.h>
+#include <mach/ipc/ipc_space.h>
+#include <mach/ipc/ipc_object.h>
+#include <mach/ipc/ipc_notify.h>
+#include <mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_pset.h>
+#include <mach/ipc/ipc_right.h>
+#include <mach/thread.h>
+#include <mach/task.h>
 #include <vm/vm.h>
 #include <vm/vm_kern.h>
 #include <vm/vm_extern.h>

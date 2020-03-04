@@ -39,8 +39,8 @@ __FBSDID("$FreeBSD$");
 
 #include <vm/uma.h>
 
-#include <sys/mach/mach_types.h>
-#include <sys/mach/task_server.h>
+#include <mach/mach_types.h>
+#include <mach/task_server.h>
 
 int
 semaphore_create(

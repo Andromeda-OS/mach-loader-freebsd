@@ -87,14 +87,14 @@
 #include <sys/cdefs.h>
 #include <sys/types.h>
 #include <sys/param.h>
-#include <sys/mach/mach_types.h>
-#include <sys/mach/kern_return.h>
+#include <mach/mach_types.h>
+#include <mach/kern_return.h>
 #if 0
 #include <mach/vm_param.h>
 #endif
-#include <sys/mach/ipc/ipc_table.h>
-#include <sys/mach/ipc/ipc_port.h>
-#include <sys/mach/ipc/ipc_entry.h>
+#include <mach/ipc/ipc_table.h>
+#include <mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_entry.h>
 #if 0
 #include <kern/kalloc.h>
 #include <vm/vm_kern.h>

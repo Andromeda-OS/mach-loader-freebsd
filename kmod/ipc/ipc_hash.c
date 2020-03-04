@@ -82,14 +82,14 @@
  *
  *	Entry hash table operations.
  */
-#include <sys/mach/mach_types.h>
-#include <sys/mach/port.h>
-#include <sys/mach/ipc/port.h>
-#include <sys/mach/ipc/ipc_space.h>
-#include <sys/mach/ipc/ipc_object.h>
-#include <sys/mach/ipc/ipc_entry.h>
-#include <sys/mach/ipc/ipc_hash.h>
-#include <sys/mach/ipc/ipc_init.h>
+#include <mach/mach_types.h>
+#include <mach/port.h>
+#include <mach/ipc/port.h>
+#include <mach/ipc/ipc_space.h>
+#include <mach/ipc/ipc_object.h>
+#include <mach/ipc/ipc_entry.h>
+#include <mach/ipc/ipc_hash.h>
+#include <mach/ipc/ipc_init.h>
 #include <sys/limits.h>
 
 #if	MACH_IPC_DEBUG

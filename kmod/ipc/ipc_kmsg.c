@@ -263,24 +263,24 @@
 #include <vm/vm_extern.h>
 #include <vm/vm_kern.h>
 
-#include <sys/mach/kern_return.h>
-#include <sys/mach/message.h>
-#include <sys/mach/port.h>
+#include <mach/kern_return.h>
+#include <mach/message.h>
+#include <mach/port.h>
 
-#include <sys/mach/ipc/port.h>
-#include <sys/mach/ipc/ipc_entry.h>
-#include <sys/mach/ipc/ipc_kmsg.h>
-#include <sys/mach/ipc/ipc_thread.h>
-#include <sys/mach/ipc/ipc_notify.h>
-#include <sys/mach/ipc/ipc_object.h>
-#include <sys/mach/ipc/ipc_space.h>
-#include <sys/mach/ipc/ipc_port.h>
-#include <sys/mach/ipc/ipc_right.h>
-#include <sys/mach/ipc/ipc_hash.h>
-#include <sys/mach/ipc/ipc_table.h>
-#include <sys/mach/sched_prim.h>
-#include <sys/mach/ipc_kobject.h>
-#include <sys/mach/thread.h>
+#include <mach/ipc/port.h>
+#include <mach/ipc/ipc_entry.h>
+#include <mach/ipc/ipc_kmsg.h>
+#include <mach/ipc/ipc_thread.h>
+#include <mach/ipc/ipc_notify.h>
+#include <mach/ipc/ipc_object.h>
+#include <mach/ipc/ipc_space.h>
+#include <mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_right.h>
+#include <mach/ipc/ipc_hash.h>
+#include <mach/ipc/ipc_table.h>
+#include <mach/sched_prim.h>
+#include <mach/ipc_kobject.h>
+#include <mach/thread.h>
 
 #pragma pack(4)
 
@@ -3055,7 +3055,7 @@ ipc_kmsg_copyout_to_kernel(
 
 #if	MACH_KDB
 #include <ddb/db_output.h>
-#include <sys/mach/ipc/ipc_print.h>
+#include <mach/ipc/ipc_print.h>
 
 
 /*

@@ -39,14 +39,14 @@ __FBSDID("$FreeBSD$");
 #include <sys/proc.h>
 #include <sys/time.h>
 
-#include <sys/mach/mach_types.h>
-#include <sys/mach/message.h>
-#include <sys/mach/mach.h>
-#include <sys/mach/ipc/ipc_mqueue.h>
-#include <sys/mach/thread.h>
+#include <mach/mach_types.h>
+#include <mach/message.h>
+#include <mach/mach.h>
+#include <mach/ipc/ipc_mqueue.h>
+#include <mach/thread.h>
 
-#include <sys/mach/clock_types.h>
-#include <sys/mach/clock_server.h>
+#include <mach/clock_types.h>
+#include <mach/clock_server.h>
 
 #define timespecsub_netbsd(tsp, usp, vsp)                               \
         do {                                                            \

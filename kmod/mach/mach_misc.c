@@ -73,7 +73,7 @@ __FBSDID("$FreeBSD$");
 #include <vm/vm_map.h>
 #include <vm/vm_extern.h>
 
-#include <sys/mach/mach_types.h>
+#include <mach/mach_types.h>
 
 #ifdef MACH_CORRUPTION_DEBUG
 MALLOC_DEFINE(M_MACH_TMP, "mach temp", "mach compatibility subsystem temp");

@@ -52,9 +52,9 @@ __FBSDID("$FreeBSD$");
 #include <vm/vm_map.h>
 #include <vm/vm_extern.h>
 
-#include <sys/mach/mach_types.h>
+#include <mach/mach_types.h>
 
-#include <sys/mach/task_server.h>
+#include <mach/task_server.h>
 
 int
 task_get_mach_voucher(

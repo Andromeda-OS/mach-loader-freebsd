@@ -109,19 +109,19 @@
 
 
 #define MACH_INTERNAL
-#include <sys/mach/port.h>
-#include <sys/mach/kern_return.h>
-#include <sys/mach/message.h>
-#include <sys/mach/ipc/ipc_kmsg.h>
-#include <sys/mach/ipc/ipc_mqueue.h>
-#include <sys/mach/ipc/ipc_object.h>
-#include <sys/mach/ipc/ipc_port.h>
-#include <sys/mach/ipc/ipc_pset.h>
-#include <sys/mach/ipc/ipc_right.h>
-#include <sys/mach/ipc/ipc_space.h>
-#include <sys/mach/ipc/ipc_print.h>
+#include <mach/port.h>
+#include <mach/kern_return.h>
+#include <mach/message.h>
+#include <mach/ipc/ipc_kmsg.h>
+#include <mach/ipc/ipc_mqueue.h>
+#include <mach/ipc/ipc_object.h>
+#include <mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_pset.h>
+#include <mach/ipc/ipc_right.h>
+#include <mach/ipc/ipc_space.h>
+#include <mach/ipc/ipc_print.h>
 
-#include <sys/mach/thread.h>
+#include <mach/thread.h>
 
 static void
 kn_sx_lock(void *arg, char *file, int line)

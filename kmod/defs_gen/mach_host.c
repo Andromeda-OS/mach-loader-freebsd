@@ -11,12 +11,12 @@ __FBSDID("$FreeBSD$");
 #include <sys/signal.h>
 #include <sys/proc.h>
 
-#include <sys/mach/mach_types.h>
+#include <mach/mach_types.h>
 
 
-#include <sys/mach/host_special_ports.h>
-#include <sys/mach/host.h>
-#include <sys/mach/mach_host_server.h>
+#include <mach/host_special_ports.h>
+#include <mach/host.h>
+#include <mach/mach_host_server.h>
 
 host_data_t	realhost;
 

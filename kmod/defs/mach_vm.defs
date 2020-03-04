@@ -72,9 +72,9 @@ subsystem
 #endif
 	  4800;
 
-#include <sys/mach/std_types.defs>
-#include <sys/mach/mach_types.defs>
-#include <sys/mach_debug/mach_debug_types.defs>
+#include <mach/std_types.defs>
+#include <mach/mach_types.defs>
+#include <mach_debug/mach_debug_types.defs>
 
 #if !KERNEL && !LIBSYSCALL_INTERFACE
 #define PREFIX(NAME) _kernelrpc_ ## NAME

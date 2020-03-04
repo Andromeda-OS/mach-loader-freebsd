@@ -13,12 +13,12 @@
 #include <sys/cdefs.h>
 #include <sys/types.h>
 #ifdef _KERNEL
-#include <sys/mach/ndr.h>
-#include <sys/mach/kern_return.h>
-#include <sys/mach/notify.h>
-#include <sys/mach/mach_types.h>
-#include <sys/mach/message.h>
-#include <sys/mach/mig_errors.h>
+#include <mach/ndr.h>
+#include <mach/kern_return.h>
+#include <mach/notify.h>
+#include <mach/mach_types.h>
+#include <mach/message.h>
+#include <mach/mig_errors.h>
 #else /* !_KERNEL */
 #include <string.h>
 #include <mach/ndr.h>
@@ -30,16 +30,16 @@
 #include <mach/mig_errors.h>
 #endif /*_KERNEL */
 
-#include <sys/mach/std_types.h>
-#include <sys/mach/mig.h>
-#include <sys/mach/ipc_sync.h>
-#include <sys/mach/ipc/ipc_voucher.h>
-#include <sys/mach/ipc_host.h>
-#include <sys/mach/ipc_tt.h>
-#include <sys/mach/ipc_mig.h>
-#include <sys/mach/mig.h>
-#include <sys/mach/mach_types.h>
-#include <sys/mach_debug/mach_debug_types.h>
+#include <mach/std_types.h>
+#include <mach/mig.h>
+#include <mach/ipc_sync.h>
+#include <mach/ipc/ipc_voucher.h>
+#include <mach/ipc_host.h>
+#include <mach/ipc_tt.h>
+#include <mach/ipc_mig.h>
+#include <mach/mig.h>
+#include <mach/mach_types.h>
+#include <mach_debug/mach_debug_types.h>
 
 #ifndef	mig_internal
 #define	mig_internal	static __inline__

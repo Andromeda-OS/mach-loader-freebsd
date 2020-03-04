@@ -73,10 +73,10 @@
 #include <sys/cdefs.h>
 #include <sys/types.h>
 #include <sys/param.h>
-#include <sys/mach/mach_types.h>
-#include <sys/mach/ipc/ipc_thread.h>
-#include <sys/mach/ipc/ipc_kmsg.h>
-#include <sys/mach/thread.h>
+#include <mach/mach_types.h>
+#include <mach/ipc/ipc_thread.h>
+#include <mach/ipc/ipc_kmsg.h>
+#include <mach/thread.h>
 /*
  *	Routine:	ipc_thread_enqueue
  *	Purpose:

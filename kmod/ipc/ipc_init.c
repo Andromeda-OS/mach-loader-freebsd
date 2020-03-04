@@ -120,20 +120,20 @@
 #include <sys/lock.h>
 #include <sys/mutex.h>
 
-#include <sys/mach/kern_return.h>
-#include <sys/mach/mach_param.h>
-#include <sys/mach/mach_types.h>
+#include <mach/kern_return.h>
+#include <mach/mach_param.h>
+#include <mach/mach_types.h>
 
-#include <sys/mach/ipc/ipc_entry.h>
-#include <sys/mach/ipc/ipc_space.h>
-#include <sys/mach/ipc/ipc_object.h>
-#include <sys/mach/ipc/ipc_port.h>
-#include <sys/mach/ipc/ipc_pset.h>
-#include <sys/mach/ipc/ipc_notify.h>
-#include <sys/mach/ipc/ipc_kmsg.h>
-#include <sys/mach/ipc/ipc_hash.h>
-#include <sys/mach/ipc/ipc_init.h>
-#include <sys/mach/ndr_def.h>   /* NDR_record */
+#include <mach/ipc/ipc_entry.h>
+#include <mach/ipc/ipc_space.h>
+#include <mach/ipc/ipc_object.h>
+#include <mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_pset.h>
+#include <mach/ipc/ipc_notify.h>
+#include <mach/ipc/ipc_kmsg.h>
+#include <mach/ipc/ipc_hash.h>
+#include <mach/ipc/ipc_init.h>
+#include <mach/ndr_def.h>   /* NDR_record */
 
 vm_map_t ipc_kernel_map;
 vm_size_t ipc_kernel_map_size = 1024 * 1024;

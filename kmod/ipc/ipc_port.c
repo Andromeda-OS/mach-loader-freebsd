@@ -187,23 +187,23 @@
  */
 
 
-#include <sys/mach/port.h>
-#include <sys/mach/kern_return.h>
+#include <mach/port.h>
+#include <mach/kern_return.h>
 
-#include <sys/mach/ipc_kobject.h>
-#include <sys/mach/ipc/ipc_entry.h>
-#include <sys/mach/ipc/ipc_space.h>
-#include <sys/mach/ipc/ipc_object.h>
-#include <sys/mach/ipc/ipc_port.h>
-#include <sys/mach/ipc/ipc_pset.h>
-#include <sys/mach/ipc/ipc_thread.h>
-#include <sys/mach/ipc/ipc_mqueue.h>
-#include <sys/mach/ipc/ipc_notify.h>
-#include <sys/mach/ipc/ipc_print.h>
-#include <sys/mach/ipc/ipc_table.h>
-#include <sys/mach/ipc/ipc_voucher.h>
-#include <sys/mach/thread.h>
-#include <sys/mach/rpc.h>
+#include <mach/ipc_kobject.h>
+#include <mach/ipc/ipc_entry.h>
+#include <mach/ipc/ipc_space.h>
+#include <mach/ipc/ipc_object.h>
+#include <mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_pset.h>
+#include <mach/ipc/ipc_thread.h>
+#include <mach/ipc/ipc_mqueue.h>
+#include <mach/ipc/ipc_notify.h>
+#include <mach/ipc/ipc_print.h>
+#include <mach/ipc/ipc_table.h>
+#include <mach/ipc/ipc_voucher.h>
+#include <mach/thread.h>
+#include <mach/rpc.h>
 
 #if	MACH_KDB
 #include <machine/db_machdep.h>

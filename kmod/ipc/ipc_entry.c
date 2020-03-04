@@ -131,21 +131,21 @@ __FBSDID("$FreeBSD$");
 #include <sys/syslog.h>
 #include <sys/user.h>
 
-#include <sys/mach/mach_types.h>
-#include <sys/mach/kern_return.h>
-#include <sys/mach/port.h>
-#include <sys/mach/message.h>
-#include <sys/mach/mach_port_server.h>
+#include <mach/mach_types.h>
+#include <mach/kern_return.h>
+#include <mach/port.h>
+#include <mach/message.h>
+#include <mach/mach_port_server.h>
 #include <vm/uma.h>
-#include <sys/mach/ipc/port.h>
-#include <sys/mach/ipc/ipc_entry.h>
-#include <sys/mach/ipc/ipc_space.h>
-#include <sys/mach/ipc/ipc_object.h>
-#include <sys/mach/ipc/ipc_hash.h>
-#include <sys/mach/ipc/ipc_table.h>
-#include <sys/mach/ipc/ipc_port.h>
-#include <sys/mach/ipc/ipc_pset.h>
-#include <sys/mach/thread.h>
+#include <mach/ipc/port.h>
+#include <mach/ipc/ipc_entry.h>
+#include <mach/ipc/ipc_space.h>
+#include <mach/ipc/ipc_object.h>
+#include <mach/ipc/ipc_hash.h>
+#include <mach/ipc/ipc_table.h>
+#include <mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_pset.h>
+#include <mach/thread.h>
 
 #include <security/audit/audit.h>
 

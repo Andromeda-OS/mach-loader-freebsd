@@ -138,17 +138,17 @@
  *
  *	Routines to implement host ports.
  */
-#include <sys/mach/message.h>
-#include <sys/mach/mach_host_server.h>
-#include <sys/mach/host.h>
-#include <sys/mach/processor.h>
-#include <sys/mach/task.h>
-#include <sys/mach/mach_traps.h>
-#include <sys/mach/thread.h>
-#include <sys/mach/ipc_host.h>
-#include <sys/mach/ipc_kobject.h>
-#include <sys/mach/ipc/ipc_port.h>
-#include <sys/mach/ipc/ipc_space.h>
+#include <mach/message.h>
+#include <mach/mach_host_server.h>
+#include <mach/host.h>
+#include <mach/processor.h>
+#include <mach/task.h>
+#include <mach/mach_traps.h>
+#include <mach/thread.h>
+#include <mach/ipc_host.h>
+#include <mach/ipc_kobject.h>
+#include <mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_space.h>
 
 #include <sys/kernel.h>
 

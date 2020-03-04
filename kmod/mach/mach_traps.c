@@ -66,21 +66,21 @@ __FBSDID("$FreeBSD$");
 #include <vm/vm_map.h>
 #include <vm/vm_extern.h>
 
-#include <sys/mach/mach_types.h>
+#include <mach/mach_types.h>
 
-#include <sys/mach/ipc/ipc_types.h>
-#include <sys/mach/ipc/ipc_kmsg.h>
-#include <sys/mach/ipc/mach_msg.h>
-#include <sys/mach/thread.h>
-#include <sys/mach/mach_port_server.h>
-#include <sys/mach/mach_vm_server.h>
-#include <sys/mach/task_server.h>
-#include <sys/mach/thread_switch.h>
+#include <mach/ipc/ipc_types.h>
+#include <mach/ipc/ipc_kmsg.h>
+#include <mach/ipc/mach_msg.h>
+#include <mach/thread.h>
+#include <mach/mach_port_server.h>
+#include <mach/mach_vm_server.h>
+#include <mach/task_server.h>
+#include <mach/thread_switch.h>
 
-#include <sys/mach/mach_init.h>
+#include <mach/mach_init.h>
 
-#include <sys/mach/mach_vm.h>
-#include <sys/mach/mach.h>
+#include <mach/mach_vm.h>
+#include <mach/mach.h>
 
 
 #pragma clang diagnostic ignored "-Wunused-parameter"

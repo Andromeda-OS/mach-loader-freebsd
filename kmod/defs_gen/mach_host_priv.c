@@ -10,8 +10,8 @@ __FBSDID("$FreeBSD$");
 #include <sys/signal.h>
 #include <sys/proc.h>
 
-#include <sys/mach/mach_types.h>
-#include <sys/mach/host_priv_server.h>
+#include <mach/mach_types.h>
+#include <mach/host_priv_server.h>
 
 
 int

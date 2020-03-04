@@ -72,11 +72,11 @@ subsystem
 userprefix r_;
 #endif	/* KERNEL_USER */
 
-#include <sys/mach/std_types.defs>
-#include <sys/mach/mach_types.defs>
-#include <sys/mach/clock_types.defs>
-#include <sys/mach_debug/mach_debug_types.defs>
-uimport <sys/mach/vm_types.h>;
+#include <mach/std_types.defs>
+#include <mach/mach_types.defs>
+#include <mach/clock_types.defs>
+#include <mach_debug/mach_debug_types.defs>
+uimport <mach/vm_types.h>;
 /*
  *      Get boot configuration information from kernel.
  */

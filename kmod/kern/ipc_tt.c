@@ -109,29 +109,29 @@
 #include <sys/cdefs.h>
 #include <sys/types.h>
 #include <sys/syslog.h>
-#include <sys/mach/mach_types.h>
-#include <sys/mach/kern_return.h>
-#include <sys/mach/mach_param.h>
-#include <sys/mach/task_special_ports.h>
-#include <sys/mach/thread_special_ports.h>
-#include <sys/mach/thread_status.h>
-#include <sys/mach/exception.h>
+#include <mach/mach_types.h>
+#include <mach/kern_return.h>
+#include <mach/mach_param.h>
+#include <mach/task_special_ports.h>
+#include <mach/thread_special_ports.h>
+#include <mach/thread_status.h>
+#include <mach/exception.h>
 #if 0
-#include <sys/mach/mach_traps.h>
-#include <sys/mach/mach_server.h>
+#include <mach/mach_traps.h>
+#include <mach/mach_server.h>
 #endif
-#include <sys/mach/mach_host_server.h>
-#include <sys/mach/ipc_tt.h>
+#include <mach/mach_host_server.h>
+#include <mach/ipc_tt.h>
 #if 0
 #include <kern/thread_act.h>
 #include <kern/misc_protos.h>
 #endif
-#include <sys/mach/host_special_ports.h>
-#include <sys/mach/host.h>
-#include <sys/mach/thread.h>
-#include <sys/mach/mach_init.h>
-#include <sys/mach/task_server.h>
-#include <sys/mach/host_priv_server.h>
+#include <mach/host_special_ports.h>
+#include <mach/host.h>
+#include <mach/thread.h>
+#include <mach/mach_init.h>
+#include <mach/task_server.h>
+#include <mach/host_priv_server.h>
 
 #define THR_ACT_NULL NULL
 

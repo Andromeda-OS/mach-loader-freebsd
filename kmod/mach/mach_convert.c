@@ -29,12 +29,12 @@
 #include <sys/types.h>
 #include <sys/param.h>
 
-#include <sys/mach/mach_types.h>
-#include <sys/mach/ipc_host.h>
-#include <sys/mach/ipc_sync.h>
-#include <sys/mach/ipc_tt.h>
-#include <sys/mach/ipc/ipc_voucher.h>
-#include <sys/mach/task.h>
+#include <mach/mach_types.h>
+#include <mach/ipc_host.h>
+#include <mach/ipc_sync.h>
+#include <mach/ipc_tt.h>
+#include <mach/ipc/ipc_voucher.h>
+#include <mach/task.h>
 
 ipc_port_t
 convert_clock_ctrl_to_port(mach_clock_t clock)

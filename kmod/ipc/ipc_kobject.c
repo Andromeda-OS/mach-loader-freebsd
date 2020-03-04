@@ -121,20 +121,20 @@
  *	Functions for letting a port represent a kernel object.
  */
 
-#include <sys/mach/port.h>
-#include <sys/mach/kern_return.h>
-#include <sys/mach/message.h>
-#include <sys/mach/mig_errors.h>
-#include <sys/mach/notify.h>
-#include <sys/mach/etap_macros.h>
+#include <mach/port.h>
+#include <mach/kern_return.h>
+#include <mach/message.h>
+#include <mach/mig_errors.h>
+#include <mach/notify.h>
+#include <mach/etap_macros.h>
 #if 0
 #include <kern/ipc_kobject.h>
 #include <kern/misc_protos.h>
 #endif
-#include <sys/mach/ipc/ipc_object.h>
-#include <sys/mach/ipc/ipc_kmsg.h>
-#include <sys/mach/ipc/ipc_port.h>
-#include <sys/mach/ipc/ipc_thread.h>
+#include <mach/ipc/ipc_object.h>
+#include <mach/ipc/ipc_kmsg.h>
+#include <mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_thread.h>
 
 #define vm_object_destroy(a)
 
@@ -154,7 +154,7 @@ ipc_kobject_notify(
         mach_msg_header_t *request_header,
         mach_msg_header_t *reply_header);
 
-#include <sys/mach/ndr.h>
+#include <mach/ndr.h>
 
 typedef struct {
         mach_msg_id_t num;
@@ -177,20 +177,20 @@ int mig_table_max_displ;
 mach_msg_size_t mig_reply_size;
 
 #ifdef notyet
-#include <sys/mach/mach_server.h>
+#include <mach/mach_server.h>
 #endif
-#include <sys/mach/clock_server.h>
-#include <sys/mach/host_priv_server.h>
-#include <sys/mach/mach_host_server.h>
-#include <sys/mach/mach_port_server.h>
-#include <sys/mach/mach_vm_server.h>
-#include <sys/mach/task_server.h>
-#include <sys/mach/vm_map_server.h>
+#include <mach/clock_server.h>
+#include <mach/host_priv_server.h>
+#include <mach/mach_host_server.h>
+#include <mach/mach_port_server.h>
+#include <mach/mach_vm_server.h>
+#include <mach/task_server.h>
+#include <mach/vm_map_server.h>
 
 #if 0
-#include <sys/mach/bootstrap_server.h>
-#include <sys/mach/ledger_server.h>
-#include <sys/mach/sync_server.h>
+#include <mach/bootstrap_server.h>
+#include <mach/ledger_server.h>
+#include <mach/sync_server.h>
 #include <device/device_server.h>
 #include <device/device_pager_server.h>
 #endif

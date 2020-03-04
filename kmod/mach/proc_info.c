@@ -56,9 +56,9 @@ __FBSDID("$FreeBSD$");
 #include <vm/vm_page.h>
 #include <vm/vm_param.h>
 
-#include <sys/mach/mach_types.h>
-#include <sys/mach/ipc/ipc_kmsg.h>
-#include <sys/mach/thread.h>
+#include <mach/mach_types.h>
+#include <mach/ipc/ipc_kmsg.h>
+#include <mach/thread.h>
 #define PRIVATE
 #include <sys/proc_info.h>
 

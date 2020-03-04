@@ -90,23 +90,23 @@
  *	Exported kernel calls.  See mach_debug/mach_debug.defs.
  */
 
-#include <sys/mach/kern_return.h>
-#include <sys/mach/port.h>
-#include <sys/mach/vm_types.h>
-#include <sys/mach_debug/ipc_info.h>
-#include <sys/mach_debug/hash_info.h>
+#include <mach/kern_return.h>
+#include <mach/port.h>
+#include <mach/vm_types.h>
+#include <mach_debug/ipc_info.h>
+#include <mach_debug/hash_info.h>
 #if 0
-#include <sys/mach/host.h>
+#include <mach/host.h>
 #include <kern/misc_protos.h>
 #include <vm/vm_map.h>
 #include <vm/vm_kern.h>
 #endif
-#include <sys/mach/ipc/ipc_space.h>
-#include <sys/mach/ipc/ipc_port.h>
-#include <sys/mach/ipc/ipc_hash.h>
-#include <sys/mach/ipc/ipc_table.h>
-#include <sys/mach/ipc/ipc_right.h>
-#include <sys/mach/mach_port_server.h>
+#include <mach/ipc/ipc_space.h>
+#include <mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_hash.h>
+#include <mach/ipc/ipc_table.h>
+#include <mach/ipc/ipc_right.h>
+#include <mach/mach_port_server.h>
 
 #include <vm/vm.h>
 #include <vm/vm_kern.h>

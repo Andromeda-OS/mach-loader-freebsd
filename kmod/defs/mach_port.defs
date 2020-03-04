@@ -72,9 +72,9 @@ subsystem
 	UserPrefix _kernelrpc_;
 #endif
 
-#include <sys/mach/std_types.defs>
-#include <sys/mach/mach_types.defs>
-#include <sys/mach_debug/mach_debug_types.defs>
+#include <mach/std_types.defs>
+#include <mach/mach_types.defs>
+#include <mach_debug/mach_debug_types.defs>
 
 /*
  *	Returns the set of port and port set names

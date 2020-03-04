@@ -47,12 +47,12 @@
  */
 
 
-#include <sys/mach/mach_types.h>
-#include <sys/mach/ipc_tt.h>
+#include <mach/mach_types.h>
+#include <mach/ipc_tt.h>
 
-#include <sys/mach/kern_return.h>
-#include <sys/mach/thread_pool.h>
-#include <sys/mach/thread.h>
+#include <mach/kern_return.h>
+#include <mach/thread_pool.h>
+#include <mach/thread.h>
 
 
 

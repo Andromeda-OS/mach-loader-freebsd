@@ -183,17 +183,17 @@
  */
 
 
-#include <sys/mach/port.h>
-#include <sys/mach/message.h>
-#include <sys/mach/ipc_kobject.h>
+#include <mach/port.h>
+#include <mach/message.h>
+#include <mach/ipc_kobject.h>
 
-#include <sys/mach/ipc/ipc_mqueue.h>
-#include <sys/mach/ipc/ipc_thread.h>
-#include <sys/mach/ipc/ipc_kmsg.h>
-#include <sys/mach/ipc/ipc_port.h>
-#include <sys/mach/ipc/ipc_pset.h>
-#include <sys/mach/ipc/ipc_space.h>
-#include <sys/mach/thread.h>
+#include <mach/ipc/ipc_mqueue.h>
+#include <mach/ipc/ipc_thread.h>
+#include <mach/ipc/ipc_kmsg.h>
+#include <mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_pset.h>
+#include <mach/ipc/ipc_space.h>
+#include <mach/thread.h>
 
 
 /*

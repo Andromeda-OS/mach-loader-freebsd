@@ -86,26 +86,26 @@
 #include <sys/types.h>
 #include <sys/param.h>
 
-#include <sys/mach/kern_return.h>
-#include <sys/mach/port.h>
-#include <sys/mach/message.h>
+#include <mach/kern_return.h>
+#include <mach/port.h>
+#include <mach/message.h>
 #if 0
 #include <kern/assert.h>
 #include <kern/misc_protos.h>
 #include <kern/ipc_subsystem.h>
 #endif
-#include <sys/mach/ipc/port.h>
-#include <sys/mach/ipc/ipc_entry.h>
-#include <sys/mach/ipc/ipc_space.h>
-#include <sys/mach/ipc/ipc_object.h>
-#include <sys/mach/ipc/ipc_hash.h>
-#include <sys/mach/ipc/ipc_port.h>
-#include <sys/mach/ipc/ipc_pset.h>
-#include <sys/mach/ipc/ipc_right.h>
-#include <sys/mach/ipc/ipc_notify.h>
-#include <sys/mach/ipc/ipc_table.h>
+#include <mach/ipc/port.h>
+#include <mach/ipc/ipc_entry.h>
+#include <mach/ipc/ipc_space.h>
+#include <mach/ipc/ipc_object.h>
+#include <mach/ipc/ipc_hash.h>
+#include <mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_pset.h>
+#include <mach/ipc/ipc_right.h>
+#include <mach/ipc/ipc_notify.h>
+#include <mach/ipc/ipc_table.h>
 
-#include <sys/mach/task.h>
+#include <mach/task.h>
 
 #ifdef INVARIANTS
 #define OBJECT_CLEAR(entry, name) do {									\

@@ -107,22 +107,22 @@
 #include <sys/lock.h>
 #include <sys/mutex.h>
 
-#include <sys/mach/kern_return.h>
-#include <sys/mach/port.h>
+#include <mach/kern_return.h>
+#include <mach/port.h>
 #if 0
 #include <kern/assert.h>
 #endif
 
 #include <vm/uma.h>
-#include <sys/mach/ipc/port.h>
-#include <sys/mach/ipc/ipc_entry.h>
-#include <sys/mach/ipc/ipc_object.h>
-#include <sys/mach/ipc/ipc_hash.h>
-#include <sys/mach/ipc/ipc_table.h>
-#include <sys/mach/ipc/ipc_port.h>
-#include <sys/mach/ipc/ipc_space.h>
-#include <sys/mach/ipc/ipc_right.h>
-#include <sys/mach/thread.h>
+#include <mach/ipc/port.h>
+#include <mach/ipc/ipc_entry.h>
+#include <mach/ipc/ipc_object.h>
+#include <mach/ipc/ipc_hash.h>
+#include <mach/ipc/ipc_table.h>
+#include <mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_space.h>
+#include <mach/ipc/ipc_right.h>
+#include <mach/thread.h>
 
 
 uma_zone_t ipc_space_zone;

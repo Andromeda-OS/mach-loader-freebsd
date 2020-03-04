@@ -87,17 +87,17 @@
 #include <sys/param.h>
 #include <sys/file.h>
 
-#include <sys/mach/kern_return.h>
-#include <sys/mach/port.h>
-#include <sys/mach/message.h>
-#include <sys/mach/ipc/port.h>
-#include <sys/mach/ipc/ipc_space.h>
-#include <sys/mach/ipc/ipc_entry.h>
-#include <sys/mach/ipc/ipc_object.h>
-#include <sys/mach/ipc/ipc_hash.h>
-#include <sys/mach/ipc/ipc_right.h>
-#include <sys/mach/ipc/ipc_notify.h>
-#include <sys/mach/ipc/ipc_pset.h>
+#include <mach/kern_return.h>
+#include <mach/port.h>
+#include <mach/message.h>
+#include <mach/ipc/port.h>
+#include <mach/ipc/ipc_space.h>
+#include <mach/ipc/ipc_entry.h>
+#include <mach/ipc/ipc_object.h>
+#include <mach/ipc/ipc_hash.h>
+#include <mach/ipc/ipc_right.h>
+#include <mach/ipc/ipc_notify.h>
+#include <mach/ipc/ipc_pset.h>
 
 uma_zone_t ipc_object_zones[IOT_NUMBER];
 

@@ -44,13 +44,13 @@ __FBSDID("$FreeBSD$");
 #include <sys/sleepqueue.h>
 #include <sys/signal.h>
 
-#include <sys/mach/mach_types.h>
-#include <sys/mach/mach_traps.h>
+#include <mach/mach_types.h>
+#include <mach/mach_traps.h>
 
-#include <sys/mach/ipc/ipc_kmsg.h>
-#include <sys/mach/thread.h>
-#include <sys/mach/ipc_tt.h>
-#include <sys/mach/thread_switch.h>
+#include <mach/ipc/ipc_kmsg.h>
+#include <mach/thread.h>
+#include <mach/ipc_tt.h>
+#include <mach/thread_switch.h>
 
 #define MT_SETRUNNABLE 0x1
 

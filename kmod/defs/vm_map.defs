@@ -67,10 +67,10 @@ subsystem
 #endif	/* KERNEL_SERVER */
 	  vm_map 3800;
 
-#include <sys/mach/std_types.defs>
-#include <sys/mach/mach_types.defs>
-#include <sys/mach_debug/mach_debug_types.defs>
-import <sys/mach/vm_types.h>;
+#include <mach/std_types.defs>
+#include <mach/mach_types.defs>
+#include <mach_debug/mach_debug_types.defs>
+import <mach/vm_types.h>;
 
 #if !KERNEL && !LIBSYSCALL_INTERFACE
 #define PREFIX(NAME) _kernelrpc_ ## NAME

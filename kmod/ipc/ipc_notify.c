@@ -93,17 +93,17 @@
  */
 
 
-#include <sys/mach/port.h>
-#include <sys/mach/message.h>
-#include <sys/mach/notify.h>
+#include <mach/port.h>
+#include <mach/message.h>
+#include <mach/notify.h>
 #if 0
 #include <kern/assert.h>
 #include <kern/misc_protos.h>
 #endif
-#include <sys/mach/ipc/ipc_kmsg.h>
-#include <sys/mach/ipc/ipc_mqueue.h>
-#include <sys/mach/ipc/ipc_notify.h>
-#include <sys/mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_kmsg.h>
+#include <mach/ipc/ipc_mqueue.h>
+#include <mach/ipc/ipc_notify.h>
+#include <mach/ipc/ipc_port.h>
 
 /*
  * Forward declarations

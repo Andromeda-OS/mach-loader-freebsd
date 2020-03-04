@@ -52,13 +52,13 @@ __FBSDID("$FreeBSD$");
 #include <vm/vm_extern.h>
 #include <vm/vm_kern.h>
 
-#include <sys/mach/mach_types.h>
-#include <sys/mach/mach_vm.h>
-#include <sys/mach/ipc/ipc_kmsg.h>
-#include <sys/mach/thread.h>
-#include <sys/mach/mach_vm_server.h>
-#include <sys/mach/vm_map_server.h>
-#include <sys/mach/host_priv_server.h>
+#include <mach/mach_types.h>
+#include <mach/mach_vm.h>
+#include <mach/ipc/ipc_kmsg.h>
+#include <mach/thread.h>
+#include <mach/mach_vm_server.h>
+#include <mach/vm_map_server.h>
+#include <mach/host_priv_server.h>
 
 
 extern vm_size_t	msg_ool_size_small;
