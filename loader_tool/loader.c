@@ -800,7 +800,7 @@ int main(int argc, char **argv, char **envp) {
 	main_image.path = loaded_by_kernel ? argv[0] : argv[1];
 
 	load_mach_image(&main_image);
-	loader_assert(main_image.header->magic == MH_EXECUTE, "Cannot execute %s because it is dynamic library", main_image.path);
+	loader_assert(main_image.header->filetype == MH_EXECUTE, "Cannot execute %s because it is dynamic library", main_image.path);
 
 	char **envp_end = envp;
 	while (*envp_end) envp_end++;
