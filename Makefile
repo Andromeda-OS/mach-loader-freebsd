@@ -7,8 +7,10 @@ LDFLAGS = -lm -lpthread
 
 .if defined(DEBUG) || make(debug)
 CFLAGS += -O0 -g
+DYLD_PATH = $(PWD)/loader
 .else
 CFLAGS += -O3 -DNDEBUG
+DYLD_PATH = /System/Library/ELFLoader/loader
 .endif
 
 debug: all
@@ -40,7 +42,7 @@ run_all: loader
 	done
 
 kmod:
-	make -f loader.kmod.mk
+	make -f loader.kmod.mk DYLD_PATH=$(DYLD_PATH)
 
 run_kmod: kmod
 	-kldunload ./imgact_mach.ko
@@ -54,6 +56,6 @@ clean:
 	rm -f *.core
 	rm -f *.tar.gz
 	make -f loader.kmod.mk clean
-	
+
 archive:
 	git archive --prefix=mach-loader-freebsd/ --format tar HEAD | gzip -9 > mach-loader-freebsd-`git log -1 --format='%h'`.tar.gz
