@@ -1,8 +1,7 @@
 SRCS=imgact_mach.c vnode_if.h
 KMOD=imgact_mach
 
-PWD != pwd
-.if !defined(DYLD_PATH)
+.if !defined(DYLD_PATH) && !make(clean)
 .error DYLD_PATH must be defined
 .endif
 
