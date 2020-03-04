@@ -42,7 +42,7 @@ run_all: loader
 		fi\
 	done
 
-kmod:
+kmod: .PHONY
 	make -C kmod DYLD_PATH=$(DYLD_PATH)
 	cp kmod/imgact_mach.ko imgact_mach.ko
 
@@ -57,7 +57,7 @@ clean:
 	rm -f *.o
 	rm -f *.core
 	rm -f *.tar.gz
-	make -f loader.kmod.mk clean
+	make -C kmod clean DYLD_PATH=$(DYLD_PATH)
 
 ARCHIVE_NAME != echo mach-loader-freebsd-`git log -1 --format='%h'`.tar
 archive:
