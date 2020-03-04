@@ -1,11 +1,11 @@
 KMOD=imgact_mach
 SRCS=imgact_mach.c kern/task.c kern/ipc_tt.c kern/ipc_host.c \
-	defs_gen/clock_server.c defs_gen/host_priv_server.c defs_gen/mach_clock.c \
-	defs_gen/mach_convert.c defs_gen/mach_host.c defs_gen/mach_host_priv.c \
-	defs_gen/mach_host_server.c defs_gen/mach_misc.c defs_gen/mach_module.c \
-	defs_gen/mach_port_server.c defs_gen/mach_processor.c defs_gen/mach_semaphore.c \
-	defs_gen/mach_task.c defs_gen/mach_thread.c defs_gen/mach_traps.c \
-	defs_gen/mach_vm.c defs_gen/mach_vm_server.c defs_gen/proc_info.c \
+	defs_gen/clock_server.c defs_gen/host_priv_server.c mach/mach_clock.c \
+	mach/mach_convert.c defs_gen/mach_host.c defs_gen/mach_host_priv.c \
+	defs_gen/mach_host_server.c mach/mach_misc.c mach/mach_module.c \
+	defs_gen/mach_port_server.c mach/mach_processor.c mach/mach_semaphore.c \
+	mach/mach_task.c mach/mach_thread.c mach/mach_traps.c \
+	mach/mach_vm.c defs_gen/mach_vm_server.c mach/proc_info.c \
 	defs_gen/task_server.c defs_gen/vm_map_server.c \
 	ipc/ipc_entry.c ipc/ipc_hash.c ipc/ipc_init.c ipc/ipc_kmsg.c \
 	ipc/ipc_kobject.c ipc/ipc_mqueue.c ipc/ipc_notify.c ipc/ipc_object.c \
