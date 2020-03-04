@@ -16,6 +16,7 @@ all: default kmod
 
 loader: .PHONY
 	${MAKE} -C loader_tool DYLD_PATH=$(DYLD_PATH) DEBUG=$(DEBUG)
+	cp loader_tool/loader loader
 
 run: loader
 	./loader test/hello_asm
