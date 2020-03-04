@@ -44,10 +44,7 @@ run_kmod: loader
 	-kldunload ./imgact_mach.ko
 
 clean:
-	rm -f loader
-	rm -f *.o
-	rm -f *.core
-	rm -f *.tar.gz
+	make -C loader_tool clean
 	make -C kmod clean DYLD_PATH=$(DYLD_PATH)
 
 ARCHIVE_NAME != echo mach-loader-freebsd-`git log -1 --format='%h'`.tar
