@@ -44,7 +44,7 @@ kmod: .PHONY
 	make -C kmod DYLD_PATH=$(DYLD_PATH) DEBUG=$(DEBUG)
 	cp kmod/imgact_mach.ko imgact_mach.ko
 
-run_kmod: kmod
+run_kmod: loader
 	-kldunload ./imgact_mach.ko
 	-kldload ./imgact_mach.ko
 	-test/hello_asm
