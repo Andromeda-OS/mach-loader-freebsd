@@ -171,8 +171,8 @@ extern void mig_init(void);
  *		can be created.
  */
 
-static void
-ipc_bootstrap_sysinit(void *arg __unused)
+void
+ipc_bootstrap_sysinit(void)
 {
 	kern_return_t kr;
 
@@ -269,6 +269,3 @@ ipc_init(void)
 #endif
 
 }
-
-/* before SI_SUB_INTRINSIC and after SI_SUB_EVENTHANDLER */
-SYSINIT(ipc_space, SI_SUB_KLD, SI_ORDER_ANY, ipc_bootstrap_sysinit, NULL);

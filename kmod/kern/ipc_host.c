@@ -9,7 +9,7 @@
  * supporting documentation.
  *
  * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE
- * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+ * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
  * FOR A PARTICULAR PURPOSE.
  *
  * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR
@@ -595,13 +595,3 @@ convert_port_to_host_security(
 
 	return host;
 }
-
-static void
-ipc_host_sysinit(void *arg __unused)
-{
-
-	ipc_host_init();
-}
-
-/* before SI_SUB_INTRINSIC and after SI_SUB_KLD where zones are initialized */
-SYSINIT(ipc_host, SI_SUB_CPU, SI_ORDER_ANY, ipc_host_sysinit, NULL);

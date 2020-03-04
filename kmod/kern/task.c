@@ -1131,8 +1131,8 @@ uma_task_fini(void *_thread, int a)
 }
 
 
-static void
-task_sysinit(void *arg __unused)
+void
+task_sysinit(void)
 {
 	task_zone = uma_zcreate("mach_task_zone",
 							sizeof(struct mach_task),
@@ -1142,6 +1142,3 @@ task_sysinit(void *arg __unused)
 	EVENTHANDLER_REGISTER(process_init, mach_task_init, NULL, EVENTHANDLER_PRI_ANY);
 	EVENTHANDLER_REGISTER(process_fork, mach_task_fork, NULL, EVENTHANDLER_PRI_ANY);
 }
-
-/* before SI_SUB_INTRINSIC and after SI_SUB_EVENTHANDLER */
-SYSINIT(mach_thread, SI_SUB_KLD, SI_ORDER_ANY, task_sysinit, NULL);

@@ -762,15 +762,13 @@ ipc_entry_list_close(void *arg __unused, struct proc *p)
 }
 
 
-static void
-ipc_entry_sysinit(void *arg __unused)
+void
+ipc_entry_sysinit(void)
 {
 
 	EVENTHANDLER_REGISTER(process_exit, ipc_entry_list_close, NULL, EVENTHANDLER_PRI_ANY);
 	EVENTHANDLER_REGISTER(process_exec, ipc_entry_list_close, NULL, EVENTHANDLER_PRI_ANY);
 }
-
-SYSINIT(ipc_entry, SI_SUB_KLD, SI_ORDER_ANY, ipc_entry_sysinit, NULL);
 
 
 #define NDFILE		20

@@ -95,6 +95,13 @@ static int mach_imgact_modevent(module_t mod, int type, void *data) {
 			error = exec_register(exec);
 			if (error)
 				printf("mach_imgact register failed\n");
+
+			ipc_host_init();
+			task_sysinit();
+			ipc_bootstrap_sysinit();
+			ipc_entry_sysinit();
+			thread_sysinit();
+
 			break;
 
 		case MOD_UNLOAD:

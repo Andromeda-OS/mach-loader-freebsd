@@ -105,7 +105,7 @@ mach_thread_switch(mach_port_name_t thread_name, int option, mach_msg_timeout_t 
                break;
 
        case SWITCH_OPTION_WAIT:
-#ifdef notyet		   
+#ifdef notyet
                med->med_thpri = 1;
                while (med->med_thpri != 0) {
                        rw_wlock(&med->med_rightlock);
@@ -256,8 +256,8 @@ mach_thread_ctor(void *arg __unused, struct thread *td)
 	thread->ith_block_lock_data = NULL;
 }
 
-static void
-thread_sysinit(void *arg __unused)
+void
+thread_sysinit(void)
 {
 	thread_shuttle_zone = uma_zcreate("thread_shuttle_zone",
 									  sizeof(struct thread_shuttle),
@@ -268,6 +268,3 @@ thread_sysinit(void *arg __unused)
 	EVENTHANDLER_REGISTER(thread_init, mach_thread_init, NULL, EVENTHANDLER_PRI_ANY);
 	EVENTHANDLER_REGISTER(thread_fini, mach_thread_fini, NULL, EVENTHANDLER_PRI_ANY);
 }
-
-/* before SI_SUB_INTRINSIC and after SI_SUB_EVENTHANDLER */
-SYSINIT(mach_thread, SI_SUB_KLD, SI_ORDER_ANY, thread_sysinit, NULL);
