@@ -26,24 +26,24 @@
  */
 
 /*
- * Copyright 1991-1998 by Open Software Foundation, Inc. 
- *              All Rights Reserved 
- *  
- * Permission to use, copy, modify, and distribute this software and 
- * its documentation for any purpose and without fee is hereby granted, 
- * provided that the above copyright notice appears in all copies and 
- * that both the copyright notice and this permission notice appear in 
- * supporting documentation. 
- *  
- * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE 
- * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
- * FOR A PARTICULAR PURPOSE. 
- *  
- * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR 
- * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT, 
- * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION 
- * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. 
+ * Copyright 1991-1998 by Open Software Foundation, Inc.
+ *              All Rights Reserved
+ *
+ * Permission to use, copy, modify, and distribute this software and
+ * its documentation for any purpose and without fee is hereby granted,
+ * provided that the above copyright notice appears in all copies and
+ * that both the copyright notice and this permission notice appear in
+ * supporting documentation.
+ *
+ * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE
+ * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE.
+ *
+ * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR
+ * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT,
+ * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
+ * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 /* CMU_HIST */
 /*
@@ -51,54 +51,54 @@
  * 	 Revision 2.6.2.1  91/09/16  10:15:30  rpd
  * 	 	Added <ipc/ipc_hash.h>.
  * 	 	[91/09/02            rpd]
- * 
+ *
  * Revision 2.6.2.1  91/09/16  10:15:30  rpd
  * 	Added <ipc/ipc_hash.h>.
  * 	[91/09/02            rpd]
- * 
+ *
  * Revision 2.6  91/05/14  16:31:38  mrt
  * 	Correcting copyright
- * 
+ *
  * Revision 2.5  91/03/16  14:47:45  rpd
  * 	Fixed ipc_entry_grow_table to use it_entries_realloc.
  * 	[91/03/05            rpd]
- * 
+ *
  * Revision 2.4  91/02/05  17:21:17  mrt
  * 	Changed to new Mach copyright
  * 	[91/02/01  15:44:19  mrt]
- * 
+ *
  * Revision 2.3  91/01/08  15:12:58  rpd
  * 	Removed MACH_IPC_GENNOS.
  * 	[90/11/08            rpd]
- * 
+ *
  * Revision 2.2  90/06/02  14:49:36  rpd
  * 	Created for new IPC.
  * 	[90/03/26  20:54:27  rpd]
- * 
+ *
  */
 /* CMU_ENDHIST */
-/* 
+/*
  * Mach Operating System
  * Copyright (c) 1991,1990,1989 Carnegie Mellon University
  * All Rights Reserved.
- * 
+ *
  * Permission to use, copy, modify and distribute this software and its
  * documentation is hereby granted, provided that both the copyright
  * notice and this permission notice appear in all copies of the
  * software, derivative works or modified versions, and any portions
  * thereof, and that both notices appear in supporting documentation.
- * 
+ *
  * CARNEGIE MELLON ALLOWS FREE USE OF THIS SOFTWARE IN ITS "AS IS"
  * CONDITION.  CARNEGIE MELLON DISCLAIMS ANY LIABILITY OF ANY KIND FOR
  * ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS SOFTWARE.
- * 
+ *
  * Carnegie Mellon requests users of this software to return to
- * 
+ *
  *  Software Distribution Coordinator  or  Software.Distribution@CS.CMU.EDU
  *  School of Computer Science
  *  Carnegie Mellon University
  *  Pittsburgh PA 15213-3890
- * 
+ *
  * any improvements or extensions that they make and grant Carnegie Mellon
  * the rights to redistribute these changes.
  */
@@ -435,7 +435,7 @@ ipc_entry_get(
 	boolean_t	is_send_once,
 	mach_port_name_t	*namep,
 	ipc_entry_t	*entryp)
-{	
+{
 	ipc_entry_t free_entry;
 	int fd;
 	struct file *fp;
@@ -923,7 +923,7 @@ kern_finstall(struct thread *td, struct file *fp, int *fd, int flags,
 	FILEDESC_XUNLOCK(fdp);
 	return (0);
 }
- 
+
 #if	MACH_KDB
 #include <ddb/db_output.h>
 #define	printf	kdbprintf
@@ -940,8 +940,8 @@ db_ipc_object_by_name(
 {
         ipc_space_t space = task->itk_space;
         ipc_entry_t entry;
- 
- 
+
+
         entry = ipc_entry_lookup(space, name);
         if(entry != IE_NULL) {
                 iprintf("(task 0x%x, name 0x%x) ==> object 0x%x\n",

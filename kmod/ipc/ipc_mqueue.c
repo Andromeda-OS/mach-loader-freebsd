@@ -1,22 +1,22 @@
 /*
- * Copyright 1991-1998 by Open Software Foundation, Inc. 
- *              All Rights Reserved 
- *  
- * Permission to use, copy, modify, and distribute this software and 
- * its documentation for any purpose and without fee is hereby granted, 
- * provided that the above copyright notice appears in all copies and 
- * that both the copyright notice and this permission notice appear in 
- * supporting documentation. 
- *  
- * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE 
- * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
- * FOR A PARTICULAR PURPOSE. 
- *  
- * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR 
- * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
+ * Copyright 1991-1998 by Open Software Foundation, Inc.
+ *              All Rights Reserved
+ *
+ * Permission to use, copy, modify, and distribute this software and
+ * its documentation for any purpose and without fee is hereby granted,
+ * provided that the above copyright notice appears in all copies and
+ * that both the copyright notice and this permission notice appear in
+ * supporting documentation.
+ *
+ * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE
+ * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE.
+ *
+ * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR
+ * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
  * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT, 
- * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION 
- * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. 
+ * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
+ * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 /*
  * MkLinux
@@ -28,56 +28,56 @@
  * 	system  and our port is now a proxy (migrated out from under the
  * 	thread), in which case we return MACH_RCV_PORT_CHANGED.
  * 	[92/07/24            sjs]
- * 
+ *
  * Revision 2.17.3.6  92/06/24  17:59:57  jeffreyh
  * 	Allow norma_ipc_send to fail.
  * 	[92/06/02            dlb]
- * 
+ *
  * Revision 2.17.3.5  92/05/27  00:44:23  jeffreyh
  * 	In ipc_mqueue_receive, check whether a kmsg got queued while we called
  * 	netipc_replenish.
  * 	[92/05/12            dlb]
- * 
+ *
  * Revision 2.17.3.4.2.1  92/04/28  16:01:59  jeffreyh
  * 	Fixed race condition in NORMA system for ipc_mqueue_send().
  * 	[92/04/16            sjs]
- * 
+ *
  * Revision 2.17.3.4  92/03/28  10:09:17  jeffreyh
  * 	In error cases call norma_ipc_error_receiving instead
  * 	of norma_ipc_finish receiving.  This may eat the kmsg.
  * 	[92/03/20		dlb]
- * 
+ *
  * Revision 2.17.3.3  92/03/03  16:18:53  jeffreyh
  * 	Changes from TRUNK
  * 	[92/02/26  11:51:40  jeffreyh]
- * 
+ *
  * Revision 2.18  92/01/03  20:13:05  dbg
  * 	Removed THREAD_SHOULD_TERMINATE.
  * 	[91/12/19            dbg]
- * 
+ *
  * Revision 2.17.3.2  92/01/21  21:50:26  jsb
  * 	Picked up hack from dlb@osf.org to call norma_ipc_finish_receiving
  * 	before ipc_kmsg_destroy. The real fix is to use uncopyout_to_network.
  * 	[92/01/17  14:35:03  jsb]
- * 
+ *
  * Revision 2.17.3.1  92/01/03  16:35:24  jsb
  * 	Removed spurious arguments to norma_ipc_send.
  * 	Options and timeout will be handled here, not by norma_ipc_send.
  * 	[91/12/26  19:51:59  jsb]
- * 
+ *
  * 	Corrected log.
  * 	[91/12/24  14:15:11  jsb]
  *
  * Revision 2.17  91/12/15  10:40:33  jsb
  * 	Added norma_ipc_finish_receiving call to support large in-line msgs.
- * 
+ *
  * Revision 2.16  91/12/14  14:27:10  jsb
  * 	Removed ipc_fields.h hack.
- * 
+ *
  * Revision 2.15  91/11/14  16:56:07  rpd
  * 	Picked up mysterious norma changes.
  * 	[91/11/14            rpd]
- * 
+ *
  * Revision 2.14  91/08/28  11:13:34  jsb
  * 	Added seqno argument to ipc_mqueue_receive.
  * 	Also added seqno processing to ipc_mqueue_send, ipc_mqueue_move.
@@ -85,90 +85,90 @@
  * 	Fixed norma_ipc_handoff technology.
  * 	Renamed clport things to norma_ipc things.
  * 	[91/08/15  08:23:17  jsb]
- * 
+ *
  * Revision 2.13  91/08/03  18:18:27  jsb
  * 	Renamed replenish routine.
  * 	[91/08/01  23:00:06  jsb]
- * 
+ *
  * 	Removed obsolete include.
  * 	Added option, timeout parameters to ipc_clport_send.
  * 	[91/07/17  14:04:15  jsb]
- * 
+ *
  * Revision 2.12  91/06/25  10:27:34  rpd
  * 	Added some wait_result assertions.
  * 	[91/05/30            rpd]
- * 
+ *
  * Revision 2.11  91/06/17  15:46:18  jsb
  * 	Renamed NORMA conditionals.
  * 	[91/06/17  10:44:39  jsb]
- * 
+ *
  * Revision 2.10  91/06/06  17:06:06  jsb
  * 	Added call to ip_unlock after calling ipc_clport_send.
  * 	Added support for clport handoff.
  * 	[91/06/06  16:05:12  jsb]
- * 
+ *
  * Revision 2.9  91/05/14  16:33:58  mrt
  * 	Correcting copyright
- * 
+ *
  * Revision 2.8  91/03/16  14:48:18  rpd
  * 	Renamed ipc_thread_{go,will_wait,will_wait_with_timeout}
  * 	to thread_{go,will_wait,will_wait_with_timeout}.
  * 	Replaced ipc_thread_block with thread_block.
  * 	[91/02/17            rpd]
- * 
+ *
  * Revision 2.7  91/02/05  17:22:24  mrt
  * 	Changed to new Mach copyright
  * 	[91/02/01  15:46:33  mrt]
- * 
+ *
  * Revision 2.6  91/01/08  15:14:35  rpd
  * 	Changed continuation argument to (void (*)()).
  * 	[90/12/18            rpd]
  * 	Reorganized ipc_mqueue_receive.
  * 	[90/11/22            rpd]
- * 
+ *
  * 	Minor cleanup.
  * 	[90/11/11            rpd]
- * 
+ *
  * Revision 2.5  90/12/14  11:02:32  jsb
  * 	Changed parameters in ipc_clport_send call.
  * 	[90/12/13  21:20:13  jsb]
- * 
+ *
  * Revision 2.4  90/11/05  14:29:04  rpd
  * 	Use new io_reference and io_release.
  * 	Use new ip_reference and ip_release.
  * 	[90/10/29            rpd]
- * 
+ *
  * Revision 2.3  90/09/28  16:54:58  jsb
  * 	Added NORMA_IPC support.
  * 	[90/09/28  14:03:24  jsb]
- * 
+ *
  * Revision 2.2  90/06/02  14:50:39  rpd
  * 	Created for new IPC.
  * 	[90/03/26  20:57:06  rpd]
  */
 /* CMU_ENDHIST */
-/* 
+/*
  * Mach Operating System
  * Copyright (c) 1991,1990,1989 Carnegie Mellon University
  * All Rights Reserved.
- * 
+ *
  * Permission to use, copy, modify and distribute this software and its
  * documentation is hereby granted, provided that both the copyright
  * notice and this permission notice appear in all copies of the
  * software, derivative works or modified versions, and any portions
  * thereof, and that both notices appear in supporting documentation.
- * 
+ *
  * CARNEGIE MELLON ALLOWS FREE USE OF THIS SOFTWARE IN ITS "AS IS"
  * CONDITION.  CARNEGIE MELLON DISCLAIMS ANY LIABILITY OF ANY KIND FOR
  * ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS SOFTWARE.
- * 
+ *
  * Carnegie Mellon requests users of this software to return to
- * 
+ *
  *  Software Distribution Coordinator  or  Software.Distribution@CS.CMU.EDU
  *  School of Computer Science
  *  Carnegie Mellon University
  *  Pittsburgh PA 15213-3890
- * 
+ *
  * any improvements or extensions that they make and grant Carnegie Mellon
  * the rights to redistribute these changes.
  */
@@ -788,7 +788,7 @@ ipc_mqueue_receive(
 		/* a message is already on the queue */
 		if (kmsg != IKM_NULL) {
 			ipc_mqueue_post_on_thread(port, option, max_size, thread);
-			if (thread->ith_state == MACH_MSG_SUCCESS) 
+			if (thread->ith_state == MACH_MSG_SUCCESS)
 				goto rx_done;
 			else {
 				io_unlock(thread->ith_object);

@@ -25,47 +25,47 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 /*
- * Copyright 1991-1998 by Open Software Foundation, Inc. 
- *              All Rights Reserved 
- *  
- * Permission to use, copy, modify, and distribute this software and 
- * its documentation for any purpose and without fee is hereby granted, 
- * provided that the above copyright notice appears in all copies and 
- * that both the copyright notice and this permission notice appear in 
- * supporting documentation. 
- *  
- * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE 
- * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
- * FOR A PARTICULAR PURPOSE. 
- *  
- * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR 
- * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT, 
- * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION 
- * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. 
+ * Copyright 1991-1998 by Open Software Foundation, Inc.
+ *              All Rights Reserved
+ *
+ * Permission to use, copy, modify, and distribute this software and
+ * its documentation for any purpose and without fee is hereby granted,
+ * provided that the above copyright notice appears in all copies and
+ * that both the copyright notice and this permission notice appear in
+ * supporting documentation.
+ *
+ * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE
+ * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE.
+ *
+ * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR
+ * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT,
+ * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
+ * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-/* 
+/*
  * Mach Operating System
  * Copyright (c) 1991,1990,1989,1988 Carnegie Mellon University
  * All Rights Reserved.
- * 
+ *
  * Permission to use, copy, modify and distribute this software and its
  * documentation is hereby granted, provided that both the copyright
  * notice and this permission notice appear in all copies of the
  * software, derivative works or modified versions, and any portions
  * thereof, and that both notices appear in supporting documentation.
- * 
+ *
  * CARNEGIE MELLON ALLOWS FREE USE OF THIS SOFTWARE IN ITS "AS IS"
  * CONDITION.  CARNEGIE MELLON DISCLAIMS ANY LIABILITY OF ANY KIND FOR
  * ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS SOFTWARE.
- * 
+ *
  * Carnegie Mellon requests users of this software to return to
- * 
+ *
  *  Software Distribution Coordinator  or  Software.Distribution@CS.CMU.EDU
  *  School of Computer Science
  *  Carnegie Mellon University
  *  Pittsburgh PA 15213-3890
- * 
+ *
  * any improvements or extensions that they make and grant Carnegie Mellon
  * the rights to redistribute these changes.
  */
@@ -201,7 +201,7 @@ task_init_internal(
 	ipc_task_init(new_task, parent_task);
 
 	if (parent_task != TASK_NULL) {
-#ifdef notyet		
+#ifdef notyet
 		pset = parent_task->processor_set;
 		if (!pset->active)
 			pset = &default_pset;
@@ -293,11 +293,11 @@ kern_return_t
 task_terminate(
 	register task_t	task)
 {
-#ifdef notyet	
+#ifdef notyet
 	register thread_t	thread, cur_thread;
 #if 0
 	register queue_head_t	*list;
-#endif	
+#endif
 	register task_t		cur_task;
 	thread_act_t		thr_act, cur_thr_act;
 
@@ -474,7 +474,7 @@ task_hold_locked(
 	register thread_act_t	thr_act, cur_thr_act;
 
 	cur_thr_act = current_act();
-#endif	
+#endif
 
 	if (!task->active) {
 		return(KERN_FAILURE);
@@ -495,7 +495,7 @@ task_hold_locked(
 		act_unlock_thread(thr_act);
 		thr_act = (thread_act_t) queue_next(&thr_act->thr_acts);
 	}
-#endif	
+#endif
 	return(KERN_SUCCESS);
 }
 
@@ -529,7 +529,7 @@ task_release(
 		thr_act = next;
 	}
 	task_unlock(task);
-#endif	
+#endif
 	return(KERN_SUCCESS);
 }
 
@@ -738,7 +738,7 @@ task_wait_locked(
 #endif
 }
 
-kern_return_t 
+kern_return_t
 task_resume(register task_t task)
 {
 	register boolean_t	release;
@@ -747,7 +747,7 @@ task_resume(register task_t task)
 		return(KERN_INVALID_ARGUMENT);
 
 	release = FALSE;
-#if 0	
+#if 0
 	task_lock(task);
 	if (!task->active) {
 		task_unlock(task);
@@ -826,7 +826,7 @@ task_info(
 				= task->total_user_time.microseconds;
 		basic_info->system_time.seconds
 				= task->total_system_time.seconds;
-		basic_info->system_time.microseconds 
+		basic_info->system_time.microseconds
 				= task->total_system_time.microseconds;
 		task_unlock(task);
 #endif
@@ -967,7 +967,7 @@ task_info(
 		*task_info_count = TASK_SECURITY_TOKEN_COUNT;
                 break;
             }
-            
+
 	    default:
 		return (KERN_INVALID_ARGUMENT);
 	}
@@ -1026,7 +1026,7 @@ task_get_assignment(
  *
  *	Set scheduling policy and parameters, both base and limit, for
  *	the given task. Policy must be a policy which is enabled for the
- *	processor set. Change contained threads if requested. 
+ *	processor set. Change contained threads if requested.
  */
 kern_return_t
 task_policy(

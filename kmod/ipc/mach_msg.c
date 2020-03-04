@@ -1,22 +1,22 @@
 /*
- * Copyright 1991-1998 by Open Software Foundation, Inc. 
- *              All Rights Reserved 
- *  
- * Permission to use, copy, modify, and distribute this software and 
- * its documentation for any purpose and without fee is hereby granted, 
- * provided that the above copyright notice appears in all copies and 
- * that both the copyright notice and this permission notice appear in 
- * supporting documentation. 
- *  
- * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE 
- * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
- * FOR A PARTICULAR PURPOSE. 
- *  
- * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR 
- * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT, 
+ * Copyright 1991-1998 by Open Software Foundation, Inc.
+ *              All Rights Reserved
+ *
+ * Permission to use, copy, modify, and distribute this software and
+ * its documentation for any purpose and without fee is hereby granted,
+ * provided that the above copyright notice appears in all copies and
+ * that both the copyright notice and this permission notice appear in
+ * supporting documentation.
+ *
+ * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE
+ * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE.
+ *
+ * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR
+ * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT,
  * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION 
- * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. 
+ * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 /*
  * MkLinux
@@ -26,28 +26,28 @@
  * Revision 2.16.3.2  92/03/03  16:19:04  jeffreyh
  * 	Changes from TRUNK
  * 	[92/02/26  11:52:59  jeffreyh]
- * 
+ *
  * Revision 2.17  92/01/03  20:13:19  dbg
  * 	Add quick dispatch to Mach Kernel messages.
  * 	[91/12/18            dbg]
- * 
+ *
  * Revision 2.16  91/12/14  14:28:41  jsb
  * 	Removed ipc_fields.h hack.
- * 
+ *
  * Revision 2.15  91/11/14  16:58:17  rpd
  * 	Added ipc_fields.h hack.
  *	Use IP_NORMA_IS_PROXY macro instead of ipc_space_remote.
- * 	[91/11/00            jsb] 
- * 
+ * 	[91/11/00            jsb]
+ *
  * Revision 2.14  91/10/09  16:11:23  af
  * 	Added <ipc/ipc_notify.h>.  Fixed type-mismatch in msg_rpc_trap.
  * 	[91/09/02            rpd]
- * 
+ *
  * Revision 2.13  91/08/28  11:13:53  jsb
  * 	Changed MACH_RCV_TOO_LARGE and MACH_RCV_INVALID_NOTIFY to work
  * 	like MACH_RCV_HEADER_ERROR, using ipc_kmsg_copyout_dest.
  * 	[91/08/12            rpd]
- * 
+ *
  * 	Added seqno argument to ipc_mqueue_receive.
  * 	Updated mach_msg_trap fast path for seqno processing.
  * 	[91/08/10            rpd]
@@ -55,38 +55,38 @@
  * 	[91/08/03            rpd]
  * 	Renamed clport things to norma_ipc things.
  * 	[91/08/15  08:24:12  jsb]
- * 
+ *
  * Revision 2.12  91/07/31  17:43:41  dbg
  * 	Add mach_msg_interrupt to force a thread waiting in mach_msg_continue
  * 	or mach_msg_receive_continue into a stable state.
  * 	[91/07/30  17:02:11  dbg]
- * 
+ *
  * Revision 2.11  91/06/25  10:27:47  rpd
  * 	Fixed ikm_cache critical sections to avoid blocking operations.
  * 	[91/05/23            rpd]
- * 
+ *
  * Revision 2.10  91/06/17  15:46:33  jsb
  * 	Renamed NORMA conditionals.
  * 	[91/06/17  10:46:35  jsb]
- * 
+ *
  * Revision 2.9  91/06/06  17:06:12  jsb
  * 	A little more NORMA_IPC support.
  * 	[91/05/13  17:22:08  jsb]
- * 
+ *
  * Revision 2.8  91/05/14  16:38:44  mrt
  * 	Correcting copyright
- * 
+ *
  * Revision 2.7  91/03/16  14:49:09  rpd
  * 	Replaced ipc_thread_switch with thread_handoff.
  * 	Replaced ith_saved with ikm_cache.
  * 	[91/02/16            rpd]
  * 	Made null mach_msg_trap measurement easier.
  * 	[91/01/29            rpd]
- * 
+ *
  * Revision 2.6  91/02/05  17:24:37  mrt
  * 	Changed to new Mach copyright
  * 	[91/02/01  15:53:02  mrt]
- * 
+ *
  * Revision 2.5  91/01/08  15:15:03  rpd
  * 	Added KEEP_STACKS support.
  * 	[91/01/07            rpd]
@@ -96,14 +96,14 @@
  * 	Added mach_msg_continue, mach_msg_receive_continue.
  * 	Changes to support kernel stack discarding/hand-off.
  * 	[90/12/09  17:29:04  rpd]
- * 
+ *
  * 	Removed MACH_IPC_GENNOS.
  * 	[90/11/08            rpd]
- * 
+ *
  * Revision 2.4  90/12/14  11:01:36  jsb
  * 	Added NORMA_IPC support: always ipc_mqueue_send() to a remote port.
  * 	[90/12/13  21:25:47  jsb]
- * 
+ *
  * Revision 2.3  90/11/05  14:30:29  rpd
  * 	Removed ipc_object_release_macro.
  * 	Changed ip_reference to ipc_port_reference.
@@ -112,35 +112,35 @@
  * 	Use new io_reference and io_release.
  * 	Use new ip_reference and ip_release.
  * 	[90/10/29            rpd]
- * 
+ *
  * Revision 2.2  90/06/02  14:52:22  rpd
  * 	Created for new IPC.
  * 	[90/03/26  21:05:49  rpd]
- * 
+ *
  */
 /* CMU_ENDHIST */
-/* 
+/*
  * Mach Operating System
  * Copyright (c) 1991,1990,1989 Carnegie Mellon University
  * All Rights Reserved.
- * 
+ *
  * Permission to use, copy, modify and distribute this software and its
  * documentation is hereby granted, provided that both the copyright
  * notice and this permission notice appear in all copies of the
  * software, derivative works or modified versions, and any portions
  * thereof, and that both notices appear in supporting documentation.
- * 
+ *
  * CARNEGIE MELLON ALLOWS FREE USE OF THIS SOFTWARE IN ITS "AS IS"
  * CONDITION.  CARNEGIE MELLON DISCLAIMS ANY LIABILITY OF ANY KIND FOR
  * ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS SOFTWARE.
- * 
+ *
  * Carnegie Mellon requests users of this software to return to
- * 
+ *
  *  Software Distribution Coordinator  or  Software.Distribution@CS.CMU.EDU
  *  School of Computer Science
  *  Carnegie Mellon University
  *  Pittsburgh PA 15213-3890
- * 
+ *
  * any improvements or extensions that they make and grant Carnegie Mellon
  * the rights to redistribute these changes.
  */
@@ -204,7 +204,7 @@ mach_msg_return_t msg_receive_error(
 #if 0
 /* the size of each trailer has to be listed here for copyout purposes */
 mach_msg_trailer_size_t trailer_size[] = {
-          sizeof(mach_msg_trailer_t), 
+          sizeof(mach_msg_trailer_t),
 		  sizeof(mach_msg_seqno_trailer_t),
 		  sizeof(mach_msg_security_trailer_t)
 };
@@ -403,7 +403,7 @@ mach_msg_receive(
 				mr = MACH_RCV_INVALID_DATA;
 		}
 		else {
-			if (msg_receive_error(kmsg, msg, option, seqno, space) 
+			if (msg_receive_error(kmsg, msg, option, seqno, space)
 						== MACH_RCV_INVALID_DATA)
 				mr = MACH_RCV_INVALID_DATA;
 		}
@@ -411,7 +411,7 @@ mach_msg_receive(
 		FREE_SCATTER_LIST(slist, slist_size, slist_rt);
 		return mr;
 	}
-	mr = ipc_kmsg_put(msg, kmsg, 
+	mr = ipc_kmsg_put(msg, kmsg,
 					  kmsg->ikm_header->msgh_size + trailer->msgh_trailer_size);
 	FREE_SCATTER_LIST(slist, slist_size, slist_rt);
 
@@ -460,7 +460,7 @@ mach_msg_overwrite_trap(
 		 * 2. MACH_RCV_OVERWRITE is off, and rcv_msg might be the
 		 *    alternate receive buffer (separate send and receive buffers).
 		 */
-		if (option & MACH_RCV_OVERWRITE) 
+		if (option & MACH_RCV_OVERWRITE)
 		    rcv = rcv_msg;
 		else if (rcv_msg != MACH_MSG_NULL)
 		    rcv = rcv_msg;
@@ -468,7 +468,7 @@ mach_msg_overwrite_trap(
 		    rcv = msg;
 
 		MDPRINTF(("%s:%d receiving on %d ... ", curproc->p_comm, curthread->td_tid, rcv_name));
-		mr = mach_msg_receive(rcv, option, rcv_size, rcv_name, 
+		mr = mach_msg_receive(rcv, option, rcv_size, rcv_name,
 							  timeout, scatter_list_size);
 		MDPRINTF(("%s:%d done on %d\n",curproc->p_comm, curthread->td_tid, rcv_name));
 
@@ -489,7 +489,7 @@ mach_msg_overwrite_trap(
  *		MACH_MSG_SUCCESS	minimal header/trailer copied
  *		MACH_RCV_INVALID_DATA	copyout to user buffer failed
  */
-	
+
 mach_msg_return_t
 msg_receive_error(
 	ipc_kmsg_t		kmsg,
@@ -511,12 +511,12 @@ msg_receive_error(
 	/*
 	 * Build a minimal message with the requested trailer.
 	 */
-	trailer = (mach_msg_max_trailer_t *) 
+	trailer = (mach_msg_max_trailer_t *)
 			((vm_offset_t)kmsg->ikm_header +
 			round_msg(sizeof(mach_msg_header_t)));
 	kmsg->ikm_header->msgh_size = sizeof(mach_msg_header_t);
-	bcopy(  (char *)&trailer_template, 
-		(char *)trailer, 
+	bcopy(  (char *)&trailer_template,
+		(char *)trailer,
 		sizeof(trailer_template));
 	if (option & MACH_RCV_TRAILER_MASK) {
 		trailer->msgh_seqno = seqno;
@@ -530,7 +530,7 @@ msg_receive_error(
 	if (ipc_kmsg_put(msg, kmsg, kmsg->ikm_header->msgh_size +
 			trailer->msgh_trailer_size) == MACH_RCV_INVALID_DATA)
 		return(MACH_RCV_INVALID_DATA);
-	else 
+	else
 		return(MACH_MSG_SUCCESS);
 }
 

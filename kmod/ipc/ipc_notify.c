@@ -1,22 +1,22 @@
 /*
- * Copyright 1991-1998 by Open Software Foundation, Inc. 
- *              All Rights Reserved 
- *  
- * Permission to use, copy, modify, and distribute this software and 
- * its documentation for any purpose and without fee is hereby granted, 
- * provided that the above copyright notice appears in all copies and 
- * that both the copyright notice and this permission notice appear in 
- * supporting documentation. 
- *  
- * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE 
- * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
- * FOR A PARTICULAR PURPOSE. 
- *  
- * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR 
- * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
+ * Copyright 1991-1998 by Open Software Foundation, Inc.
+ *              All Rights Reserved
+ *
+ * Permission to use, copy, modify, and distribute this software and
+ * its documentation for any purpose and without fee is hereby granted,
+ * provided that the above copyright notice appears in all copies and
+ * that both the copyright notice and this permission notice appear in
+ * supporting documentation.
+ *
+ * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE
+ * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE.
+ *
+ * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR
+ * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
  * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT, 
- * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION 
- * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. 
+ * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
+ * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 /*
  * MkLinux
@@ -26,59 +26,59 @@
  * Revision 2.5.2.2  92/03/28  10:09:23  jeffreyh
  * 	NORMA_IPC: Don't send send_once notification if port is dead.
  * 	[92/03/25            dlb]
- * 
+ *
  * Revision 2.5.2.1  92/01/03  16:35:29  jsb
  * 	Did I say ndproxy? I meant to say nsproxy.
  * 	[91/12/31  21:40:41  jsb]
- * 
+ *
  * 	Changes for IP_NORMA_REQUEST macros being renamed to ip_ndproxy{,m,p}.
  * 	[91/12/30  07:57:26  jsb]
- * 
+ *
  * 	Use IP_IS_NORMA_NSREQUEST macro.
  * 	[91/12/28  17:05:21  jsb]
- * 
+ *
  * 	Added norma_ipc_notify_no_senders hook in ipc_notify_no_senders.
  * 	[91/12/24  14:37:56  jsb]
- * 
+ *
  * Revision 2.5  91/08/28  11:13:41  jsb
  * 	Changed msgh_kind to msgh_seqno.
  * 	[91/08/09            rpd]
- * 
+ *
  * Revision 2.4  91/05/14  16:34:24  mrt
  * 	Correcting copyright
- * 
+ *
  * Revision 2.3  91/02/05  17:22:33  mrt
  * 	Changed to new Mach copyright
  * 	[91/02/01  15:46:58  mrt]
- * 
+ *
  * Revision 2.2  90/06/02  14:50:50  rpd
  * 	Created for new IPC.
  * 	[90/03/26  20:57:58  rpd]
- * 
+ *
  */
 /* CMU_ENDHIST */
-/* 
+/*
  * Mach Operating System
  * Copyright (c) 1991,1990,1989 Carnegie Mellon University
  * All Rights Reserved.
- * 
+ *
  * Permission to use, copy, modify and distribute this software and its
  * documentation is hereby granted, provided that both the copyright
  * notice and this permission notice appear in all copies of the
  * software, derivative works or modified versions, and any portions
  * thereof, and that both notices appear in supporting documentation.
- * 
+ *
  * CARNEGIE MELLON ALLOWS FREE USE OF THIS SOFTWARE IN ITS "AS IS"
  * CONDITION.  CARNEGIE MELLON DISCLAIMS ANY LIABILITY OF ANY KIND FOR
  * ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS SOFTWARE.
- * 
+ *
  * Carnegie Mellon requests users of this software to return to
- * 
+ *
  *  Software Distribution Coordinator  or  Software.Distribution@CS.CMU.EDU
  *  School of Computer Science
  *  Carnegie Mellon University
  *  Pittsburgh PA 15213-3890
- * 
+ *
  * any improvements or extensions that they make and grant Carnegie Mellon
  * the rights to redistribute these changes.
  */

@@ -1,22 +1,22 @@
 /*
- * Copyright 1991-1998 by Open Software Foundation, Inc. 
- *              All Rights Reserved 
- *  
- * Permission to use, copy, modify, and distribute this software and 
- * its documentation for any purpose and without fee is hereby granted, 
- * provided that the above copyright notice appears in all copies and 
- * that both the copyright notice and this permission notice appear in 
- * supporting documentation. 
- *  
- * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE 
+ * Copyright 1991-1998 by Open Software Foundation, Inc.
+ *              All Rights Reserved
+ *
+ * Permission to use, copy, modify, and distribute this software and
+ * its documentation for any purpose and without fee is hereby granted,
+ * provided that the above copyright notice appears in all copies and
+ * that both the copyright notice and this permission notice appear in
+ * supporting documentation.
+ *
+ * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE
  * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
- * FOR A PARTICULAR PURPOSE. 
- *  
- * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR 
- * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT, 
- * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION 
- * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. 
+ * FOR A PARTICULAR PURPOSE.
+ *
+ * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR
+ * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT,
+ * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
+ * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 /*
  * MkLinux
@@ -80,7 +80,7 @@ thread_pool_remove(thread_act_t thread)
 		pool->thr_acts = pool->thr_acts->ith_pool_next;
 		return;
 	}
-	
+
 	while (act != NULL) {
 		if (act->ith_pool_next == thread) {
 			act->ith_pool_next = thread->ith_pool_next;
@@ -162,13 +162,13 @@ thread_pool_put_act( thread_act_t thr_act )
 	mtx_assert(thr_act->ith_block_lock_data, MA_OWNED);
 		/*
 	 *	Find the thread pool for this activation.
-	 */	
+	 */
         if (thr_act->ith_object)
             thr_pool = &((struct rpc_common_data *)thr_act->ith_object)->rcd_thread_pool;
         else
             thr_pool = THREAD_POOL_NULL;
 
-        /* 
+        /*
 	 *	Return act to the thread_pool's list, if it is still
 	 *	alive. Otherwise, remove it from its thread_pool, which
 	 *	will deallocate it and destroy it.
@@ -183,7 +183,7 @@ thread_pool_put_act( thread_act_t thr_act )
                 assert(thr_act->ith_object);
         }
 }
- 
+
 
 /*
  * Called with ip_lock() held for port containing thread_pool.

@@ -1,22 +1,22 @@
 /*
- * Copyright 1991-1998 by Open Software Foundation, Inc. 
- *              All Rights Reserved 
- *  
- * Permission to use, copy, modify, and distribute this software and 
- * its documentation for any purpose and without fee is hereby granted, 
- * provided that the above copyright notice appears in all copies and 
- * that both the copyright notice and this permission notice appear in 
- * supporting documentation. 
- *  
- * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE 
- * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
- * FOR A PARTICULAR PURPOSE. 
- *  
- * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR 
- * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT, 
+ * Copyright 1991-1998 by Open Software Foundation, Inc.
+ *              All Rights Reserved
+ *
+ * Permission to use, copy, modify, and distribute this software and
+ * its documentation for any purpose and without fee is hereby granted,
+ * provided that the above copyright notice appears in all copies and
+ * that both the copyright notice and this permission notice appear in
+ * supporting documentation.
+ *
+ * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE
+ * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE.
+ *
+ * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR
+ * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT,
  * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION 
- * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. 
+ * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 /*
  * MkLinux
@@ -26,83 +26,83 @@
  * Revision 2.22.1.4  92/04/08  15:44:20  jeffreyh
  * 	Temporary debugging logic.
  * 	[92/04/06            dlb]
- * 
+ *
  * Revision 2.22.1.3  92/03/03  16:18:34  jeffreyh
  * 	Picked up changes from Joe's branch
  * 	[92/03/03  10:08:49  jeffreyh]
- * 
+ *
  * 	Eliminate keep_wired argument from vm_map_copyin().
  * 	[92/02/21  10:12:26  dlb]
  * 	Changes from TRUNK
  * 	[92/02/26  11:41:33  jeffreyh]
- * 
+ *
  * Revision 2.22.1.2.2.1  92/03/01  22:24:38  jsb
  * 	Added use_page_lists logic to ipc_kmsg_copyin_compat.
- * 
+ *
  * Revision 2.23  92/01/14  16:44:23  rpd
  * 	Fixed ipc_kmsg_copyin, ipc_kmsg_copyout, etc
  * 	to use copyinmap and copyoutmap for out-of-line ports.
  * 	[91/12/16            rpd]
- * 
+ *
  * Revision 2.22.1.2  92/02/21  11:23:22  jsb
  * 	Moved ipc_kmsg_copyout_to_network to norma/ipc_output.c.
  * 	Moved ipc_kmsg_uncopyout_to_network to norma/ipc_clean.c.
  * 	[92/02/21  10:34:46  jsb]
- * 
+ *
  * 	We no longer convert to network format directly from user format;
  * 	this greatly simplifies kmsg cleaning issues. Added code to detect
  * 	and recover from vm_map_convert_to_page_list failure.
  * 	Streamlined and fixed ipc_kmsg_copyout_to_network.
  * 	[92/02/21  09:01:52  jsb]
- * 
+ *
  * 	Modified for new form of norma_ipc_send_port which returns uid.
  * 	[92/02/20  17:11:17  jsb]
- * 
+ *
  * Revision 2.22.1.1  92/01/03  16:34:59  jsb
  * 	Mark out-of-line ports as COMPLEX_DATA.
  * 	[92/01/02  13:53:15  jsb]
- * 
+ *
  * 	In ipc_kmsg_uncopyout_to_network: don't process local or remote port.
  * 	Do clear the migrate bit as well as the complex_{data,ports} bits.
  * 	[91/12/31  11:42:07  jsb]
- * 
+ *
  * 	Added ipc_kmsg_uncopyout_to_network().
  * 	[91/12/29  21:05:29  jsb]
- * 
+ *
  * 	Added support in ipc_kmsg_print for MACH_MSGH_BITS_MIGRATED.
  * 	[91/12/26  19:49:16  jsb]
- * 
+ *
  * 	Made clean_kmsg routines aware of norma uids.
  * 	Cleaned up ipc_{msg,kmsg}_print. Corrected log.
  * 	[91/12/24  13:59:49  jsb]
- * 
+ *
  * Revision 2.22  91/12/15  10:37:53  jsb
  * 	Improved ddb 'show kmsg' support.
- * 
+ *
  * Revision 2.21  91/12/14  14:26:03  jsb
  * 	Removed ipc_fields.h hack.
  * 	Made ipc_kmsg_clean_{body,partial} aware of remote ports.
  * 	They don't yet clean up remote ports, but at least they
  * 	no longer pass port uids to ipc_object_destroy.
- * 
+ *
  * Revision 2.20  91/12/13  13:51:58  jsb
  * 	Use norma_ipc_copyin_page_list when sending to remote port.
- * 
+ *
  * Revision 2.19  91/12/10  13:25:46  jsb
  * 	Added ipc_kmsg_copyout_to_network, as required by ipc_kserver.c.
  * 	Picked up vm_map_convert_to_page_list call changes from dlb.
  * 	Changed NORMA_VM conditional for ipc_kmsg_copyout_to_kernel
  * 	to NORMA_IPC.
  * 	[91/12/10  11:20:36  jsb]
- * 
+ *
  * Revision 2.18  91/11/14  16:55:57  rpd
  * 	Picked up mysterious norma changes.
  * 	[91/11/14            rpd]
- * 
+ *
  * Revision 2.17  91/10/09  16:09:08  af
  * 	Changed msgh_kind to msgh_seqno in ipc_msg_print.
  * 	[91/10/05            rpd]
- * 
+ *
  * Revision 2.16  91/08/28  11:13:20  jsb
  * 	Changed msgh_kind to msgh_seqno.
  * 	[91/08/09            rpd]
@@ -111,49 +111,49 @@
  * 	Update page list discriminant logic to allow use of page list for
  * 	kernel objects that do not require page stealing (devices).
  * 	[91/07/31  15:00:55  dlb]b
- * 
+ *
  * 	Add arg to vm_map_copyin_page_list.
  * 	[91/07/30  14:10:38  dlb]
- * 
+ *
  * 	Turn page lists on by default.
  * 	[91/07/03  14:01:00  dlb]
  * 	Renamed clport fields in struct ipc_port to ip_norma fields.
  * 	Added checks for sending receive rights remotely.
  * 	[91/08/15  08:22:20  jsb]
- * 
+ *
  * Revision 2.15  91/08/03  18:18:16  jsb
  * 	Added support for ddb commands ``show msg'' and ``show kmsg''.
  * 	Made changes for elimination of intermediate clport structure.
  * 	[91/07/27  22:25:06  jsb]
- * 
+ *
  * 	Moved MACH_MSGH_BITS_COMPLEX_{PORTS,DATA} to mach/message.h.
  * 	Removed complex_data_hint_xxx[] garbage.
  * 	Adopted new vm_map_copy_t page_list technology.
  * 	[91/07/04  13:09:45  jsb]
- * 
+ *
  * Revision 2.14  91/07/01  08:24:34  jsb
  * 	From David Black at OSF: generalized page list support.
  * 	[91/06/29  16:29:29  jsb]
- * 
+ *
  * Revision 2.13  91/06/17  15:46:04  jsb
  * 	Renamed NORMA conditionals.
  * 	[91/06/17  10:45:05  jsb]
- * 
+ *
  * Revision 2.12  91/06/06  17:05:52  jsb
  * 	More NORMA_IPC stuff. Cleanup will follow.
  * 	[91/06/06  16:00:08  jsb]
- * 
+ *
  * Revision 2.11  91/05/14  16:33:01  mrt
  * 	Correcting copyright
- * 
+ *
  * Revision 2.10  91/03/16  14:47:57  rpd
  * 	Replaced ith_saved with ipc_kmsg_cache.
  * 	[91/02/16            rpd]
- * 
+ *
  * Revision 2.9  91/02/05  17:21:52  mrt
  * 	Changed to new Mach copyright
  * 	[91/02/01  15:45:30  mrt]
- * 
+ *
  * Revision 2.8  91/01/08  15:13:49  rpd
  * 	Added ipc_kmsg_free.
  * 	[91/01/05            rpd]
@@ -164,81 +164,81 @@
  * 	[90/12/05            rpd]
  * 	Removed MACH_IPC_GENNOS.
  * 	[90/11/08            rpd]
- * 
+ *
  * Revision 2.7  90/11/05  14:28:36  rpd
  * 	Changed ip_reference to ipc_port_reference.
  * 	Changed ip_release to ipc_port_release.
  * 	Use new io_reference and io_release.
  * 	Use new ip_reference and ip_release.
  * 	[90/10/29            rpd]
- * 
+ *
  * Revision 2.6  90/09/09  14:31:50  rpd
  * 	Fixed ipc_kmsg_copyin_compat to clear unused bits instead
  * 	of returning an error when they are non-zero.
  * 	[90/09/08            rpd]
- * 
+ *
  * Revision 2.5  90/08/06  17:05:53  rpd
  * 	Fixed ipc_kmsg_copyout_body to turn off msgt_deallocate
  * 	for in-line data.  It might be on if the compatibility mode
  * 	generated the message.
- * 
+ *
  * 	Fixed ipc_kmsg_copyin, ipc_kmsg_copyin_compat to check
  * 	that msgt_name, msgt_size, msgt_number are zero
  * 	in long-form type descriptors.
  * 	[90/08/04            rpd]
- * 
+ *
  * 	Fixed atomicity bug in ipc_kmsg_copyout_header,
  * 	when the destination and reply ports are the same.
  * 	[90/08/02            rpd]
- * 
+ *
  * Revision 2.4  90/08/06  15:07:31  rwd
  * 	Fixed ipc_kmsg_clean_partial to deallocate correctly
  * 	the OOL memory in the last type spec.
  * 	Removed debugging panic in ipc_kmsg_put.
  * 	[90/06/21            rpd]
- * 
+ *
  * Revision 2.3  90/06/19  22:58:03  rpd
  * 	For debugging: added panic to ipc_kmsg_put.
  * 	[90/06/04            rpd]
- * 
+ *
  * Revision 2.2  90/06/02  14:50:05  rpd
  * 	Changed ocurrences of inline; it is a gcc keyword.
  * 	[90/06/02            rpd]
- * 
+ *
  * 	For out-of-line memory, if length is zero allow any address.
  * 	This is more compatible with old IPC.
  * 	[90/04/23            rpd]
  * 	Created for new IPC.
  * 	[90/03/26  20:55:45  rpd]
- * 
+ *
  * Revision 2.16.2.1  91/09/16  10:15:35  rpd
  * 	Removed unused variables.  Added <ipc/ipc_notify.h>.
  * 	[91/09/02            rpd]
- * 
+ *
  */
 /* CMU_ENDHIST */
-/* 
+/*
  * Mach Operating System
  * Copyright (c) 1991,1990,1989 Carnegie Mellon University
  * All Rights Reserved.
- * 
+ *
  * Permission to use, copy, modify and distribute this software and its
  * documentation is hereby granted, provided that both the copyright
  * notice and this permission notice appear in all copies of the
  * software, derivative works or modified versions, and any portions
  * thereof, and that both notices appear in supporting documentation.
- * 
+ *
  * CARNEGIE MELLON ALLOWS FREE USE OF THIS SOFTWARE IN ITS "AS IS"
  * CONDITION.  CARNEGIE MELLON DISCLAIMS ANY LIABILITY OF ANY KIND FOR
  * ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS SOFTWARE.
- * 
+ *
  * Carnegie Mellon requests users of this software to return to
- * 
+ *
  *  Software Distribution Coordinator  or  Software.Distribution@CS.CMU.EDU
  *  School of Computer Science
  *  Carnegie Mellon University
  *  Pittsburgh PA 15213-3890
- * 
+ *
  * any improvements or extensions that they make and grant Carnegie Mellon
  * the rights to redistribute these changes.
  */
@@ -593,16 +593,16 @@ ipc_kmsg_clean_body(
 	return;
 
     for (i = 0; i < number; i++, saddr++ ) {
-	
+
 	switch (saddr->type.type) {
-	    
+
 	    case MACH_MSG_PORT_DESCRIPTOR: {
 		mach_msg_port_descriptor_t *dsc;
 
 		dsc = &saddr->port;
 
-		/* 
-		 * Destroy port rights carried in the message 
+		/*
+		 * Destroy port rights carried in the message
 		 */
 		if (!IO_VALID((ipc_object_t) dsc->name))
 		    continue;
@@ -614,9 +614,9 @@ ipc_kmsg_clean_body(
 		mach_msg_ool_descriptor_t *dsc;
 
 		dsc = &saddr->out_of_line;
-		
-		/* 
-		 * Destroy memory carried in the message 
+
+		/*
+		 * Destroy memory carried in the message
 		 */
 		if (dsc->size == 0) {
 		    assert(dsc->address == (void *) 0);
@@ -643,15 +643,15 @@ ipc_kmsg_clean_body(
 		}
 
 		assert(objects != (ipc_object_t *) 0);
-		
+
 		/* destroy port rights carried in the message */
-		
+
 		for (j = 0; j < dsc->count; j++) {
 		    ipc_object_t object = objects[j];
-		    
+
 		    if (!IO_VALID(object))
 			continue;
-		    
+
 		    ipc_object_destroy(object, dsc->disposition);
 		}
 
@@ -659,7 +659,7 @@ ipc_kmsg_clean_body(
 
 		assert(dsc->count != 0);
 
-		KFREE((vm_offset_t) dsc->address, 
+		KFREE((vm_offset_t) dsc->address,
 		     (vm_size_t) dsc->count * sizeof(mach_port_name_t),
 		     rt);
 		break;
@@ -757,7 +757,7 @@ void
 ipc_kmsg_free(ipc_kmsg_t	kmsg)
 {
 
-#ifdef notyet	
+#ifdef notyet
 	if (kmsg->ikm_size <= IKM_SAVED_MSG_SIZE)
 		uma_zfree(ipc_kmsg_zone, kmsg);
 	else
@@ -830,7 +830,7 @@ ipc_kmsg_get(
 		ipc_kmsg_free(kmsg);
 		return MACH_SEND_INVALID_DATA;
 	}
-	/* 
+	/*
 	 * I reserve for the trailer the largest space (MAX_TRAILER_SIZE)
 	 * However, the internal size field of the trailer (msgh_trailer_size)
 	 * is initialized to the minimum (sizeof(mach_msg_trailer_t)), to optimize
@@ -879,13 +879,13 @@ ipc_kmsg_get_from_kernel(
 	    msg_and_trailer_size = IKM_SAVED_MSG_SIZE;
 
 	assert(IP_VALID((ipc_port_t) msg->msgh_remote_port));
-	
+
 	if ((kmsg = ipc_kmsg_alloc(msg_and_trailer_size)) == NULL)
 		return MACH_SEND_NO_BUFFER;
 	(void) memcpy((void *) kmsg->ikm_header, (const void *) msg, size);
 
 	kmsg->ikm_header->msgh_size = size;
-	/* 
+	/*
 	 * I reserve for the trailer the largest space (MAX_TRAILER_SIZE)
 	 * However, the internal size field of the trailer (msgh_trailer_size)
 	 * is initialized to the minimum (sizeof(mach_msg_trailer_t)), to optimize
@@ -1092,7 +1092,7 @@ ipc_kmsg_copyin_header(
 				printf("name=%d not found\n", name);
 			goto invalid_dest;
 		}
-			
+
 		assert(reply_type != 0); /* because name not null */
 
 		if (!ipc_right_copyin_check(space, name, entry, reply_type))
@@ -1112,7 +1112,7 @@ ipc_kmsg_copyin_header(
 			 */
 			if (mach_debug_enable)
 				printf("dest_type or reply_type is SEND_ONCE\n");
-			
+
 			goto invalid_dest;
 		} else if ((dest_type == MACH_MSG_TYPE_MAKE_SEND) ||
 			   (dest_type == MACH_MSG_TYPE_MAKE_SEND_ONCE) ||
@@ -1923,14 +1923,14 @@ ipc_kmsg_copyin(
 	mach_port_name_t	notify)
 {
     mach_msg_return_t 		mr;
-    
+
     mr = ipc_kmsg_copyin_header(kmsg, space, notify);
     if (mr != MACH_MSG_SUCCESS) {
 		return mr;
     }
     if ((kmsg->ikm_header->msgh_bits & MACH_MSGH_BITS_COMPLEX) == 0)
 		return MACH_MSG_SUCCESS;
-    
+
     return( ipc_kmsg_copyin_body( kmsg, space, map) );
 }
 
@@ -1997,27 +1997,27 @@ ipc_kmsg_copyin_from_kernel(
     	for ( ; saddr <  eaddr; saddr++) {
 
 	    switch (saddr->type.type) {
-	    
+
 	        case MACH_MSG_PORT_DESCRIPTOR: {
 		    mach_msg_type_name_t 	name;
 		    ipc_object_t 		object;
 		    mach_msg_port_descriptor_t 	*dsc;
-		
+
 		    dsc = &saddr->port;
-		
+
 		    /* this is really the type SEND, SEND_ONCE, etc. */
 		    name = dsc->disposition;
 		    object = (ipc_object_t) dsc->name;
 		    dsc->disposition = ipc_object_copyin_type(name);
-		
+
 		    if (!IO_VALID(object)) {
 		        break;
 		    }
 
 		    ipc_object_copyin_from_kernel(object, name);
-		    
+
 		    if ((dsc->disposition == MACH_MSG_TYPE_PORT_RECEIVE) &&
-		        ipc_port_check_circularity((ipc_port_t) object, 
+		        ipc_port_check_circularity((ipc_port_t) object,
 						(ipc_port_t) remote)) {
 		        kmsg->ikm_header->msgh_bits |= MACH_MSGH_BITS_CIRCULAR;
 		    }
@@ -2036,23 +2036,23 @@ ipc_kmsg_copyin_from_kernel(
 		    int					j;
 		    mach_msg_type_name_t    		name;
 		    mach_msg_ool_ports_descriptor_t 	*dsc;
-		
+
 		    dsc = &saddr->ool_ports;
 
 		    /* this is really the type SEND, SEND_ONCE, etc. */
 		    name = dsc->disposition;
 		    dsc->disposition = ipc_object_copyin_type(name);
-	    	
+
 		    objects = (ipc_object_t *) dsc->address;
-	    	
+
 		    for ( j = 0; j < dsc->count; j++) {
 		        ipc_object_t object = objects[j];
-		        
+
 		        if (!IO_VALID(object))
 			    continue;
-		        
+
 		        ipc_object_copyin_from_kernel(object, name);
-    
+
 		        if ((dsc->disposition == MACH_MSG_TYPE_PORT_RECEIVE) &&
 			    ipc_port_check_circularity(
 						       (ipc_port_t) object,
@@ -2088,7 +2088,7 @@ ipc_kmsg_copyin_from_kernel(
  *		Nothing locked.
  *	Returns:
  *		MACH_MSG_SUCCESS	Copied out port rights.
- *		MACH_RCV_INVALID_NOTIFY	
+ *		MACH_RCV_INVALID_NOTIFY
  *			Notify is non-null and doesn't name a receive right.
  *			(Either KERN_INVALID_NAME or KERN_INVALID_RIGHT.)
  *		MACH_RCV_HEADER_ERROR|MACH_MSG_IPC_SPACE
@@ -2428,9 +2428,9 @@ ipc_kmsg_copyout_port_descriptor(mach_msg_descriptor_t *dsc,
     /* Copyout port right carried in the message */
     port = dsc->port.name;
     disp = dsc->port.disposition;
-    *mr |= ipc_kmsg_copyout_object(space, 
-            (ipc_object_t)port, 
-            disp, 
+    *mr |= ipc_kmsg_copyout_object(space,
+            (ipc_object_t)port,
+            disp,
 			&name);
 
 	MDPRINTF(("ipc_kmsg_copyout_port_descriptor name is %d\n",name));
@@ -2888,24 +2888,24 @@ ipc_kmsg_copyout_dest(
  *	Routine:	ipc_kmsg_check_scatter
  *	Purpose:
  *		Checks scatter and gather lists for consistency.
- *		
+ *
  *	Algorithm:
  *		The gather is assumed valid since it has been copied in.
  *		The scatter list has only been range checked.
- *		Gather list descriptors are sequentially paired with scatter 
+ *		Gather list descriptors are sequentially paired with scatter
  *		list descriptors, with port descriptors in either list ignored.
  *		Descriptors are consistent if the type fileds match and size
  *		of the scatter descriptor is less than or equal to the
- *		size of the gather descriptor.  A MACH_MSG_ALLOCATE copy 
- *		strategy in a scatter descriptor matches any size in the 
+ *		size of the gather descriptor.  A MACH_MSG_ALLOCATE copy
+ *		strategy in a scatter descriptor matches any size in the
  *		corresponding gather descriptor assuming they are the same type.
  *		Either list may be larger than the other.  During the
  *		subsequent copy out, excess scatter descriptors are ignored
  *		and excess gather descriptors default to dynamic allocation.
- *		
+ *
  *		In the case of a size error, a new scatter list is formed
  *		from the gather list copying only the size and type fields.
- *		
+ *
  *	Conditions:
  *		Nothing locked.
  *	Returns:
@@ -2942,7 +2942,7 @@ ipc_kmsg_check_scatter(
 	    mach_msg_descriptor_type_t	g_type;
 
 	    /*
-	     * Skip port descriptors in gather list. 
+	     * Skip port descriptors in gather list.
 	     */
 	    g_type = gstart->type.type;
 	    if (g_type != MACH_MSG_PORT_DESCRIPTOR) {
@@ -2980,7 +2980,7 @@ ipc_kmsg_check_scatter(
 			sstart->type.type != MACH_MSG_OOL_VOLATILE_DESCRIPTOR) {
 			return(MACH_RCV_INVALID_TYPE);
 		    }
-		    if (sstart->out_of_line.copy == MACH_MSG_OVERWRITE && 
+		    if (sstart->out_of_line.copy == MACH_MSG_OVERWRITE &&
 			gstart->out_of_line.size > sstart->out_of_line.size) {
 			    return(MACH_RCV_SCATTER_SMALL);
 		    }
@@ -3087,42 +3087,42 @@ ipc_type_name(
 	switch (type_name) {
 		case MACH_MSG_TYPE_PORT_NAME:
 		return "port_name";
-		
+
 		case MACH_MSG_TYPE_MOVE_RECEIVE:
 		if (received) {
 			return "port_receive";
 		} else {
 			return "move_receive";
 		}
-		
+
 		case MACH_MSG_TYPE_MOVE_SEND:
 		if (received) {
 			return "port_send";
 		} else {
 			return "move_send";
 		}
-		
+
 		case MACH_MSG_TYPE_MOVE_SEND_ONCE:
 		if (received) {
 			return "port_send_once";
 		} else {
 			return "move_send_once";
 		}
-		
+
 		case MACH_MSG_TYPE_COPY_SEND:
 		return "copy_send";
-		
+
 		case MACH_MSG_TYPE_MAKE_SEND:
 		return "make_send";
-		
+
 		case MACH_MSG_TYPE_MAKE_SEND_ONCE:
 		return "make_send_once";
-		
+
 		default:
 		return (char *) 0;
 	}
 }
-		
+
 void
 ipc_print_type_name(
 	int	type_name)
@@ -3225,7 +3225,7 @@ ipc_msg_print(
 		msgh->msgh_id,
 		msgh->msgh_size);
 
-	if (mbits & MACH_MSGH_BITS_COMPLEX) {	
+	if (mbits & MACH_MSGH_BITS_COMPLEX) {
 		ipc_msg_print_untyped((mach_msg_body_t *) (msgh + 1));
 	}
 }
@@ -3276,11 +3276,11 @@ ipc_msg_print_untyped(
     send = saddr + body->msgh_descriptor_count;
 
     for ( ; saddr < send; saddr++ ) {
-	
+
 	type = saddr->type.type;
 
 	switch (type) {
-	    
+
 	    case MACH_MSG_PORT_DESCRIPTOR: {
 		mach_msg_port_descriptor_t *dsc;
 
@@ -3293,7 +3293,7 @@ ipc_msg_print_untyped(
 	    case MACH_MSG_OOL_VOLATILE_DESCRIPTOR:
 	    case MACH_MSG_OOL_DESCRIPTOR: {
 		mach_msg_ool_descriptor_t *dsc;
-		
+
 		dsc = &saddr->out_of_line;
 		iprintf("-- OOL%s addr = 0x%x size = 0x%x copy = %s %s\n",
 			type == MACH_MSG_OOL_DESCRIPTOR ? "" : " VOLATILE",
@@ -3301,7 +3301,7 @@ ipc_msg_print_untyped(
 			mm_copy_options_string(dsc->copy),
 			dsc->deallocate ? "DEALLOC" : "");
 		break;
-	    } 
+	    }
 	    case MACH_MSG_OOL_PORTS_DESCRIPTOR : {
 		mach_msg_ool_ports_descriptor_t *dsc;
 

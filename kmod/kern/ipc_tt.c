@@ -1,22 +1,22 @@
 /*
- * Copyright 1991-1998 by Open Software Foundation, Inc. 
- *              All Rights Reserved 
- *  
- * Permission to use, copy, modify, and distribute this software and 
- * its documentation for any purpose and without fee is hereby granted, 
- * provided that the above copyright notice appears in all copies and 
- * that both the copyright notice and this permission notice appear in 
- * supporting documentation. 
- *  
+ * Copyright 1991-1998 by Open Software Foundation, Inc.
+ *              All Rights Reserved
+ *
+ * Permission to use, copy, modify, and distribute this software and
+ * its documentation for any purpose and without fee is hereby granted,
+ * provided that the above copyright notice appears in all copies and
+ * that both the copyright notice and this permission notice appear in
+ * supporting documentation.
+ *
  * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE 
- * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
- * FOR A PARTICULAR PURPOSE. 
- *  
- * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR 
- * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT, 
- * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION 
- * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. 
+ * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE.
+ *
+ * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR
+ * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT,
+ * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
+ * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 /*
  * MkLinux
@@ -27,39 +27,39 @@
  * 	Changed the convert_foo_to_bar functions
  * 	to use ipc_port_t instead of mach_port_t.
  * 	[91/05/27            rpd]
- * 
+ *
  * Revision 2.11  91/06/17  15:47:09  jsb
  * 	Renamed NORMA conditionals. Moved norma code to norma/kern_task.c.
  * 	[91/06/17  10:50:57  jsb]
- * 
+ *
  * Revision 2.10  91/06/06  17:07:15  jsb
  * 	NORMA_TASK support.
  * 	[91/05/14  09:17:09  jsb]
- * 
+ *
  * Revision 2.9  91/05/14  16:42:54  mrt
  * 	Correcting copyright
- * 
+ *
  * Revision 2.8  91/03/16  14:50:24  rpd
  * 	Removed ith_saved.
  * 	[91/02/16            rpd]
- * 
+ *
  * Revision 2.7  91/02/05  17:27:08  mrt
  * 	Changed to new Mach copyright
  * 	[91/02/01  16:13:42  mrt]
- * 
+ *
  * Revision 2.6  91/01/08  15:16:05  rpd
  * 	Added retrieve_task_self_fast, retrieve_thread_self_fast.
  * 	[90/12/27            rpd]
- * 
+ *
  * Revision 2.5  90/11/05  14:31:08  rpd
  * 	Changed ip_reference to ipc_port_reference.
  * 	Use new ip_reference and ip_release.
  * 	[90/10/29            rpd]
- * 
+ *
  * Revision 2.4  90/06/02  14:54:33  rpd
  * 	Converted to new IPC.
  * 	[90/03/26  22:05:07  rpd]
- * 
+ *
  *
  * Condensed history:
  *	Modified for pure kernel (dbg).
@@ -72,28 +72,28 @@
  *	Created from mach_ipc.c (rpd).
  */
 /* CMU_ENDHIST */
-/* 
+/*
  * Mach Operating System
  * Copyright (c) 1991,1990,1989,1988,1987 Carnegie Mellon University
  * All Rights Reserved.
- * 
+ *
  * Permission to use, copy, modify and distribute this software and its
  * documentation is hereby granted, provided that both the copyright
  * notice and this permission notice appear in all copies of the
  * software, derivative works or modified versions, and any portions
  * thereof, and that both notices appear in supporting documentation.
- * 
+ *
  * CARNEGIE MELLON ALLOWS FREE USE OF THIS SOFTWARE IN ITS "AS IS"
  * CONDITION.  CARNEGIE MELLON DISCLAIMS ANY LIABILITY OF ANY KIND FOR
  * ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS SOFTWARE.
- * 
+ *
  * Carnegie Mellon requests users of this software to return to
- * 
+ *
  *  Software Distribution Coordinator  or  Software.Distribution@CS.CMU.EDU
  *  School of Computer Science
  *  Carnegie Mellon University
  *  Pittsburgh PA 15213-3890
- * 
+ *
  * any improvements or extensions that they make and grant Carnegie Mellon
  * the rights to redistribute these changes.
  */
@@ -181,7 +181,7 @@ ipc_task_init(
 		for (i = FIRST_EXCEPTION; i < EXC_TYPES_COUNT; i++) {
 			task->exc_actions[i].port = IP_NULL;
 		}/* for */
-		task->exc_actions[EXC_MACH_SYSCALL].port = 
+		task->exc_actions[EXC_MACH_SYSCALL].port =
 			ipc_port_make_send(realhost.host_self);
 		task->itk_bootstrap = IP_NULL;
 		for (i = 0; i < TASK_PORT_REGISTER_MAX; i++)
@@ -203,7 +203,7 @@ ipc_task_init(
 		  		ipc_port_copy_send(parent->exc_actions[i].port);
 		    task->exc_actions[i].flavor =
 				parent->exc_actions[i].flavor;
-		    task->exc_actions[i].behavior = 
+		    task->exc_actions[i].behavior =
 				parent->exc_actions[i].behavior;
 		}/* for */
 		task->itk_bootstrap =
@@ -692,14 +692,14 @@ task_set_special_port(
 	case TASK_ACCESS_PORT:
 		whichp = &task->itk_task_access;
 		break;
-	case TASK_DEBUG_CONTROL_PORT: 
+	case TASK_DEBUG_CONTROL_PORT:
 		whichp = &task->itk_debug_control;
 		break;
 	default:
 		return KERN_INVALID_ARGUMENT;
 	}/* switch */
 
-	if ((TASK_SEATBELT_PORT == which  || TASK_ACCESS_PORT == which) 
+	if ((TASK_SEATBELT_PORT == which  || TASK_ACCESS_PORT == which)
 		&& IP_VALID(*whichp)) {
 			itk_unlock(task);
 			return KERN_NO_ACCESS;
@@ -1053,7 +1053,7 @@ convert_port_to_thread( ipc_port_t port )
  *	Purpose:
  *		Convert from a task to a port.
  *		Consumes a task ref; produces a naked send right
- *		which may be invalid.  
+ *		which may be invalid.
  *	Conditions:
  *		Nothing locked.
  */

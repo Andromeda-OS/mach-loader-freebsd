@@ -1,22 +1,22 @@
 /*
- * Copyright 1991-1998 by Open Software Foundation, Inc. 
- *              All Rights Reserved 
- *  
- * Permission to use, copy, modify, and distribute this software and 
- * its documentation for any purpose and without fee is hereby granted, 
- * provided that the above copyright notice appears in all copies and 
- * that both the copyright notice and this permission notice appear in 
- * supporting documentation. 
- *  
- * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE 
- * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
- * FOR A PARTICULAR PURPOSE. 
- *  
- * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR 
- * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT, 
+ * Copyright 1991-1998 by Open Software Foundation, Inc.
+ *              All Rights Reserved
+ *
+ * Permission to use, copy, modify, and distribute this software and
+ * its documentation for any purpose and without fee is hereby granted,
+ * provided that the above copyright notice appears in all copies and
+ * that both the copyright notice and this permission notice appear in
+ * supporting documentation.
+ *
+ * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE
+ * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE.
+ *
+ * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR
+ * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT,
  * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION 
- * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. 
+ * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 /*
  * MkLinux
@@ -26,85 +26,85 @@
  * Revision 2.13.2.7  92/06/24  18:00:04  jeffreyh
  * 	Add norma send once right management hook to ipc_port_release_sonce.
  * 	[92/06/08            dlb]
- * 
+ *
  * Revision 2.13.2.6  92/05/27  00:45:00  jeffreyh
  * 	Call NORMA hooks (norma_ipc_dnrequest_init) when first allocating
  * 	a dnrequest table for a port, and when encountering a NORMA fake
  * 	notification in ipc_port_destroy.
  * 	[92/05/25            dlb]
- * 
+ *
  * 	Initialize new fields of port structure, add them to debugger
  * 	show display.
  * 	[92/05/19            sjs]
- * 
- * 	Call norma_ipc_finish_receiving before destroying kmsgs in 
+ *
+ * 	Call norma_ipc_finish_receiving before destroying kmsgs in
  * 	ipc_port_destroy because the kmsgs might still be in network format.
  * 	[92/05/12            dlb]
- * 
+ *
  * Revision 2.13.2.5.1.1  92/05/06  17:47:00  jeffreyh
  * 	Initialize new ip_norma_atrium_waiter field.  Add a norma assert.
  * 	[92/05/05            dlb]
- * 
+ *
  * Revision 2.13.2.5  92/04/08  15:44:39  jeffreyh
  * 	Set sequence number to zero before destroying port
  * 	in ipc_port_dealloc_special.
  * 	[92/04/01            dlb]
- * 
+ *
  * Revision 2.13.2.4  92/03/28  10:09:27  jeffreyh
  * 	Do norma_ipc_port_destroy call after port is deactivated.
  * 	[92/03/25            dlb]
- * 
+ *
  * Revision 2.13.2.3  92/02/21  14:35:39  jsb
  * 	In ipc_port_alloc_special, throw debugging info into spare fields.
  * 	[92/02/20  10:26:50  jsb]
- * 
+ *
  * 	Removed ip_norma_queued. Changed initialization of ip_norma_queue_next.
  * 	Added ip_norma_spare[1234].
  * 	[92/02/18  08:13:02  jsb]
- * 
+ *
  * 	Initialize and print ip_norma_xmm_object_refs field.
  * 	[92/02/16  16:00:11  jsb]
- * 
+ *
  * 	Removed ipc_port_move_special routine. Added ip_norma_xmm_object field.
  * 	[92/02/09  12:45:37  jsb]
- * 
+ *
  * Revision 2.13.2.2  92/01/21  21:50:31  jsb
  * 	Added ipc_port_move_special. (dlb@osf.org)
  * 	[92/01/17  14:29:16  jsb]
- * 
+ *
  * 	Removed norma_list_all_{ports,seqnos} hacks in ipc_print_port.
  * 	Initialize port->ip_norma_next = port (vs. IP_NULL) for new
  * 	norma/ipc_list.c implementation.
  * 	[92/01/16  21:30:02  jsb]
- * 
+ *
  * Revision 2.13.2.1  92/01/03  16:35:42  jsb
  * 	Incorporated 'show port 1' hack for listing more norma port info.
  * 	[91/12/31  17:10:21  jsb]
- * 
+ *
  * 	Added support for ip_norma_{queued,queue_next}.
  * 	Made ipc_port_print more consistent.
  * 	[91/12/27  17:16:38  jsb]
- * 
+ *
  * 	Removed ip_norma_{wanted,migrating}; added ip_norma_{sotransit,atrium}.
  * 	Incorporated 'show port 0' hack for listing all norma ports.
  * 	[91/12/26  20:00:09  jsb]
- * 
+ *
  * 	Removed references to obsolete NORMA_IPC fields in struct ipc_port.
  * 	Corrected log.
  * 	[91/12/24  14:39:54  jsb]
- * 
+ *
  * Revision 2.13  91/12/14  14:27:37  jsb
  * 	Removed ipc_fields.h hack.
- * 
+ *
  * Revision 2.12  91/11/14  16:56:14  rpd
  * 	Added ipc_fields.h support to ipc_port_{init,print}.
  *	Call norma_ipc_port_destroy instead of norma_ipc_destroy.
  * 	[91/11/00            jsb]
- * 
+ *
  * Revision 2.11  91/10/09  16:09:42  af
  * 	Removed unused variable.
  * 	[91/09/16  09:42:52  rpd]
- * 
+ *
  * Revision 2.10  91/08/28  11:13:44  jsb
  * 	Added ip_seqno and ipc_port_set_seqno.
  * 	Changed ipc_port_init to initialize ip_seqno.
@@ -112,67 +112,67 @@
  * 	[91/08/09            rpd]
  * 	Renamed clport fields in struct ipc_port to ip_norma fields.
  * 	[91/08/15  08:20:08  jsb]
- * 
+ *
  * Revision 2.9  91/08/03  18:18:30  jsb
  * 	Call norma_ipc_destroy when destroying port.
  * 	Added clport fields to ipc_port_print.
  * 	[91/07/24  22:14:01  jsb]
- * 
+ *
  * 	Fixed include. Changed clport field initialization.
  * 	[91/07/17  14:05:38  jsb]
- * 
+ *
  * Revision 2.8  91/06/17  15:46:21  jsb
  * 	Renamed NORMA conditionals.
  * 	[91/06/17  10:44:21  jsb]
- * 
+ *
  * Revision 2.7  91/05/14  16:35:22  mrt
  * 	Correcting copyright
- * 
+ *
  * Revision 2.6  91/03/16  14:48:27  rpd
  * 	Renamed ipc_thread_go to thread_go.
  * 	[91/02/17            rpd]
- * 
+ *
  * Revision 2.5  91/02/05  17:23:02  mrt
  * 	Changed to new Mach copyright
  * 	[91/02/01  15:49:46  mrt]
- * 
+ *
  * Revision 2.4  90/11/05  14:29:30  rpd
  * 	Changed ip_release to ipc_port_release.
  * 	Use new ip_reference and ip_release.
  * 	[90/10/29            rpd]
- * 
+ *
  * Revision 2.3  90/09/28  16:55:10  jsb
  * 	Added NORMA_IPC support.
  * 	[90/09/28  14:03:45  jsb]
- * 
+ *
  * Revision 2.2  90/06/02  14:51:08  rpd
  * 	Created for new IPC.
  * 	[90/03/26  21:01:02  rpd]
- * 
+ *
  */
 /* CMU_ENDHIST */
-/* 
+/*
  * Mach Operating System
  * Copyright (c) 1991,1990,1989 Carnegie Mellon University
  * All Rights Reserved.
- * 
+ *
  * Permission to use, copy, modify and distribute this software and its
  * documentation is hereby granted, provided that both the copyright
  * notice and this permission notice appear in all copies of the
  * software, derivative works or modified versions, and any portions
  * thereof, and that both notices appear in supporting documentation.
- * 
+ *
  * CARNEGIE MELLON ALLOWS FREE USE OF THIS SOFTWARE IN ITS "AS IS"
  * CONDITION.  CARNEGIE MELLON DISCLAIMS ANY LIABILITY OF ANY KIND FOR
  * ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS SOFTWARE.
- * 
+ *
  * Carnegie Mellon requests users of this software to return to
- * 
+ *
  *  Software Distribution Coordinator  or  Software.Distribution@CS.CMU.EDU
  *  School of Computer Science
  *  Carnegie Mellon University
  *  Pittsburgh PA 15213-3890
- * 
+ *
  * any improvements or extensions that they make and grant Carnegie Mellon
  * the rights to redistribute these changes.
  */
@@ -405,7 +405,7 @@ ipc_port_dngrow(
 	ip_release(port);
 	return KERN_SUCCESS;
 }
- 
+
 /*
  *	Routine:	ipc_port_dncancel
  *	Purpose:
@@ -666,7 +666,7 @@ ipc_port_init(
 	port->ip_msgcount = 0;
 	port->ip_qlimit = MACH_PORT_QLIMIT_DEFAULT;
 	port->ip_subsystem = RPC_SUBSYSTEM_NULL;
-	
+
 	port->ip_flags = 0;
 	port->ip_context = 0;
 
@@ -1239,13 +1239,13 @@ ipc_port_release_send(
 		mscount = port->ip_mscount;
 		ip_unlock(port);
 		ipc_notify_no_senders(nsrequest, mscount);
-#if 0		
+#if 0
 		/*
 		 * Check that there are no other locks taken, because
 		 * [norma_]ipc_notify_no_senders routines may block.
 		 */
 		check_simple_locks();
-#endif		
+#endif
 	} else
 		ip_unlock(port);
 	ip_release(port);
@@ -1552,7 +1552,7 @@ ipc_port_print(
 #if	MACH_ASSERT
 	int		i, needs_indent, items_printed;
 #endif	/* MACH_ASSERT */
-	
+
 	if (db_option(modif, 'l') || db_option(modif, 'v'))
 		++verbose;
 
@@ -1614,7 +1614,7 @@ ipc_port_print(
 	printf(", kobj=0x%x\n", port->ip_kobject);
 
 	iprintf("flags=0x%x", port->ip_flags);
-	
+
 #if	NORMA_VM
 	iprintf("xmm_object_refs=0x%x xmm_object = 0x%x\n",
 		port->ip_norma_xmm_object_refs, port->ip_norma_xmm_object);
@@ -1633,7 +1633,7 @@ ipc_port_print(
 				needs_indent = 0;
 			}
 			printf("%sip_spares[%d] = %d",
-			       items_printed ? ", " : "", i, 
+			       items_printed ? ", " : "", i,
 			       port->ip_spares[i]);
 			if (++items_printed >= 4) {
 				needs_indent = 1;
@@ -1694,7 +1694,7 @@ print_type_ports(type, dead)
 	n = 0;
 	for (port = (ipc_port_t)first_element(ipc_object_zones[IOT_PORT]);
 	     port;
-	     port = (ipc_port_t)next_element(ipc_object_zones[IOT_PORT], 
+	     port = (ipc_port_t)next_element(ipc_object_zones[IOT_PORT],
 					     (vm_offset_t)port))
 		if (ip_kotype(port) == type &&
 		    (!dead || !ip_active(port))) {
@@ -1733,7 +1733,7 @@ print_ports(void)
 
 	for (port = (ipc_port_t)first_element(ipc_object_zones[IOT_PORT]);
 	     port;
-	     port = (ipc_port_t)next_element(ipc_object_zones[IOT_PORT], 
+	     port = (ipc_port_t)next_element(ipc_object_zones[IOT_PORT],
 					     (vm_offset_t)port)) {
 		total_port_count++;
 		if (ip_kotype(port) >= IKOT_MAX_TYPE) {

@@ -1,22 +1,22 @@
 /*
- * Copyright 1991-1998 by Open Software Foundation, Inc. 
- *              All Rights Reserved 
- *  
- * Permission to use, copy, modify, and distribute this software and 
- * its documentation for any purpose and without fee is hereby granted, 
- * provided that the above copyright notice appears in all copies and 
- * that both the copyright notice and this permission notice appear in 
- * supporting documentation. 
- *  
- * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE 
- * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
- * FOR A PARTICULAR PURPOSE. 
- *  
- * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR 
+ * Copyright 1991-1998 by Open Software Foundation, Inc.
+ *              All Rights Reserved
+ *
+ * Permission to use, copy, modify, and distribute this software and
+ * its documentation for any purpose and without fee is hereby granted,
+ * provided that the above copyright notice appears in all copies and
+ * that both the copyright notice and this permission notice appear in
+ * supporting documentation.
+ *
+ * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE
+ * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE.
+ *
+ * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR
  * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT, 
- * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION 
- * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. 
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT,
+ * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
+ * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 /*
  * MkLinux
@@ -26,88 +26,88 @@
  * Revision 2.10.3.4  92/05/27  00:46:06  jeffreyh
  * 	Added ifdef MCMSG for nx_get/put_task_info
  * 	[regnier@ssd.intel.com]
- * 
+ *
  * Revision 2.10.3.3  92/03/03  16:20:02  jeffreyh
  * 	Add IKOT_PAGER_TERMINATING case to ipc_kobject_destroy.
  * 	[92/02/25            dlb]
- * 
+ *
  * Revision 2.11  92/01/03  20:14:32  dbg
  * 	Call <subsystem>_routine_name to find IPC stub to execute.
  * 	Build reply message header by hand. (XXX)
  * 	Simplify cleanup of request message when reply is success.
  * 	[91/12/18            dbg]
- * 
+ *
  * Revision 2.10.3.2  92/02/21  11:23:50  jsb
  * 	Shuffled xmm kobject cases in ipc_kobject_notify.
  * 	[92/02/10  17:26:24  jsb]
- * 
+ *
  * Revision 2.10.3.1  92/01/21  21:50:42  jsb
  * 	Removed debugging printf.
  * 	[92/01/21  19:33:50  jsb]
- * 
+ *
  * 	Added ipc_kobject_notify for kernel-requested notifications.
  * 	Added code to correctly release send-once kobject destinations.
  * 	[92/01/21  18:20:19  jsb]
- * 
+ *
  * Revision 2.10  91/12/13  13:42:24  jsb
  * 	Added support for norma/norma_internal.defs.
- * 
+ *
  * Revision 2.9  91/08/01  14:36:18  dbg
  * 	Call machine-dependent interface routine, under
  * 	MACH_MACHINE_ROUTINES.
  * 	[91/08/01            dbg]
- * 
+ *
  * Revision 2.8  91/06/17  15:47:02  jsb
  * 	Renamed NORMA conditionals. Added NORMA_VM support.
  * 	[91/06/17  13:46:55  jsb]
- * 
+ *
  * Revision 2.7  91/06/06  17:07:05  jsb
  * 	Added NORMA_TASK support.
  * 	[91/05/14  09:05:48  jsb]
- * 
+ *
  * Revision 2.6  91/05/18  14:31:42  rpd
  * 	Added check_simple_locks.
  * 	[91/04/01            rpd]
- * 
+ *
  * Revision 2.5  91/05/14  16:42:00  mrt
  * 	Correcting copyright
- * 
+ *
  * Revision 2.4  91/03/16  14:50:02  rpd
  * 	Replaced ith_saved with ikm_cache.
  * 	[91/02/16            rpd]
- * 
+ *
  * Revision 2.3  91/02/05  17:26:37  mrt
  * 	Changed to new Mach copyright
  * 	[91/02/01  16:12:51  mrt]
- * 
+ *
  * Revision 2.2  90/06/02  14:54:08  rpd
  * 	Created for new IPC.
  * 	[90/03/26  23:46:53  rpd]
- * 
+ *
  */
 /* CMU_ENDHIST */
-/* 
+/*
  * Mach Operating System
  * Copyright (c) 1991,1990,1989 Carnegie Mellon University
  * All Rights Reserved.
- * 
+ *
  * Permission to use, copy, modify and distribute this software and its
  * documentation is hereby granted, provided that both the copyright
  * notice and this permission notice appear in all copies of the
  * software, derivative works or modified versions, and any portions
  * thereof, and that both notices appear in supporting documentation.
- * 
+ *
  * CARNEGIE MELLON ALLOWS FREE USE OF THIS SOFTWARE IN ITS "AS IS"
  * CONDITION.  CARNEGIE MELLON DISCLAIMS ANY LIABILITY OF ANY KIND FOR
  * ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS SOFTWARE.
- * 
+ *
  * Carnegie Mellon requests users of this software to return to
- * 
+ *
  *  Software Distribution Coordinator  or  Software.Distribution@CS.CMU.EDU
  *  School of Computer Science
  *  Carnegie Mellon University
  *  Pittsburgh PA 15213-3890
- * 
+ *
  * any improvements or extensions that they make and grant Carnegie Mellon
  * the rights to redistribute these changes.
  */
@@ -202,24 +202,24 @@ mach_msg_size_t mig_reply_size;
 #endif	/* MACH_MACHINE_ROUTINES */
 
 rpc_subsystem_t mig_e[] = {
-#if 0	
+#if 0
 	(rpc_subsystem_t)&mach_subsystem,
 #endif
-	(rpc_subsystem_t)&clock_subsystem,	
+	(rpc_subsystem_t)&clock_subsystem,
 	(rpc_subsystem_t)&host_priv_subsystem,
 	(rpc_subsystem_t)&mach_host_subsystem,
 	(rpc_subsystem_t)&mach_port_subsystem,
 	(rpc_subsystem_t)&mach_vm_subsystem,
 	(rpc_subsystem_t)&task_subsystem,
 	(rpc_subsystem_t)&vm_map_subsystem,
-#if 0	
+#if 0
 	(rpc_subsystem_t)&clock_subsystem,
 	(rpc_subsystem_t)&do_bootstrap_subsystem,
 	(rpc_subsystem_t)&ds_device_subsystem,
 	(rpc_subsystem_t)&memory_object_subsystem,
 	(rpc_subsystem_t)&sync_subsystem,
 	(rpc_subsystem_t)&ledger_subsystem,
-#endif	
+#endif
 #if     MACH_DEBUG
         (rpc_subsystem_t)&mach_debug_subsystem,
 #endif  /* MACH_DEBUG */
@@ -234,7 +234,7 @@ mig_init(void)
 	register unsigned int i, n = sizeof(mig_e)/sizeof(rpc_subsystem_t);
     register unsigned int howmany;
     register mach_msg_id_t j, pos, nentry, range;
-	
+
     for (i = 0; i < n; i++) {
 	range = mig_e[i]->end - mig_e[i]->start;
 	if (!mig_e[i]->start || range < 0)
@@ -242,24 +242,24 @@ mig_init(void)
 	mig_reply_size = max(mig_reply_size, mig_e[i]->maxsize);
 
 	for  (j = 0; j < range; j++) {
-	if (mig_e[i]->routine[j].stub_routine) { 
+	if (mig_e[i]->routine[j].stub_routine) {
 				/* Only put real entries in the table */
-	nentry = j + mig_e[i]->start;	
+	nentry = j + mig_e[i]->start;
 	for (pos = MIG_HASH(nentry) % MAX_MIG_ENTRIES, howmany = 1;
 	mig_buckets[pos].num; pos = (pos + 1) % MAX_MIG_ENTRIES, howmany++) {
 	if (mig_buckets[pos].num == nentry)
-		panic("multiple entries with the same msgh_id");	
+		panic("multiple entries with the same msgh_id");
 	if (howmany == MAX_MIG_ENTRIES)
 		panic("the mig dispatch table is too small");
 	}
-	
+
 	mig_buckets[pos].num = nentry;
 	mig_buckets[pos].routine = mig_e[i]->routine[j].stub_routine;
 	if (mig_e[i]->routine[j].max_reply_msg)
 		mig_buckets[pos].size = mig_e[i]->routine[j].max_reply_msg;
 	else
 		mig_buckets[pos].size = mig_e[i]->maxsize;
-	
+
 	mig_table_max_displ = max(howmany, mig_table_max_displ);
 	}
 	}
@@ -293,7 +293,7 @@ ipc_kobject_server(ipc_kmsg_t	request)
 		register int key = request->ikm_header->msgh_id;
 		register int i = MIG_HASH(key);
 		register int max_iter = mig_table_max_displ;
-	
+
 		do
 			ptr = &mig_buckets[i++ % MAX_MIG_ENTRIES];
 		while (key != ptr->num && ptr->num && --max_iter);
@@ -343,7 +343,7 @@ ipc_kobject_server(ipc_kmsg_t	request)
  * to perform the kernel function
  */
 	{
-	    if (ptr)	
+	    if (ptr)
 			(*ptr->routine)(request->ikm_header, reply->ikm_header);
 	    else {
 			if (!ipc_kobject_notify(request->ikm_header, reply->ikm_header)){
@@ -373,11 +373,11 @@ ipc_kobject_server(ipc_kmsg_t	request)
 	case MACH_MSG_TYPE_PORT_SEND:
 		ipc_port_release_send(*destp);
 		break;
-		
+
 	case MACH_MSG_TYPE_PORT_SEND_ONCE:
 		ipc_port_release_sonce(*destp);
 		break;
-		
+
 	default:
 		panic("ipc_object_destroy: strange destination rights");
 	}
@@ -569,7 +569,7 @@ kobjserver_stats(void)
     register unsigned int i, n = sizeof(mig_e)/sizeof(rpc_subsystem_t);
     register unsigned int howmany;
     register mach_msg_id_t j, pos, nentry, range;
-	
+
     db_printf("Kobject server call counts:\n");
     for (i = 0; i < n; i++) {
 	db_printf("  ");
@@ -579,7 +579,7 @@ kobjserver_stats(void)
 	if (!mig_e[i]->start || range < 0) continue;
 
 	for  (j = 0; j < range; j++) {
-	    nentry = j + mig_e[i]->start;	
+	    nentry = j + mig_e[i]->start;
 	    for (pos = MIG_HASH(nentry) % MAX_MIG_ENTRIES, howmany = 1;
 		 mig_buckets[pos].num;
 		 pos = ++pos % MAX_MIG_ENTRIES, howmany++) {

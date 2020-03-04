@@ -1,21 +1,21 @@
 /*
- * Copyright 1991-1998 by Open Software Foundation, Inc. 
- *              All Rights Reserved 
- *  
- * Permission to use, copy, modify, and distribute this software and 
- * its documentation for any purpose and without fee is hereby granted, 
- * provided that the above copyright notice appears in all copies and 
- * that both the copyright notice and this permission notice appear in 
- * supporting documentation. 
- *  
- * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE 
- * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
- * FOR A PARTICULAR PURPOSE. 
- *  
- * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR 
- * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT, 
- * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION 
+ * Copyright 1991-1998 by Open Software Foundation, Inc.
+ *              All Rights Reserved
+ *
+ * Permission to use, copy, modify, and distribute this software and
+ * its documentation for any purpose and without fee is hereby granted,
+ * provided that the above copyright notice appears in all copies and
+ * that both the copyright notice and this permission notice appear in
+ * supporting documentation.
+ *
+ * OSF DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE
+ * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE.
+ *
+ * IN NO EVENT SHALL OSF BE LIABLE FOR ANY SPECIAL, INDIRECT, OR
+ * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN ACTION OF CONTRACT,
+ * NEGLIGENCE, OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
  * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. 
  */
 /*
@@ -27,64 +27,64 @@
  * 	Don't round region size to page boundary when calling
  * 	vm_map_copyin.  From jph@tamarack.cray.com
  * 	[92/09/15            dlb]
- * 
+ *
  * Revision 2.6.3.1  92/03/03  16:19:12  jeffreyh
  * 	Eliminate keep_wired argument from vm_map_copyin().
  * 	[92/02/21  10:13:34  dlb]
- * 
+ *
  * Revision 2.6  91/10/09  16:11:42  af
  * 	 Revision 2.5.2.1  91/09/16  10:16:19  rpd
  * 	 	Added <ipc/ipc_notify.h>.
  * 	 	[91/09/02            rpd]
- * 
+ *
  * Revision 2.5.2.1  91/09/16  10:16:19  rpd
  * 	Added <ipc/ipc_notify.h>.
  * 	[91/09/02            rpd]
- * 
+ *
  * Revision 2.5  91/08/28  11:14:04  jsb
  * 	Added mach_port_set_seqno and updated mach_port_get_receive_status
  * 	for mps_seqno.  Added old_mach_port_get_receive_status.
  * 	[91/08/09            rpd]
  * 	Changed port_names for new vm_map_copyout failure behavior.
  * 	[91/08/03            rpd]
- * 
+ *
  * Revision 2.4  91/05/14  16:39:20  mrt
  * 	Correcting copyright
- * 
+ *
  * Revision 2.3  91/02/05  17:25:06  mrt
  * 	Changed to new Mach copyright
  * 	[91/02/01  15:53:35  mrt]
- * 
+ *
  * Revision 2.2  90/06/02  14:52:28  rpd
  * 	Modified mach_port_get_receive_status to return a mach_port_status_t.
  * 	[90/05/13            rpd]
  * 	Created for new IPC.
  * 	[90/03/26  21:06:13  rpd]
- * 
+ *
  */
 /* CMU_ENDHIST */
-/* 
+/*
  * Mach Operating System
  * Copyright (c) 1991,1990,1989 Carnegie Mellon University
  * All Rights Reserved.
- * 
+ *
  * Permission to use, copy, modify and distribute this software and its
  * documentation is hereby granted, provided that both the copyright
  * notice and this permission notice appear in all copies of the
  * software, derivative works or modified versions, and any portions
  * thereof, and that both notices appear in supporting documentation.
- * 
+ *
  * CARNEGIE MELLON ALLOWS FREE USE OF THIS SOFTWARE IN ITS "AS IS"
  * CONDITION.  CARNEGIE MELLON DISCLAIMS ANY LIABILITY OF ANY KIND FOR
  * ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS SOFTWARE.
- * 
+ *
  * Carnegie Mellon requests users of this software to return to
- * 
+ *
  *  Software Distribution Coordinator  or  Software.Distribution@CS.CMU.EDU
  *  School of Computer Science
  *  Carnegie Mellon University
  *  Pittsburgh PA 15213-3890
- * 
+ *
  * any improvements or extensions that they make and grant Carnegie Mellon
  * the rights to redistribute these changes.
  */
@@ -121,7 +121,7 @@
 #include <vm/vm_extern.h>
 
 
-#define assert_static CTASSERT 
+#define assert_static CTASSERT
 #pragma clang diagnostic ignored "-Wuninitialized"
 
 #ifdef COMPAT_MACH_PORT_DEBUG
@@ -241,7 +241,7 @@ mach_port_names(
 	ipc_port_timestamp_t timestamp;	/* logical time of this operation */
 	mach_port_name_t *names;
 	mach_port_type_t *types;
-#ifdef notyet	
+#ifdef notyet
 	kern_return_t kr;
 #endif
 	vm_size_t size;		/* size of allocated memory */
@@ -552,9 +552,9 @@ mach_port_allocate(
 /*
  *	Routine:	mach_port_allocate_qos [kernel call]
  *	Purpose:
- *		Allocates a right, with qos options, in a space.  Like 
- *		mach_port_allocate_name, except that the implementation 
- *		picks a name for the right. The name may be any legal name 
+ *		Allocates a right, with qos options, in a space.  Like
+ *		mach_port_allocate_name, except that the implementation
+ *		picks a name for the right. The name may be any legal name
  *		in the space that doesn't currently denote a right.
  *	Conditions:
  *		Nothing locked.
@@ -1315,7 +1315,7 @@ mach_port_insert_right(
 		DPRINTF("invalid capability\n");
 		return KERN_INVALID_CAPABILITY;
 	}
-	return ipc_object_copyout_name(space, (ipc_object_t) poly, 
+	return ipc_object_copyout_name(space, (ipc_object_t) poly,
 				       polyPoly, name);
 }
 
@@ -1379,7 +1379,7 @@ mach_port_get_attributes(
 
                 if (*count < MACH_PORT_LIMITS_INFO_COUNT)
                         return KERN_FAILURE;
-                
+
                 kr = ipc_port_translate_receive(space, name, &port);
                 if (kr != KERN_SUCCESS)
                         return kr;
@@ -1393,10 +1393,10 @@ mach_port_get_attributes(
 
         case MACH_PORT_RECEIVE_STATUS: {
 			mach_port_status_t *statusp = (mach_port_status_t *)info;
-                
+
                 if (*count < MACH_PORT_RECEIVE_STATUS_COUNT)
                         return KERN_FAILURE;
-                
+
                 kr = ipc_port_translate_receive(space, name, &port);
                 if (kr != KERN_SUCCESS)
                         return kr;
@@ -1435,18 +1435,18 @@ mach_port_get_attributes(
                 ip_unlock(port);
                 break;
         }
-	
+
 	case MACH_PORT_DNREQUESTS_SIZE: {
 		ipc_port_request_t	table;
-		
+
                 if (*count < MACH_PORT_DNREQUESTS_SIZE_COUNT)
                         return KERN_FAILURE;
-		
+
                 kr = ipc_port_translate_receive(space, name, &port);
                 if (kr != KERN_SUCCESS)
                         return kr;
                 /* port is locked and active */
-		
+
 		table = port->ip_dnrequests;
 		if (table == IPR_NULL)
 			*(int *)info = 0;
@@ -1460,7 +1460,7 @@ mach_port_get_attributes(
         default:
 		return KERN_INVALID_ARGUMENT;
                 /*NOTREACHED*/
-        }                
+        }
 
 	return KERN_SUCCESS;
 }
@@ -1475,18 +1475,18 @@ mach_port_set_attributes(
 {
 	ipc_port_t port;
 	kern_return_t kr;
-        
+
 	if (space == IS_NULL)
 		return KERN_INVALID_TASK;
 
         switch (flavor) {
-                
+
         case MACH_PORT_LIMITS_INFO: {
                 mach_port_limits_t *mplp = (mach_port_limits_t *)info;
-                
+
                 if (count < MACH_PORT_LIMITS_INFO_COUNT)
                         return KERN_FAILURE;
-                
+
                 if (mplp->mpl_qlimit > MACH_PORT_QLIMIT_MAX)
                         return KERN_INVALID_VALUE;
 
@@ -1502,12 +1502,12 @@ mach_port_set_attributes(
 		case MACH_PORT_DNREQUESTS_SIZE: {
                 if (count < MACH_PORT_DNREQUESTS_SIZE_COUNT)
                         return KERN_FAILURE;
-                
+
                 kr = ipc_port_translate_receive(space, name, &port);
                 if (kr != KERN_SUCCESS)
                         return kr;
                 /* port is locked and active */
-		
+
 				kr = ipc_port_dngrow(port, *(int *)info);
 				if (kr != KERN_SUCCESS)
 					return kr;
@@ -1569,7 +1569,7 @@ mach_port_set_attributes(
  */
 kern_return_t
 thread_activation_create(task_t task, mach_port_name_t name,
-                         vm_offset_t user_stack, vm_size_t stack_size, 
+                         vm_offset_t user_stack, vm_size_t stack_size,
 			 thread_act_t *new_act)
 {
 	ipc_space_t space;
@@ -1696,7 +1696,7 @@ mach_port_get_context(
 	return KERN_SUCCESS;
 }
 
-int	
+int
 mach_port_guard(
 	ipc_space_t task,
 	mach_port_name_t name,
@@ -1778,5 +1778,3 @@ mach_port_unguard(
 	uint64_t guard
 	)
 	UNSUPPORTED;
-	
-	
