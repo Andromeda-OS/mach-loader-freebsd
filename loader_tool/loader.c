@@ -203,52 +203,6 @@ int load_segment(struct mach_image *image, struct segment_command_64 *seg_comman
 		image->link_edit_base = load_addr - seg_command->fileoff;
 	}
 
-	// this has been replaced by a kernel module
-#if 0
-	// patch syscall
-	if (strcmp(seg_command->segname, SEG_TEXT) == 0) {
-		mprotect(segment, seg_command->vmsize, seg_command->initprot | PROT_WRITE);
-
-		const char * const mov_rax = "\x48\xc7\xc0";
-		const char * const syscall = "\x0f\x05";
-		char *text = segment;
-		while (text < (char *) segment + seg_command->vmsize) {
-			if (strncmp(text, mov_rax, 3) == 0 &&
-				strncmp(text + 7, syscall, 2) == 0 &&
-				text[6] == 0x02) {
-				text[6] = 0x00;
-				LOGF("Syscall %d patched\n", *((int *) (text + 3)));
-				text += 9;
-			}
-
-			text++;
-		}
-
-		// in libsystem_kernel.dylib, the assembly is in this form:
-		// mov <syscall no.>, %eax
-		// mov %rcx, %r10
-		// syscall
-		const char * const mov_eax = "\xb8";
-		const char * const mov_rcx_r10 = "\x49\x89\xca";
-
-		text = segment;
-		while (text < (char *) segment + seg_command->vmsize) {
-			if (strncmp(text, mov_eax, 1) == 0 &&
-				strncmp(text + 5, mov_rcx_r10, 3) == 0 &&
-				strncmp(text + 8, syscall, 2) == 0 &&
-				text[4] == 0x02) {
-				text[4] = 0x00;
-				LOGF("Syscall %d patched\n", *((int *) (text + 1)));
-				text += 10;
-			}
-
-			text++;
-		}
-
-		mprotect(segment, seg_command->vmsize, seg_command->initprot);
-	}
-#endif
-
 	return 0;
 }
 
