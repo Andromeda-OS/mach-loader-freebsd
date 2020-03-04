@@ -40,10 +40,8 @@ clean:
 	${MAKE} -C loader_tool clean
 	${MAKE} -C kmod clean
 
-ARCHIVE_NAME != echo mach-loader-freebsd-`git log -1 --format='%h'`.tar
 archive:
-	git archive --prefix=mach-loader-freebsd/ --format tar HEAD > $(ARCHIVE_NAME)
-	gzip -f -9 $(ARCHIVE_NAME)
+	git archive --prefix=mach-loader-freebsd/ --format tar HEAD | gzip -9 > mach-loader-freebsd-`git log -1 --format='%h'`.tar.gz
 
 archive-tests:
 	tar czf test.tar.gz test/
