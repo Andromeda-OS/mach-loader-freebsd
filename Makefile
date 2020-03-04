@@ -13,8 +13,8 @@ CFLAGS += -O3 -DNDEBUG
 DYLD_PATH = /System/Library/ELFLoader/loader
 .endif
 
-debug: all
-all: loader
+default: loader
+all: default kmod
 
 loader: loader.c osx_compat.h boot.o dyld_stub_binder.o set_proc_comm.o
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $< boot.o dyld_stub_binder.o set_proc_comm.o \
