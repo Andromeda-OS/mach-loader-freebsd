@@ -14,16 +14,8 @@ DYLD_PATH = /System/Library/ELFLoader/loader
 default: loader
 all: default kmod
 
-loader: loader.c osx_compat.h boot.o dyld_stub_binder.o set_proc_comm.o
-	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $< boot.o dyld_stub_binder.o set_proc_comm.o \
-		-Xlinker -R -Xlinker $$$$ORIGIN
-
-set_proc_comm.o: set_proc_comm.s
-boot.o: boot.s
-	$(AS) -o $@ $<
-
-dyld_stub_binder.o: dyld_stub_binder.S
-	$(CC) -c -o $@ $<
+loader: .PHONY
+	${MAKE} -C loader_tool DYLD_PATH=$(DYLD_PATH) DEBUG=$(DEBUG)
 
 run: loader
 	./loader test/hello_asm
