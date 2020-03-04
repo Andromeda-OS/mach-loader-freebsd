@@ -62,3 +62,6 @@ ARCHIVE_NAME != echo mach-loader-freebsd-`git log -1 --format='%h'`.tar
 archive:
 	git archive --prefix=mach-loader-freebsd/ --format tar HEAD > $(ARCHIVE_NAME)
 	gzip -f -9 $(ARCHIVE_NAME)
+
+archive-tests:
+	tar czf test.tar.gz test/
