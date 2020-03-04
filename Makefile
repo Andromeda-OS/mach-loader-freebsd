@@ -1,10 +1,3 @@
-CC = clang
-AS = as
-CPPFLAGS = -I./include
-CPPFLAGS += -DUSE_BSD_LIBS
-CFLAGS = -std=c99
-LDFLAGS = -lm -lpthread
-
 .if defined(DEBUG) || make(debug)
 DYLD_PATH = $(PWD)/loader
 .else
