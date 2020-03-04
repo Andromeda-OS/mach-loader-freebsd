@@ -30,12 +30,12 @@
 static struct sysentvec *elf64_freebsd_sysvec = NULL;
 
 int exec_mach_imgact(struct image_params *imgp);
-int mach_fetch_syscall_args(struct thread *td, struct syscall_args *sa);
+int mach_fetch_syscall_args(struct thread *td);
 
 /**
  * patch the syscall (remove high byte)
  */
-int mach_fetch_syscall_args(struct thread *td, struct syscall_args *sa) {
+int mach_fetch_syscall_args(struct thread *td) {
 	struct trapframe *frame = td->td_frame;
 
 	// we need this hack because the ELF image activator is called after us (since interpreted == 1)
@@ -51,7 +51,7 @@ int mach_fetch_syscall_args(struct thread *td, struct syscall_args *sa) {
 		frame->tf_rax &= ~OSX_BSD_SYSCALL_MASK;
 	}
 
-	return cpu_fetch_syscall_args(td, sa);
+	return cpu_fetch_syscall_args(td);
 }
 
 int exec_mach_imgact(struct image_params *imgp) {
@@ -96,7 +96,7 @@ static int mach_imgact_modevent(module_t mod, int type, void *data) {
 			if (error)
 				printf("mach_imgact register failed\n");
 			break;
-			
+
 		case MOD_UNLOAD:
 			error = exec_unregister(exec);
 
@@ -124,4 +124,3 @@ static moduledata_t mach_imgact_mod = {
 };
 
 DECLARE_MODULE_TIED(mach_imgact, mach_imgact_mod, SI_SUB_EXEC, SI_ORDER_ANY);
-
