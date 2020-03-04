@@ -87,6 +87,12 @@ int exec_mach_imgact(struct image_params *imgp) {
  */
 static struct execsw mach_execsw = { exec_mach_imgact, "Mach-O" };
 
+extern void ipc_host_init(void);
+extern void task_sysinit(void);
+extern void ipc_bootstrap_sysinit(void);
+extern void ipc_entry_sysinit(void);
+extern void thread_sysinit(void);
+
 static int mach_imgact_modevent(module_t mod, int type, void *data) {
 	struct execsw *exec = (struct execsw *)data;
 	int error = 0;
