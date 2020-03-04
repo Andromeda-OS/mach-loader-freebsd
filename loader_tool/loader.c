@@ -140,7 +140,7 @@ int load_segment(struct mach_image *image, struct segment_command_64 *seg_comman
 	if (strcmp(seg_command->segname, SEG_TEXT) == 0) {
 		image->text_seg = seg_command;
 	}
-	
+
 	uint64_t load_addr = MAX(highest_addr, seg_command->vmaddr);
 
 	LOGF("Mapping 0x%lx(0x%lx) to 0x%lx(0x%lx)",
@@ -328,7 +328,7 @@ void dummy() {
 
 uint64_t find_exported_symbol(const char *name) {
 	uint64_t found_addr = 0x0;
-	
+
 	for (int i = 1; i < num_loaded_images && !found_addr; i++) { // 0 is the main executable, starts from 1
 		found_addr = find_exported_symbol_in_image(loaded_images[i], name);
 	}
@@ -463,7 +463,7 @@ uint64_t do_bind(struct mach_image *image, const uint8_t * const start, const ui
 				// usually used for non-lazy binding
 				vmaddr++;
 				break;
-				
+
 			case BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB:
 				symbol_ptr = bind_symbol(vmaddr, symbol_name);
 				LOGF("%sBinding %s (seg: %lu, offset: 0x%lx)... @%p -> 0x%lx\n",
@@ -811,12 +811,12 @@ void load_mach_image(struct mach_image *image) {
 			if (last_seg_end) {
 				add_mapped_range(image, last_seg_start, last_seg_end);
 			}
-			
+
 			last_seg_start = seg_start;
 			last_seg_end = seg_end;
 		}
 	}
-	
+
 	if (last_seg_end) {
 		add_mapped_range(image, last_seg_start, last_seg_end);
 	}
@@ -839,7 +839,7 @@ int main(int argc, char **argv, char **envp) {
 	main_image.path = loaded_by_kernel ? argv[0] : argv[1];
 
 	load_mach_image(&main_image);
-	
+
 	char **envp_end = envp;
 	while (*envp_end) envp_end++;
 
@@ -848,4 +848,3 @@ int main(int argc, char **argv, char **envp) {
 		 loaded_by_kernel ? argv : argv + 1,
 		 envp, envp_end, main_image.entry_point, main_image.is_lc_main);
 }
-
