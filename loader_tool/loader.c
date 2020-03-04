@@ -3,7 +3,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
-#include <assert.h>
 #include <limits.h>
 #include <libgen.h>
 #include <errno.h>
@@ -21,6 +20,7 @@
 #include <sys/endian.h>
 
 #include "osx_compat.h"
+#include "fatal.h"
 
 #ifdef NDEBUG
 	#define LOGF(...)
@@ -133,7 +133,7 @@ int load_segment(struct mach_image *image, struct segment_command_64 *seg_comman
 	image->segments[image->num_segments++] = seg_command;
 
 	if (strcmp(seg_command->segname, SEG_PAGEZERO) == 0) {
-		assert(image->header->filetype == MH_EXECUTE); // dylib shouldn't have PAGEZERO
+		loader_assert(image->header->filetype == MH_EXECUTE, "dulib shouldn't have PAGEZERO");
 		LOGF("ignored.\n");
 		return 0;
 	}
@@ -330,8 +330,7 @@ uint64_t bind_symbol(uint64_t *vmaddr, const char *symbol_name) {
 
 
 	if (!symbol_ptr) {
-		LOGF("Symbol %s not found.\n", symbol_name);
-		//assert(NULL);
+		loader_fatal("Symbol %s not found.\n", symbol_name);
 	}
 
 
@@ -457,8 +456,7 @@ uint64_t do_bind(struct mach_image *image, const uint8_t * const start, const ui
 				break;
 
 			default:
-				LOGF("Unknown OP code: 0x%x\n", opcode);
-				assert(NULL);
+				loader_fatal("Unknown OP code: 0x%x\n", opcode);
 				break;
 		}
 	}
@@ -473,7 +471,7 @@ uint64_t dyld_stub_binder_impl(struct mach_image **image_cache, uint64_t lazy_of
 		image = find_image((uint64_t) image_cache);
 		*image_cache = image;
 
-		assert(image);
+		loader_assert(image, "could not find image");
 	}
 
 	const uint8_t * const start = (uint8_t *) image->link_edit_base + image->dyld_info->lazy_bind_off + lazy_offset;
@@ -555,8 +553,7 @@ void rebase(struct mach_image *image, const uint8_t * const start, const uint8_t
 				break;
 
 			default:
-				LOGF("Unknown OP code: 0x%x\n", opcode);
-				assert(NULL);
+				loader_fatal("Unknown OP code: 0x%x\n", opcode);
 				break;
 		}
 	}
@@ -580,11 +577,8 @@ void load_mach_image(struct mach_image *image) {
 
 	image->fd = open(image->path, O_RDONLY);
 	if (image->fd == -1) {
-		fprintf(stderr, "error: %s could not be loaded: %s\n", image->path, strerror(errno));
-		exit(-1);
+		loader_fatal("could not laod image %s", image->path);
 	}
-
-	assert(image->fd >= 0);
 
 	struct stat sb;
 	fstat(image->fd, &sb);
@@ -613,9 +607,9 @@ void load_mach_image(struct mach_image *image) {
 		}
 	}
 
-	assert(image->header->magic == MH_MAGIC_64);
-	assert(image->header->cputype == CPU_TYPE_X86_64);
-	assert(image->header->filetype == MH_EXECUTE || image->header->filetype == MH_DYLIB);
+	loader_assert(image->header->magic == MH_MAGIC_64, "Only 64-bit images are supported");
+	loader_assert(image->header->cputype == CPU_TYPE_X86_64, "Only x86-64 images are supported");
+	loader_assert(image->header->filetype == MH_EXECUTE || image->header->filetype == MH_DYLIB, "Only main executable and dylib images are supported");
 
 	struct load_command *command = (struct load_command *) (image->header + 1);
 
@@ -729,7 +723,7 @@ void load_mach_image(struct mach_image *image) {
 					struct x86_thread_state *thread_state;
 					LOGF("Processing LC_UNIXTHREAD... ");
 					thread_state = (struct x86_thread_state *) (command + 1);
-					assert(thread_state->tsh.flavor == x86_THREAD_STATE64);
+					loader_assert(thread_state->tsh.flavor == x86_THREAD_STATE64, "unsupported LC_UNIXTHREAD flavor");
 					image->entry_point = thread_state->uts.ts64.rip;
 					LOGF("Entry Point: 0x%lx\n", image->entry_point);
 				}
@@ -743,7 +737,7 @@ void load_mach_image(struct mach_image *image) {
 				break;
 
 			default:
-				LOGF("Load command %d unknown: %d\n", i, command->cmd);
+				loader_fatal("Load command #%d is unknown (type=%d)", i, command->cmd);
 				break;
 		}
 
