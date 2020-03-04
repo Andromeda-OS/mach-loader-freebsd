@@ -6,6 +6,7 @@ DYLD_PATH = /System/Library/ELFLoader/loader
 
 default: loader
 all: default kmod
+debug: all
 
 loader: .PHONY
 	${MAKE} -C loader_tool DYLD_PATH=$(DYLD_PATH) DEBUG=$(DEBUG)
