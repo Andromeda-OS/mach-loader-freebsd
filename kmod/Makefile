@@ -25,5 +25,6 @@ CFLAGS += -O3
 .endif
 
 CFLAGS += -DDYLD=\"$(DYLD_PATH)\"
+CFLAGS += -I${.CURDIR}/../include
 
 .include <bsd.kmod.mk>
