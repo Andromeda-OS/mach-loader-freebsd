@@ -1,5 +1,18 @@
-SRCS=imgact_mach.c vnode_if.h
 KMOD=imgact_mach
+SRCS=imgact_mach.c kern/task.c kern/ipc_tt.c kern/ipc_host.c \
+	defs_gen/clock_server.c defs_gen/host_priv_server.c defs_gen/mach_clock.c \
+	defs_gen/mach_convert.c defs_gen/mach_host.c defs_gen/mach_host_priv.c \
+	defs_gen/mach_host_server.c defs_gen/mach_misc.c defs_gen/mach_module.c \
+	defs_gen/mach_port_server.c defs_gen/mach_processor.c defs_gen/mach_semaphore.c \
+	defs_gen/mach_task.c defs_gen/mach_thread.c defs_gen/mach_traps.c \
+	defs_gen/mach_vm.c defs_gen/mach_vm_server.c defs_gen/proc_info.c \
+	defs_gen/task_server.c defs_gen/vm_map_server.c \
+	ipc/ipc_entry.c ipc/ipc_hash.c ipc/ipc_init.c ipc/ipc_kmsg.c \
+	ipc/ipc_kobject.c ipc/ipc_mqueue.c ipc/ipc_notify.c ipc/ipc_object.c \
+	ipc/ipc_port.c ipc/ipc_pset.c ipc/ipc_right.c ipc/ipc_space.c \
+	ipc/ipc_table.c ipc/ipc_thread.c ipc/mach_debug.c ipc/mach_msg.c \
+	ipc/mach_port.c kern/ipc_host.c kern/ipc_tt.c kern/task.c \
+	kern/thread_pool.c vnode_if.h
 
 .if !defined(DYLD_PATH) && !make(clean)
 .error DYLD_PATH must be defined
