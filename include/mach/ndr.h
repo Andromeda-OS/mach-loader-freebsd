@@ -36,8 +36,13 @@
 #include <stdint.h>
 #endif
 #include <sys/cdefs.h>
-#include <libkern/OSByteOrder.h>
+#include <sys/endian.h>
 
+static __attribute__((always_inline))
+uint16_t OSReadSwapInt16(const volatile void *base, uintptr_t offset) {
+    uint16_t result = *(volatile uint16_t *)((uintptr_t)base + offset);
+    return (uint16_t)((result << 8) | (result >> 8));
+}
 
 typedef struct {
     unsigned char       mig_vers;
