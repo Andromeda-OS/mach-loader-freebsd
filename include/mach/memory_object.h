@@ -102,7 +102,7 @@
  *	User-visible types used in the external memory
  *	management interface:
  */
-#include <sys/mach/port.h>
+#include <mach/port.h>
 
 typedef mach_port_t  memory_object_default_t;
 typedef unsigned long long	memory_object_offset_t;

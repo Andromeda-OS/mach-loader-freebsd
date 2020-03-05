@@ -93,7 +93,7 @@
 #ifndef	_KERN_QUEUE_H_
 #define	_KERN_QUEUE_H_
 
-#include <sys/mach/macro_help.h>
+#include <mach/macro_help.h>
 
 /*
  *	Queue of abstract objects.  Queue is maintained

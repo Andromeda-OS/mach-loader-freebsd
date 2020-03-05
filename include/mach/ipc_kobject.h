@@ -112,14 +112,14 @@
  *	Declarations for letting a port represent a kernel object.
  */
 
-#include <sys/mach/ipc/ipc_kmsg.h>
-#include <sys/mach/ipc/ipc_port.h>
-#include <sys/mach/ipc_common.h>	/* for ipc_kobject_t */
+#include <mach/ipc/ipc_kmsg.h>
+#include <mach/ipc/ipc_port.h>
+#include <mach/ipc_common.h>	/* for ipc_kobject_t */
 
 #ifndef	_KERN_IPC_KOBJECT_H_
 #define _KERN_IPC_KOBJECT_H_
 
-#include <sys/mach/vm_types.h>
+#include <mach/vm_types.h>
 
 #define	IKO_NULL	((ipc_kobject_t) 0)
 

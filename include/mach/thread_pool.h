@@ -49,8 +49,8 @@
 #ifndef	_KERN_THREAD_POOL_H_
 #define _KERN_THREAD_POOL_H_
 
-#include <sys/mach/kern_return.h>
-#include <sys/mach/ipc/ipc_object.h>
+#include <mach/kern_return.h>
+#include <mach/ipc/ipc_object.h>
 
 typedef struct thread_pool {
 

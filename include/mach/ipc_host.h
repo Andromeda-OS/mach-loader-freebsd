@@ -59,7 +59,7 @@
 #ifndef	_KERN_IPC_HOST_H_
 #define	_KERN_IPC_HOST_H_
 
-#include <sys/mach/port.h>
+#include <mach/port.h>
 
 
 /* Initialize IPC host services */

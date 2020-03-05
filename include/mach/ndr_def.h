@@ -1,4 +1,4 @@
-#include <sys/mach/ndr.h>
+#include <mach/ndr.h>
 
 #if _BYTE_ORDER == _LITTLE_ENDIAN
 #define NDR_INT_ENDIAN NDR_INT_LITTLE_ENDIAN

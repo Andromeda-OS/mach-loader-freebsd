@@ -199,15 +199,15 @@
 #include <sys/lock.h>
 #include <sys/mutex.h>
 
-#include <sys/mach/port.h>
-#include <sys/mach/time_value.h>
-#include <sys/mach/message.h>
+#include <mach/port.h>
+#include <mach/time_value.h>
+#include <mach/message.h>
 
 #if 0
-#include <sys/mach/mach_param.h>
+#include <mach/mach_param.h>
 #endif
-#include <sys/mach/task_info.h>
-#include <sys/mach/exception.h>
+#include <mach/task_info.h>
+#include <mach/exception.h>
 
 #include <compat/mach/kern_types.h>
 
@@ -217,7 +217,7 @@
 #include <kern/syscall_emulation.h>
 #include <vm/vm_map.h>
 #endif
-#include <sys/mach/queue.h>
+#include <mach/queue.h>
 
 #define MACH_HOST 1
 #define MACH_PROF 0
@@ -225,8 +225,8 @@
 #define FAST_TAS 0
 #define TASK_SWAPPER  0
 
-#include <sys/mach/mach_types.h>
-#include <sys/mach/mach_param.h>
+#include <mach/mach_types.h>
+#include <mach/mach_param.h>
 
 
 extern ipc_port_t convert_task_to_port(task_t);

@@ -29,8 +29,8 @@
 #ifndef	_MACH_VOUCHER_TYPES_H_
 #define	_MACH_VOUCHER_TYPES_H_
 
-#include <sys/mach/port.h>
-#include <sys/mach/message.h>
+#include <mach/port.h>
+#include <mach/message.h>
 
 /*
  * Mach Voucher - an immutable collection of attribute value handles.

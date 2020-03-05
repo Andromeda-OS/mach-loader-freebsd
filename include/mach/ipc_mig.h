@@ -34,11 +34,11 @@
 
 #include <sys/cdefs.h>
 
-#include <sys/mach/mig.h>
-#include <sys/mach/mach_types.h>
-#include <sys/mach/message.h>
+#include <mach/mig.h>
+#include <mach/mach_types.h>
+#include <mach/message.h>
 #if 0
-#include <sys/mach/kern_types.h>
+#include <mach/kern_types.h>
 #endif
 
 #ifdef	XNU_KERNEL_PRIVATE

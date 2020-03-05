@@ -32,8 +32,8 @@
 #ifndef _KERN_IPC_SYNC_H_
 #define _KERN_IPC_SYNC_H_
 
-#include <sys/mach/mach_types.h>
-#include <sys/mach/ipc/ipc_types.h>
+#include <mach/mach_types.h>
+#include <mach/ipc/ipc_types.h>
 
 semaphore_t convert_port_to_semaphore (ipc_port_t port);
 ipc_port_t  convert_semaphore_to_port (semaphore_t semaphore);

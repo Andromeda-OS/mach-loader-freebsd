@@ -128,7 +128,7 @@
 
 #include <mach/kern_return.h>
 #endif
-#include <sys/mach/port.h>
+#include <mach/port.h>
 #include <compat/mach/kern_types.h>
 #if 0
 #include <kern/cpu_number.h>

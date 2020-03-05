@@ -59,14 +59,14 @@
 #ifndef	_KERN_IPC_TT_H_
 #define _KERN_IPC_TT_H_
 
-#include <sys/mach/port.h>
-#include <sys/mach/ipc_kobject.h>
-#include <sys/mach/ipc/ipc_space.h>
-#include <sys/mach/ipc/ipc_table.h>
-#include <sys/mach/ipc/ipc_port.h>
-#include <sys/mach/ipc/ipc_right.h>
-#include <sys/mach/ipc/ipc_entry.h>
-#include <sys/mach/ipc/ipc_object.h>
+#include <mach/port.h>
+#include <mach/ipc_kobject.h>
+#include <mach/ipc/ipc_space.h>
+#include <mach/ipc/ipc_table.h>
+#include <mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_right.h>
+#include <mach/ipc/ipc_entry.h>
+#include <mach/ipc/ipc_object.h>
 
 
 /* Allocate a task's kernel port and ipc_space */
