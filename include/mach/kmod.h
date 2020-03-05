@@ -2,7 +2,7 @@
  * Copyright (c) 2000-2007 Apple Inc. All rights reserved.
  *
  * @APPLE_OSREFERENCE_LICENSE_HEADER_START@
- * 
+ *
  * This file contains Original Code and/or Modifications of Original Code
  * as defined in and that are subject to the Apple Public Source License
  * Version 2.0 (the 'License'). You may not use this file except in
@@ -11,10 +11,10 @@
  * unlawful or unlicensed copies of an Apple operating system, or to
  * circumvent, violate, or enable the circumvention or violation of, any
  * terms of an Apple operating system software license agreement.
- * 
+ *
  * Please obtain a copy of the License at
  * http://www.opensource.apple.com/apsl/ and read it before using this file.
- * 
+ *
  * The Original Code and all software distributed under the License are
  * distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
  * EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
@@ -22,7 +22,7 @@
  * FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.
  * Please see the License for the specific language governing rights and
  * limitations under the License.
- * 
+ *
  * @APPLE_OSREFERENCE_LICENSE_HEADER_END@
  */
 /*
@@ -42,9 +42,6 @@
 
 __BEGIN_DECLS
 
-#if PRAGMA_MARK
-#pragma mark Basic macros & typedefs
-#endif
 /***********************************************************************
 * Basic macros & typedefs
 ***********************************************************************/
@@ -59,9 +56,6 @@ struct  kmod_info;
 typedef kern_return_t kmod_start_func_t(struct kmod_info * ki, void * data);
 typedef kern_return_t kmod_stop_func_t(struct kmod_info * ki, void * data);
 
-#if PRAGMA_MARK
-#pragma mark Structure definitions
-#endif
 /***********************************************************************
 * Structure definitions
 *
@@ -90,7 +84,7 @@ typedef struct kmod_info {
     uint32_t            id;
     char                name[KMOD_MAX_NAME];
     char                version[KMOD_MAX_NAME];
-    int32_t             reference_count;        // # linkage refs to this 
+    int32_t             reference_count;        // # linkage refs to this
     kmod_reference_t  * reference_list;         // who this refs (links on)
     vm_address_t        address;                // starting address
     vm_size_t           size;                   // total size
@@ -135,9 +129,6 @@ typedef struct kmod_info_64_v1 {
 
 #pragma pack()
 
-#if PRAGMA_MARK
-#pragma mark Kmod structure declaration macros
-#endif
 /***********************************************************************
 * Kmod structure declaration macros
 ***********************************************************************/
@@ -157,17 +148,11 @@ typedef struct kmod_info_64_v1 {
                        { #name }, { version }, -1, 0, 0, 0, 0,    \
                            start, stop };
 
-#if PRAGMA_MARK
-#pragma mark Kernel private declarations
-#endif
 /***********************************************************************
 * Kernel private declarations.
 ***********************************************************************/
 
 
-#if PRAGMA_MARK
-#pragma mark Obsolete kmod stuff
-#endif
 /***********************************************************************
 * These 3 should be dropped but they're referenced by MIG declarations.
 ***********************************************************************/
