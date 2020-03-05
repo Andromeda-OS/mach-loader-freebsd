@@ -82,7 +82,8 @@ if ! ${CC} ${MD} ${CFLAGS} -E ${tmpfile} |
 	    ${IHDR} ${GHDR} \
 	    ${STACKMAX}
 then
-    rm -f ${tmpfile}
     exit 1
 fi
+
+rm -f ${tmpfile}
 exit 0
