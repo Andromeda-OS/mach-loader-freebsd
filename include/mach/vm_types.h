@@ -87,7 +87,7 @@ typedef uint64_t		vm_object_size_t;
 
 typedef mach_port_t		upl_t;
 typedef mach_port_t		vm_named_entry_t;
-
+typedef natural_t mach_vm_map_t; /* mach_port_t */
 
 #define UPL_NULL		((upl_t) 0)
 #define VM_NAMED_ENTRY_NULL	((vm_named_entry_t) 0)
