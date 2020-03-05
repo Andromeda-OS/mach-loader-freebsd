@@ -21,8 +21,6 @@
 #
 # cmk1.1
 
-.include <src.opts.mk>
-
 PROG= migcom
 SCRIPTS=mig.sh
 SRCS= ident.c error.c global.c header.c \
@@ -33,25 +31,17 @@ SRCS= ident.c error.c global.c header.c \
 CFLAGS+= -I${.CURDIR} -I${.CURDIR}/shims -I${.CURDIR}/../include -Iinclude
 CFLAGS+= -DYY_NO_UNPUT
 
-.if ${TARGET} == "amd64" || ${TARGET} == "i386"
 include/machine: ${.CURDIR}/Makefile
 	mkdir -p include
 	ln -sf ${.CURDIR}/../include/x86/include include/machine
-.endif
 
-.if ${TARGET} == "amd64" || ${TARGET} == "i386"
 ident.c: include/machine
-.else
-ident.c:
-.endif
 	echo "#include \"alloc.h\" " >${.TARGET}
 	echo "const char *MigGenerationDate = \""`date`"\";" >>${.TARGET}
 	echo "const char *MigMoreData = \""`whoami`"@"`hostname`"\";" >>${.TARGET}
 
 
 CLEANFILES+= ident.c *.o *~ *.gz cscope.*
-.if ${TARGET} == "amd64" || ${TARGET} == "i386"
 CLEANFILES+= include/machine
-.endif
 
 .include <bsd.prog.mk>
