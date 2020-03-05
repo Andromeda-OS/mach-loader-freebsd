@@ -16,11 +16,9 @@ headers : ${ALL_HEADERS}
 
 .SUFFIXES : .defs
 .defs_server.c:
-	@mkdir -p mach
 	${MIG} ${MIGFLAGS} -header /dev/null -user /dev/null \
 		-server $@ -sheader /dev/null $<
 
 .defs.h:
-	@mkdir -p mach
 	${MIG} ${MIGFLAGS} -header /dev/null -user /dev/null \
 		-server /dev/null -sheader $@ $<
