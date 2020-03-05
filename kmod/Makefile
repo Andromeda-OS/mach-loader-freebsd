@@ -25,7 +25,7 @@ CFLAGS += -O3
 .endif
 
 CFLAGS += -DDYLD=\"$(DYLD_PATH)\" -D__DARWIN_UNIX03=1
-CFLAGS += -I${.CURDIR}/../include
+CFLAGS += -I${.CURDIR}/../include -I${.CURDIR}/defs
 
 .include <bsd.kmod.mk>
 
