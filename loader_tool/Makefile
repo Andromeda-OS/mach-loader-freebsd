@@ -2,7 +2,8 @@ PROG = loader
 SRCS = loader.c fatal.c boot.s dyld_stub_binder.S set_proc_comm.s
 MK_MAN = no
 
-CFLAGS  = -I../include -DUSE_BSD_LIBS -std=c99
+CC = clang
+CFLAGS  = -I../include -DUSE_BSD_LIBS -std=c99 -Wno-gcc-compat
 LDFLAGS = -lm -lpthread -rpath '$$ORIGIN'
 
 .if defined(DEBUG) || make(debug)
