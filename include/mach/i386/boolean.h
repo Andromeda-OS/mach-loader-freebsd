@@ -65,6 +65,10 @@
 #ifndef	_MACH_I386_BOOLEAN_H_
 #define _MACH_I386_BOOLEAN_H_
 
+#ifdef _KERNEL
 #include <sys/types.h> // FreeBSD boolean_t is here.
+#else
+typedef int boolean_t;
+#endif
 
 #endif	/* _MACH_I386_BOOLEAN_H_ */
