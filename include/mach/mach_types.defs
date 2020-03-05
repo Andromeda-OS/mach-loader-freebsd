@@ -75,6 +75,7 @@ type memory_object_offset_t 	= uint64_t;
 type memory_object_size_t 	= uint64_t;
 type memory_object_cluster_size_t = uint32_t;
 type memory_object_fault_info_t = array[16] of integer_t;
+type mach_vm_map_t = natural_t;
 
 
 type mach_port_status_t = struct[10] of integer_t;	/* obsolete */
