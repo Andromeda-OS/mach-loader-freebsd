@@ -66,8 +66,8 @@
 #ifndef	_MACH_DEBUG_IPC_INFO_H_
 #define _MACH_DEBUG_IPC_INFO_H_
 
-#include <sys/mach/port.h>
-#include <sys/mach/vm_types.h>
+#include <mach/port.h>
+#include <mach/vm_types.h>
 
 /*
  *	Remember to update the mig type definitions
