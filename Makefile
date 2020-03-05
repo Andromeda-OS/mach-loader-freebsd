@@ -46,7 +46,7 @@ clean:
 	${MAKE} -C kmod clean
 
 archive:
-	rm mach-loader-freebsd-*.tar.gz
+	rm -f mach-loader-freebsd-*.tar.gz
 	git archive --prefix=mach-loader-freebsd/ --format tar HEAD | gzip -9 > mach-loader-freebsd-`git log -1 --format='%h'`.tar.gz
 
 archive-tests:
