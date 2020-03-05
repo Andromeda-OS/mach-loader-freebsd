@@ -2,7 +2,7 @@
  * Copyright (c) 2000-2006 Apple Computer, Inc. All rights reserved.
  *
  * @APPLE_OSREFERENCE_LICENSE_HEADER_START@
- * 
+ *
  * This file contains Original Code and/or Modifications of Original Code
  * as defined in and that are subject to the Apple Public Source License
  * Version 2.0 (the 'License'). You may not use this file except in
@@ -11,10 +11,10 @@
  * unlawful or unlicensed copies of an Apple operating system, or to
  * circumvent, violate, or enable the circumvention or violation of, any
  * terms of an Apple operating system software license agreement.
- * 
+ *
  * Please obtain a copy of the License at
  * http://www.opensource.apple.com/apsl/ and read it before using this file.
- * 
+ *
  * The Original Code and all software distributed under the License are
  * distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
  * EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
@@ -22,7 +22,7 @@
  * FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.
  * Please see the License for the specific language governing rights and
  * limitations under the License.
- * 
+ *
  * @APPLE_OSREFERENCE_LICENSE_HEADER_END@
  */
 /*
@@ -128,7 +128,7 @@ typedef struct vm_region_basic_info		 vm_region_basic_info_data_t;
 #define SM_SHARED_ALIASED  7
 #define SM_LARGE_PAGE      8
 
-/* 
+/*
  * For submap info,  the SM flags above are overlayed when a submap
  * is encountered.  The field denotes whether or not machine level mapping
  * information is being shared.  PTE's etc.  When such sharing is taking
@@ -174,7 +174,7 @@ typedef struct vm_region_top_info		 vm_region_top_info_data_t;
 
 
 
-/* 
+/*
  * vm_region_submap_info will return information on a submap or object.
  * The user supplies a nesting level on the call.  When a walk of the
  * user's map is done and a submap is encountered, the nesting count is
@@ -191,7 +191,7 @@ typedef struct vm_region_top_info		 vm_region_top_info_data_t;
  *
  * Object only fields are filled in through a walking of the object shadow
  * chain (where one is present), and a walking of the resident page queue.
- * 
+ *
  */
 
 struct vm_region_submap_info {
@@ -211,7 +211,7 @@ struct vm_region_submap_info {
 	boolean_t		is_submap;	/* submap vs obj */
 	vm_behavior_t		behavior;	/* access behavior hint */
 	vm32_object_id_t		object_id;	/* obj/map name, not a handle */
-	unsigned short		user_wired_count; 
+	unsigned short		user_wired_count;
 };
 
 typedef struct vm_region_submap_info		*vm_region_submap_info_t;
@@ -237,7 +237,7 @@ struct vm_region_submap_info_64 {
 	boolean_t		is_submap;	/* submap vs obj */
 	vm_behavior_t		behavior;	/* access behavior hint */
 	vm32_object_id_t		object_id;	/* obj/map name, not a handle */
-	unsigned short		user_wired_count; 
+	unsigned short		user_wired_count;
 };
 
 typedef struct vm_region_submap_info_64		*vm_region_submap_info_64_t;
@@ -259,7 +259,7 @@ struct vm_region_submap_short_info_64 {
 	boolean_t		is_submap;	/* submap vs obj */
 	vm_behavior_t		behavior;	/* access behavior hint */
 	vm32_object_id_t		object_id;	/* obj/map name, not a handle */
-	unsigned short		user_wired_count; 
+	unsigned short		user_wired_count;
 };
 
 typedef struct vm_region_submap_short_info_64	*vm_region_submap_short_info_64_t;
@@ -298,7 +298,7 @@ typedef struct vm32_read_entry		vm32_read_entry_t[VM_MAP_ENTRY_MAX];
 #pragma pack()
 
 
-#define VM_PAGE_INFO_MAX 
+#define VM_PAGE_INFO_MAX
 typedef int *vm_page_info_t;
 typedef int vm_page_info_data_t[VM_PAGE_INFO_MAX];
 typedef int vm_page_info_flavor_t;
