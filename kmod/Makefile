@@ -29,6 +29,6 @@ CFLAGS += -I${.CURDIR}/../include -I${.CURDIR}/defs
 
 .include <bsd.kmod.mk>
 
-.ORDER : run_mig beforebuild
+beforebuild : run_mig
 run_mig : .PHONY
 	${MAKE} -C defs
