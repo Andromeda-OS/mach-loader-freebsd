@@ -31,9 +31,12 @@ run_all: loader
 		fi\
 	done
 
-kmod: .PHONY
+kmod: .PHONY migcom
 	${MAKE} -C kmod DYLD_PATH=$(DYLD_PATH) DEBUG=$(DEBUG)
 	cp kmod/imgact_mach.ko imgact_mach.ko
+
+migcom: .PHONY
+	${MAKE} -C migcom
 
 run_kmod: loader
 	-kldunload ./imgact_mach.ko
