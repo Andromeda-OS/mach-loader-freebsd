@@ -28,3 +28,7 @@ CFLAGS += -DDYLD=\"$(DYLD_PATH)\" -D__DARWIN_UNIX03=1
 CFLAGS += -I${.CURDIR}/../include
 
 .include <bsd.kmod.mk>
+
+.ORDER : run_mig beforebuild
+run_mig : .PHONY
+	${MAKE} -C defs
