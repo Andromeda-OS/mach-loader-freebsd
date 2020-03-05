@@ -79,14 +79,14 @@
 #ifndef	_IPC_IPC_ENTRY_H_
 #define _IPC_IPC_ENTRY_H_
 
-#include <sys/mach/mach_types.h>
-#include <sys/mach/port.h>
-#include <sys/mach/kern_return.h>
+#include <mach/mach_types.h>
+#include <mach/port.h>
+#include <mach/kern_return.h>
 #include <vm/uma.h>
-#include <sys/mach/port.h>
-#include <sys/mach/ipc/ipc_table.h>
-#include <sys/mach/ipc/ipc_types.h>
-#include <sys/mach/ipc/ipc_object.h>
+#include <mach/port.h>
+#include <mach/ipc/ipc_table.h>
+#include <mach/ipc/ipc_types.h>
+#include <mach/ipc/ipc_object.h>
 
 /*
  *	Spaces hold capabilities for ipc_object_t's (ports and port sets).

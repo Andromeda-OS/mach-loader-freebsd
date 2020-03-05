@@ -78,7 +78,7 @@
 #ifndef	_IPC_MACH_MSG_H_
 #define _IPC_MACH_MSG_H_
 
-#include <sys/mach/message.h>
+#include <mach/message.h>
 
 /* Indicate if thread waiting on a message is at a clean point */
 #define mach_msg_interruptible(thread) \

@@ -87,10 +87,10 @@
 #ifndef	_IPC_IPC_PSET_H_
 #define _IPC_IPC_PSET_H_
 
-#include <sys/mach/port.h>
-#include <sys/mach/kern_return.h>
-#include <sys/mach/ipc/ipc_object.h>
-#include <sys/mach/ipc/ipc_mqueue.h>
+#include <mach/port.h>
+#include <mach/kern_return.h>
+#include <mach/ipc/ipc_object.h>
+#include <mach/ipc/ipc_mqueue.h>
 #if 0
 #include <kern/thread_pool.h>
 #include <kern/rpc_common.h>

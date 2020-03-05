@@ -74,9 +74,9 @@
 #ifndef	_IPC_IPC_RIGHT_H_
 #define	_IPC_IPC_RIGHT_H_
 
-#include <sys/mach/kern_return.h>
-#include <sys/mach/ipc/ipc_port.h>
-#include <sys/mach/ipc/ipc_entry.h>
+#include <mach/kern_return.h>
+#include <mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_entry.h>
 
 #define	ipc_right_lookup_read(a, b, c)	ipc_right_lookup(a, b, c, 0)
 #define	ipc_right_lookup_write(a, b, c)	ipc_right_lookup(a, b, c, 1)

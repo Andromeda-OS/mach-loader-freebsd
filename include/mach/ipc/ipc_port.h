@@ -163,18 +163,18 @@
 
 #include <sys/lock.h>
 #include <sys/mutex.h>
-#include <sys/mach/mach_types.h>
-#include <sys/mach/kern_return.h>
-#include <sys/mach/port.h>
-#include <sys/mach/thread_pool.h>
+#include <mach/mach_types.h>
+#include <mach/kern_return.h>
+#include <mach/port.h>
+#include <mach/thread_pool.h>
 
 
-#include <sys/mach/ipc/ipc_object.h>
-#include <sys/mach/ipc/ipc_mqueue.h>
-#include <sys/mach/ipc/ipc_table.h>
-#include <sys/mach/ipc/ipc_thread.h>
-#include <sys/mach/ipc/ipc_types.h>
-#include <sys/mach/ipc/ipc_entry.h>
+#include <mach/ipc/ipc_object.h>
+#include <mach/ipc/ipc_mqueue.h>
+#include <mach/ipc/ipc_table.h>
+#include <mach/ipc/ipc_thread.h>
+#include <mach/ipc/ipc_types.h>
+#include <mach/ipc/ipc_entry.h>
 
 /*
  * This structure defines the elements in common between

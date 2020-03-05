@@ -28,11 +28,11 @@
 #ifndef	_IPC_IPC_VOUCHER_H_
 #define	_IPC_IPC_VOUCHER_H_
 
-#include <sys/mach/mach_types.h>
+#include <mach/mach_types.h>
 #if 0
-#include <sys/mach/mach_voucher_types.h>
+#include <mach/mach_voucher_types.h>
 #endif
-#include <sys/mach/ipc/ipc_types.h>
+#include <mach/ipc/ipc_types.h>
 
 #ifdef MACH_KERNEL_PRIVATE
 

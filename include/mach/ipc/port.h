@@ -78,7 +78,7 @@
 #ifndef	_IPC_PORT_H_
 #define _IPC_PORT_H_
 
-#include <sys/mach/port.h>
+#include <mach/port.h>
 
 #define	MACH_PORT_NGEN(name)		MACH_PORT_MAKE(0, MACH_PORT_GEN(name))
 

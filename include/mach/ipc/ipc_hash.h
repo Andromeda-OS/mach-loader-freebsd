@@ -86,7 +86,7 @@
 #ifndef	_IPC_IPC_HASH_H_
 #define _IPC_IPC_HASH_H_
 
-#include <sys/mach/kern_return.h>
+#include <mach/kern_return.h>
 #if 0
 #include <mach/boolean.h>
 #include <mach_debug/hash_info.h>

@@ -121,11 +121,11 @@
 #ifndef	_IPC_IPC_KMSG_H_
 #define _IPC_IPC_KMSG_H_
 
-#include <sys/mach/vm_types.h>
-#include <sys/mach/mach_types.h>
-#include <sys/mach/message.h>
+#include <mach/vm_types.h>
+#include <mach/mach_types.h>
+#include <mach/message.h>
 
-#include <sys/mach/ipc/ipc_object.h>
+#include <mach/ipc/ipc_object.h>
 
 /*
  *	This structure is only the header for a kmsg buffer;

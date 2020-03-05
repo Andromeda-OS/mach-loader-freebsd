@@ -86,11 +86,11 @@
 #ifndef	_IPC_IPC_SPACE_H_
 #define _IPC_IPC_SPACE_H_
 
-#include <sys/mach/kern_return.h>
+#include <mach/kern_return.h>
 
 #include <vm/uma.h>
-#include <sys/mach/ipc/ipc_entry.h>
-#include <sys/mach/ipc/ipc_types.h>
+#include <mach/ipc/ipc_entry.h>
+#include <mach/ipc/ipc_types.h>
 #include <sys/lock.h>
 #include <sys/rwlock.h>
 

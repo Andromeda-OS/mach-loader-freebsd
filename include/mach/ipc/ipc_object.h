@@ -89,11 +89,11 @@
 #define _IPC_IPC_OBJECT_H_
 
 #include <vm/uma.h>
-#include <sys/mach/kern_return.h>
-#include <sys/mach/mach_types.h>
-#include <sys/mach/message.h>
-#include <sys/mach/ipc/ipc_types.h>
-#include <sys/mach/ipc_common.h>	/* for ipc_object data defs */
+#include <mach/kern_return.h>
+#include <mach/mach_types.h>
+#include <mach/message.h>
+#include <mach/ipc/ipc_types.h>
+#include <mach/ipc_common.h>	/* for ipc_object data defs */
 
 typedef struct ipc_object *ipc_object_t;
 

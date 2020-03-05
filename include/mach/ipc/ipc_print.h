@@ -29,12 +29,12 @@
 #include <mach_kdb.h>
 #endif
 
-#include <sys/mach/ipc/ipc_pset.h>
+#include <mach/ipc/ipc_pset.h>
 
 extern void ipc_pset_print(
 			ipc_pset_t	pset);
 
-#include <sys/mach/ipc/ipc_port.h>
+#include <mach/ipc/ipc_port.h>
 
 #if     MACH_KDB
 #include <ddb/db_expr.h>
@@ -45,7 +45,7 @@ extern void ipc_port_print(
 			db_expr_t	count,
 			char		*modif);
 
-#include <sys/mach/ipc/ipc_kmsg.h>
+#include <mach/ipc/ipc_kmsg.h>
 
 extern void	ipc_kmsg_print(
 			ipc_kmsg_t      kmsg);

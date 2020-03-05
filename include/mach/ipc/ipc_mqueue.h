@@ -88,13 +88,13 @@
 #include <sys/types.h>
 #include <sys/event.h>
 
-#include <sys/mach/mach_types.h>
-#include <sys/mach/message.h>
+#include <mach/mach_types.h>
+#include <mach/message.h>
 
-#include <sys/mach/ipc/ipc_kmsg.h>
-#include <sys/mach/ipc/ipc_thread.h>
-#include <sys/mach/ipc/ipc_object.h>
-#include <sys/mach/ipc/ipc_types.h>
+#include <mach/ipc/ipc_kmsg.h>
+#include <mach/ipc/ipc_thread.h>
+#include <mach/ipc/ipc_object.h>
+#include <mach/ipc/ipc_types.h>
 #define TRACE_BUFFER 0
 #define TR_DECL(x)
 
