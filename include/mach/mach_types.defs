@@ -75,8 +75,13 @@ type memory_object_offset_t 	= uint64_t;
 type memory_object_size_t 	= uint64_t;
 type memory_object_cluster_size_t = uint32_t;
 type memory_object_fault_info_t = array[16] of integer_t;
-type mach_vm_map_t = natural_t;
-
+type mach_vm_map_t = mach_port_t
+		cusertype: mach_vm_map_t
+#if	KERNEL_SERVER
+		intran: vm_map_t convert_port_entry_to_map(mach_port_t)
+		destructor: vm_map_deallocate(vm_map_t)
+#endif	/* KERNEL_SERVER */
+		;
 
 type mach_port_status_t = struct[10] of integer_t;	/* obsolete */
 
