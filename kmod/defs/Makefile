@@ -6,24 +6,21 @@ ALL_SOURCES = \
 	mach_vm_server.c task_server.c vm_map_server.c
 
 ALL_HEADERS = \
-	mach/clock.h mach/host_priv.h mach/mach_host.h mach/mach_port.h \
-	mach/mach_vm.c mach/task.h mach/vm_map.h
+	clock.h host_priv.h mach_host.h mach_port.h mach_vm.h task.h vm_map.h
 
 all : headers sources
-headers : ${ALL_HEADERS}
 sources : ${ALL_SOURCES}
+headers : ${ALL_HEADERS}
+	mkdir -p mach
+	cp *.h mach
 
-.for file in ${ALL_SOURCES}
-def_file=${file:S/_server.c/.defs/}
-header=${file:S/_server.c/.h/}
-mach/${header}: ${def_file} _mach_dir
+.SUFFIXES : .defs
+.defs_server.c:
+	@mkdir -p mach
 	${MIG} ${MIGFLAGS} -header /dev/null -user /dev/null \
-		-server /dev/null -sheader mach/${header} ${def_file}
+		-server $@ -sheader /dev/null $<
 
-${file}: ${def_file}
+.defs.h:
+	@mkdir -p mach
 	${MIG} ${MIGFLAGS} -header /dev/null -user /dev/null \
-		-server ${file} -sheader /dev/null ${def_file}
-.endfor
-
-_mach_dir : .PHONY
-	mkdir -p ${.CURDIR}/mach
+		-server /dev/null -sheader $@ $<
