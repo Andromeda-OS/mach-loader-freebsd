@@ -65,22 +65,14 @@ subsystem
 #if	KERNEL_SERVER
 	  KernelServer
 #endif	/* KERNEL_SERVER */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 	  mach_vm
-#else
-	  vm_map_lp64_local
-#endif
 	  4800;
 
 #include <mach/std_types.defs>
 #include <mach/mach_types.defs>
 #include <mach_debug/mach_debug_types.defs>
 
-#if !KERNEL && !LIBSYSCALL_INTERFACE
 #define PREFIX(NAME) _kernelrpc_ ## NAME
-#else
-#define PREFIX(NAME) NAME
-#endif
 
 /*
  *	Allocate zero-filled memory in the address space
@@ -89,51 +81,22 @@ subsystem
  *	of the specified size.  The address at which the
  *	allocation actually took place is returned.
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine PREFIX(mach_vm_allocate) (
 		target		: vm_task_entry_t;
 	inout	address		: mach_vm_address_t;
 		size		: mach_vm_size_t;
 		flags		: int);
 
-#else
-
-#if !KERNEL && !LIBSYSCALL_INTERFACE
-skip;
-#else
-routine PREFIX(vm_allocate) (
-		target		: vm_task_entry_t;
-	inout	address		: mach_vm_address_t;
-		size		: mach_vm_size_t;
-		flags		: int);
-
-#endif
-
-#endif
-
 
 /*
  *	Deallocate the specified range from the virtual
  *	address space of the target virtual memory map.
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine PREFIX(mach_vm_deallocate) (
 		target		: vm_task_entry_t;
 		address		: mach_vm_address_t;
 		size		: mach_vm_size_t);
 
-#else
-
-#if !KERNEL && !LIBSYSCALL_INTERFACE
-skip;
-#else
-routine PREFIX(vm_deallocate) (
-		target		: vm_task_entry_t;
-		address		: mach_vm_address_t;
-		size		: mach_vm_size_t);
-#endif
-
-#endif
 
 /*
  *	Set the current or maximum protection attribute
@@ -145,7 +108,6 @@ routine PREFIX(vm_deallocate) (
  *	Protections are specified as a set of {read, write, execute}
  *	*permissions*.
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine PREFIX(mach_vm_protect) (
 		target_task	: vm_task_entry_t;
 		address		: mach_vm_address_t;
@@ -154,23 +116,6 @@ routine PREFIX(mach_vm_protect) (
 		new_protection	: vm_prot_t);
 
 
-#else
-
-#if !KERNEL && !LIBSYSCALL_INTERFACE
-skip;
-#else
-
-routine PREFIX(vm_protect) (
-		target_task	: vm_task_entry_t;
-		address		: mach_vm_address_t;
-		size		: mach_vm_size_t;
-		set_maximum	: boolean_t;
-		new_protection	: vm_prot_t);
-
-#endif
-
-#endif
-
 /*
  *	Set the inheritance attribute for the specified range
  *	of the virtual address space of the target address space.
@@ -178,11 +123,7 @@ routine PREFIX(vm_protect) (
  *	specifies how the child address space should acquire
  *	this memory at the time of a task_create call.
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine mach_vm_inherit(
-#else
-routine vm_inherit(
-#endif
 		target_task	: vm_task_entry_t;
 		address		: mach_vm_address_t;
 		size		: mach_vm_size_t;
@@ -195,11 +136,7 @@ routine vm_inherit(
  *	and must be a multiple of pages in extent.  The
  *	protection on the specified range must permit reading.]
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine mach_vm_read(
-#else
-routine vm_read(
-#endif
 		target_task	: vm_map_t;
 		address		: mach_vm_address_t;
 		size		: mach_vm_size_t;
@@ -209,11 +146,7 @@ routine vm_read(
  * List corrollary to vm_read, returns mapped contents of specified
  * ranges within target address space.
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine mach_vm_read_list(
-#else
-routine vm_read_list(
-#endif
 		target_task 	: vm_map_t;
 	inout	data_list   	: mach_vm_read_entry_t;
 		count		: natural_t);
@@ -225,11 +158,7 @@ routine vm_read_list(
  *	and must be a multiple of pages in extent.  The
  *	protection on the specified range must permit writing.]
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine mach_vm_write(
-#else
-routine vm_write(
-#endif
 		target_task	: vm_map_t;
 		address		: mach_vm_address_t;
 		data		: pointer_t);
@@ -244,11 +173,7 @@ routine vm_write(
  *	and the protection on the destination range must
  *	permit writing.]
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine mach_vm_copy(
-#else
-routine vm_copy(
-#endif
 		target_task	: vm_map_t;
 		source_address	: mach_vm_address_t;
 		size		: mach_vm_size_t;
@@ -262,11 +187,7 @@ routine vm_copy(
  *      already exist. The protection on the specified range
  *	must permit reading.]
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine mach_vm_read_overwrite(
-#else
-routine vm_read_overwrite(
-#endif
 		target_task	: vm_map_t;
 		address		: mach_vm_address_t;
 		size		: mach_vm_size_t;
@@ -274,11 +195,7 @@ routine vm_read_overwrite(
 	out	outsize		: mach_vm_size_t);
 
 
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine mach_vm_msync(
-#else
-routine vm_msync(
-#endif
 		target_task	: vm_map_t;
 		address		: mach_vm_address_t;
 		size		: mach_vm_size_t;
@@ -291,11 +208,7 @@ routine vm_msync(
  *	sequential, reverse sequential} and indicates the expected
  *	page reference pattern for the specified range.
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine mach_vm_behavior_set(
-#else
-routine vm_behavior_set(
-#endif
 		target_task	: vm_map_t;
 		address		: mach_vm_address_t;
 		size		: mach_vm_size_t;
@@ -332,15 +245,7 @@ routine vm_behavior_set(
  *	The user-defined memory manager for this object is responsible
  *	for further consistency.]
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine mach_vm_map(
-#else
-#if defined(__arm__) && !LIBSYSCALL_INTERFACE
-routine _vm_map_arm(
-#else
-routine vm_map(
-#endif
-#endif
 		target_task	: vm_task_entry_t;
 	inout	address		: mach_vm_address_t;
 		size		: mach_vm_size_t;
@@ -358,11 +263,7 @@ routine vm_map(
  *	to some virtual address range, such as cachability,
  *	migrability, replicability.  Machine-dependent.
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine mach_vm_machine_attribute(
-#else
-routine vm_machine_attribute(
-#endif
 		target_task	: vm_map_t;
 		address		: mach_vm_address_t;
 		size		: mach_vm_size_t;
@@ -372,11 +273,7 @@ routine vm_machine_attribute(
 /*
  *      Map portion of a task's address space.
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine mach_vm_remap(
-#else
-routine vm_remap(
-#endif
 		target_task	: vm_map_t;
 	inout	target_address	: mach_vm_address_t;
 		size		: mach_vm_size_t;
@@ -393,22 +290,14 @@ routine vm_remap(
  *      Give the caller information on the given location in a virtual
  *      address space.  If a page is mapped return ref and dirty info.
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine mach_vm_page_query(
-#else
-routine vm_map_page_query(
-#endif
                 target_map      :vm_map_t;
                 offset          :mach_vm_offset_t;
         out     disposition     :integer_t;
         out     ref_count       :integer_t);
 
 
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine mach_vm_region_recurse(
-#else
-routine vm_region_recurse_64(
-#endif
                 target_task     : vm_map_t;
 	inout	address		: mach_vm_address_t;
         out     size            : mach_vm_size_t;
@@ -426,11 +315,7 @@ routine vm_region_recurse_64(
  *      highest address range is described.  If no addresses beyond
  *      the one specified are allocated, the call returns KERN_NO_SPACE.]
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine mach_vm_region(
-#else
-routine vm_region_64(
-#endif
                 target_task     : vm_map_t;
 	inout	address		: mach_vm_address_t;
         out     size            : mach_vm_size_t;
@@ -448,15 +333,7 @@ routine vm_region_64(
  *
  *	THIS INTERFACE IS STILL EVOLVING.
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
-#if !defined(__LP64__) || KERNEL_SERVER || XNU_KERNEL_PRIVATE || LIBSYSCALL_INTERFACE
 routine _mach_make_memory_entry(
-#else
-routine mach_make_memory_entry(
-#endif
-#else
-routine mach_make_memory_entry_64(
-#endif
 		target_task	:vm_map_t;
 	inout	size		:memory_object_size_t;
 		offset		:memory_object_offset_t;
@@ -471,26 +348,18 @@ routine mach_make_memory_entry_64(
  *	specified.  See the routine implementation for a complete
  *	definition of the routine.
  */
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine mach_vm_purgable_control(
-#else
-routine vm_purgable_control(
-#endif
 		target_task	: vm_map_t;
 		address		: mach_vm_address_t;
 		control		: vm_purgable_t;
 	inout	state		: int);
 
 
-#if !defined(_MACH_VM_PUBLISH_AS_LOCAL_)
 routine mach_vm_page_info(
 			target_task		: vm_map_t;
 			address			: mach_vm_address_t;
 			flavor			: vm_page_info_flavor_t;
 	out		info			: vm_page_info_t, CountInOut);
-#else
-skip;
-#endif
 
 /****************************** Legacy section ***************************/
 /*  The following definitions are exist to provide compatibility with    */
